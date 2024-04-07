@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2cqop65d1cow"]
+
+[ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_uowtk"]
+[ext_resource type="PackedScene" uid="uid://dwh0ohqqwkseu" path="res://scenes/PolygonMaker.tscn" id="2_q7ern"]
+[ext_resource type="PackedScene" uid="uid://bfmgalkkbdevq" path="res://scenes/triangle_spawner.tscn" id="4_db2pe"]
+
+[node name="Room1" instance=ExtResource("1_uowtk")]
+exit_right_scene_path = "res://scenes/rooms/room_2.tscn"
+
+[node name="ColorRect" parent="Control" index="0"]
+color = Color(0.32549, 0.164706, 0.172549, 0.470588)
+
+[node name="PolygonMaker" parent="." index="6" instance=ExtResource("2_q7ern")]
+position = Vector2(2, -67)
+
+[node name="TriangleSpawner" parent="." index="7" instance=ExtResource("4_db2pe")]
+position = Vector2(-105, 86)
+
+[node name="TriangleSpawner2" parent="." index="8" instance=ExtResource("4_db2pe")]
+position = Vector2(160, -75)
+
+[node name="TriangleSpawner3" parent="." index="9" instance=ExtResource("4_db2pe")]
+position = Vector2(173, 90)

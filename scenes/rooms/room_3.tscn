@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy5h8jd48yixn"]
+
+[ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_qktqx"]
+
+[node name="Room3" instance=ExtResource("1_qktqx")]
+exit_down_scene_path = "res://scenes/rooms/room_2.tscn"
+
+[node name="ColorRect" parent="Control" index="0"]
+color = Color(0.14902, 0.247059, 0.172549, 0.458824)

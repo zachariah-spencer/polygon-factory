@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbmsk63tfft50"]
+
+[ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_4l5mp"]
+
+[node name="Room2" instance=ExtResource("1_4l5mp")]
+exit_left_scene_path = "res://scenes/rooms/room_1.tscn"
+exit_up_scene_path = "res://scenes/rooms/room_3.tscn"
+exit_down_scene_path = "res://scenes/rooms/room_4.tscn"
+
+[node name="View" parent="." index="0"]
+zoom = Vector2(1.5, 1.5)
+
+[node name="ColorRect" parent="Control" index="0"]
+color = Color(0.176471, 0.211765, 0.341176, 0.482353)

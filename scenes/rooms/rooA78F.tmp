@@ -1,0 +1,83 @@
+[gd_scene load_steps=3 format=3 uid="uid://btxu4ak1xixo4"]
+
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_ncae3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64ylp"]
+size = Vector2(64, 64)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("1_ncae3")
+
+[node name="View" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 1.75)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -329.0
+offset_top = -184.0
+offset_right = 328.0
+offset_bottom = 186.0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.219501, 0.219501, 0.219501, 1)
+
+[node name="EntranceLeft" type="Node2D" parent="."]
+position = Vector2(-299, 0)
+
+[node name="EntranceRight" type="Node2D" parent="."]
+position = Vector2(295, 1)
+
+[node name="EntranceUp" type="Node2D" parent="."]
+position = Vector2(-1, -155)
+
+[node name="EntranceDown" type="Node2D" parent="."]
+position = Vector2(0, 155)
+
+[node name="ExitLeft" type="Area2D" parent="."]
+position = Vector2(-351, -2)
+collision_layer = 2
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitLeft"]
+shape = SubResource("RectangleShape2D_64ylp")
+
+[node name="ExitRight" type="Area2D" parent="."]
+position = Vector2(348, 0)
+collision_layer = 2
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitRight"]
+shape = SubResource("RectangleShape2D_64ylp")
+
+[node name="ExitUp" type="Area2D" parent="."]
+position = Vector2(1, -207)
+collision_layer = 2
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitUp"]
+shape = SubResource("RectangleShape2D_64ylp")
+
+[node name="ExitDown" type="Area2D" parent="."]
+position = Vector2(1, 209)
+collision_layer = 2
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDown"]
+shape = SubResource("RectangleShape2D_64ylp")
+
+[connection signal="body_entered" from="ExitLeft" to="." method="_on_exit_left_body_entered"]
+[connection signal="body_entered" from="ExitRight" to="." method="_on_exit_right_body_entered"]

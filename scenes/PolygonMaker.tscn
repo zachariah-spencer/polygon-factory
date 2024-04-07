@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwh0ohqqwkseu"]
+
+[ext_resource type="Script" path="res://scenes/polygon_maker.gd" id="1_my3gv"]
+[ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="2_xjad1"]
+[ext_resource type="FontFile" uid="uid://bhq4swxalljnh" path="res://assets/m3x6.ttf" id="3_hk7xx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kba1o"]
+size = Vector2(32, 32)
+
+[node name="PolygonMaker" type="StaticBody2D"]
+collision_layer = 12
+input_pickable = true
+script = ExtResource("1_my3gv")
+polygon_scene_path = "res://scenes/polygon.tscn"
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.088, 0.088)
+texture = ExtResource("2_xjad1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_kba1o")
+
+[node name="Control" type="Control" parent="."]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+offset_bottom = 32.0
+mouse_filter = 2
+
+[node name="Tooltip" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_right = 89.0
+offset_bottom = 55.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_hk7xx")
+theme_override_font_sizes/font_size = 32
+text = "Click to make 
+polygons"
+horizontal_alignment = 1
+
+[node name="Polygons" type="Node" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

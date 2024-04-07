@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://c43h8h6bddcvs"]
+
+[ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
+[ext_resource type="Script" path="res://scenes/triangle.gd" id="1_ris15"]
+
+[sub_resource type="Curve" id="Curve_duus1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dmlpp"]
+curve = SubResource("Curve_duus1")
+
+[sub_resource type="Curve" id="Curve_aehso"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3hxl6"]
+curve = SubResource("Curve_aehso")
+
+[sub_resource type="Curve" id="Curve_3eypk"]
+min_value = -25.0
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.58, 2), 0.0, 0.0, 0, 0, Vector2(0.76, -25), 0.0, 0.0, 0, 0, Vector2(1, -25), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6e8rq"]
+curve = SubResource("Curve_3eypk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs5li"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+radial_velocity_min = 15.0
+radial_velocity_max = 15.0
+radial_velocity_curve = SubResource("CurveTexture_6e8rq")
+gravity = Vector3(0, 0, 0)
+radial_accel_curve = SubResource("CurveTexture_3hxl6")
+alpha_curve = SubResource("CurveTexture_dmlpp")
+
+[node name="Triangle" type="StaticBody2D"]
+collision_layer = 12
+script = ExtResource("1_ris15")
+polygon_scene_path = "res://scenes/polygon.tscn"
+metadata/_edit_horizontal_guides_ = [0.0, 0.0, 0.0]
+metadata/_edit_vertical_guides_ = [-1.0, -2.0]
+
+[node name="Visual" type="Sprite2D" parent="."]
+position = Vector2(2.2, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_14wa6")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+position = Vector2(2.2, 0)
+polygon = PackedVector2Array(-8.2, -10, 8.8, 0, -8.2, 10)
+
+[node name="Polygons" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Pulse" type="GPUParticles2D" parent="."]
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_fs5li")
+preprocess = 0.75
+explosiveness = 1.0
+fixed_fps = 0
+trail_sections = 4
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
