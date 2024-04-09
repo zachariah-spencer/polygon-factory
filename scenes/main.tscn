@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://by5tjgbtoyaln"]
+[gd_scene load_steps=6 format=3 uid="uid://by5tjgbtoyaln"]
 
 [ext_resource type="PackedScene" uid="uid://di1f56lekmhv3" path="res://scenes/game_world.tscn" id="1_doj6s"]
 [ext_resource type="PackedScene" uid="uid://dy6ba652fveup" path="res://scenes/ui.tscn" id="1_kmxbm"]
 [ext_resource type="PackedScene" uid="uid://dyg1hrw3idj0w" path="res://scenes/player.tscn" id="2_lu5wy"]
 [ext_resource type="PackedScene" uid="uid://b2cqop65d1cow" path="res://scenes/rooms/room_1.tscn" id="3_0kmsj"]
+[ext_resource type="PackedScene" uid="uid://dfxa11qn400at" path="res://scenes/background.tscn" id="5_8uqvo"]
 
 [node name="Main" type="Node"]
 
@@ -20,6 +21,8 @@ mouse_filter = 2
 z_index = 1
 
 [node name="Room1" parent="GameWorld" instance=ExtResource("3_0kmsj")]
+
+[node name="Background" parent="GameWorld" instance=ExtResource("5_8uqvo")]
 
 [connection signal="room_exited" from="GameWorld/Room1" to="GameWorld" method="change_rooms"]
 [connection signal="tree_entered" from="GameWorld/Room1" to="GameWorld/Room1" method="_on_tree_entered"]

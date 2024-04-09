@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 signal polygons_changed(polygons :  int)
-@export var speed = 400
+@export var speed = 250
 
 var polygons := 0
 
@@ -21,6 +21,8 @@ func subtract_polygon(num : int = 1):
 	polygons -= num
 	polygons_changed.emit(polygons)
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	get_input()
 	move_and_slide()
+	
+	

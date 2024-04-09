@@ -26,7 +26,7 @@ var colors = [
 func _ready() -> void:
 	initial_velocity = Vector2(randf_range(-100,100), randf_range(-200, -400))
 	initial_torque = randf_range(-48, 48)
-	initial_scale = randf_range(0.05,0.125)
+	initial_scale = randf_range(0.6,1.75)
 	initial_color = colors[randi_range(0,(colors.size() - 1))]
 	final_color = initial_color
 	final_color.a = 0

@@ -53,6 +53,7 @@ metadata/_edit_horizontal_guides_ = [0.0, 0.0, 0.0]
 metadata/_edit_vertical_guides_ = [-1.0, -2.0]
 
 [node name="Visual" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0)
 position = Vector2(2.2, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_14wa6")
