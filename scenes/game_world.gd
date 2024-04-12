@@ -1,7 +1,9 @@
 extends Node2D
-	
+
+
 
 func _ready():
+	Global.register_game_world(self)
 	$Room1.load_room()
 
 func change_rooms(old_room : Node2D, new_room : Node2D, exit_direction : int):
@@ -11,3 +13,4 @@ func change_rooms(old_room : Node2D, new_room : Node2D, exit_direction : int):
 	new_room.room_exited.connect(change_rooms)
 	call_deferred('add_child', new_room)
 	new_room.call_deferred('insert_player', player, exit_direction)
+

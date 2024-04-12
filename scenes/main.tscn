@@ -19,6 +19,7 @@ mouse_filter = 2
 
 [node name="Player" parent="GameWorld" instance=ExtResource("2_lu5wy")]
 z_index = 1
+motion_mode = 1
 
 [node name="Room1" parent="GameWorld" instance=ExtResource("3_0kmsj")]
 

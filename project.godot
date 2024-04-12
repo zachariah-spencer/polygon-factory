@@ -18,12 +18,17 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 Global="*res://autoloads/global.gd"
+Generators="*res://autoloads/generators.gd"
+Stats="*res://autoloads/stats.gd"
 
 [global_group]
 
 player=""
 ui=""
 view=""
+objects=""
+object_spawners=""
+game_world=""
 
 [gui]
 

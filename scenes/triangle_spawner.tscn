@@ -11,7 +11,7 @@ size = Vector2(13, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mwt4"]
 size = Vector2(180, 100)
 
-[node name="TriangleSpawner" type="Node2D"]
+[node name="TriangleSpawner" type="Node2D" groups=["object_spawners"]]
 script = ExtResource("1_3x03k")
 triangle_scene_path = "res://scenes/triangle.tscn"
 

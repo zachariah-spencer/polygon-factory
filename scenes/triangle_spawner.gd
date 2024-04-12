@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var triangle_scene_path : String
+
 @onready var tooltip := $Tooltip
 @onready var button := $Tooltip/CenterContainer/VBoxContainer/Button
 @onready var price_notification_timer := $PriceNotificationTimer
@@ -8,16 +9,25 @@ extends Node2D
 var cost := 50
 
 func _ready():
+	
+	if Generators.has_generator(_get_unique_id()):
+		spawn_object.call_deferred()
+	
 	tooltip.modulate.a = 0
 
-func spawn_triangle():
+func spawn_object():
 	var triangle_scene = load(triangle_scene_path)
 	var triangle_instance = triangle_scene.instantiate()
 	
+	triangle_instance.generator = Generators.get_generator(_get_unique_id())
 	triangle_instance.global_position = global_position
-	get_parent().call_deferred("add_child", triangle_instance)
+	
+	get_parent().add_child(triangle_instance)
 	
 	queue_free()
+
+func _get_unique_id() -> String:
+	return get_parent().name + '/' + name
 
 func _on_enter_collision_mouse_entered() -> void:
 	var tween = get_tree().create_tween()
@@ -30,11 +40,10 @@ func _on_exit_collision_mouse_exited() -> void:
 
 
 func _on_button_pressed() -> void:
-	var player = get_tree().get_first_node_in_group('player')
 	
-	if player.polygons >= cost:
-		player.subtract_polygon(cost)
-		spawn_triangle()
+	if Stats.current_polygons >= cost:
+		Stats.subtract_polygon(cost)
+		spawn_object()
 	else:
 		button.text = 'Not Enough Polygons'
 		price_notification_timer.start()

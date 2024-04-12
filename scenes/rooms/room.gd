@@ -2,8 +2,6 @@ extends Node2D
 
 signal room_exited(old_room : Node2D, new_room : Node2D, exit_direction : int)
 
-
-
 @export var exit_left_scene_path : String
 @export var exit_right_scene_path : String
 @export var exit_up_scene_path : String
@@ -17,11 +15,13 @@ signal room_exited(old_room : Node2D, new_room : Node2D, exit_direction : int)
 @onready var exits = [exit_left,exit_right,exit_up,exit_down]
 
 var player_spawn_position : Vector2
-var entrance_offset := 42
+var entrance_offset := 64
+
 
 func _ready():
 	await get_tree().create_timer(0.001).timeout
 	load_room()
+	
 
 func insert_player(player : CharacterBody2D, entered_from : int):
 	match(entered_from):
@@ -59,6 +59,8 @@ func load_room():
 		exit_up.monitoring = false
 	if exit_down_scene_path == '':
 		exit_down.monitoring = false
+	
+	
 
 func deload_room():
 	for exit in exits:
@@ -72,7 +74,6 @@ func _instantiate_room_scene(room_scene_path : String):
 	instance = room_scene.instantiate()
 	
 	return instance
-
 
 func _on_exit_left_body_entered(_player : PhysicsBody2D):
 	

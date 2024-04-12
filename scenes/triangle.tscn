@@ -45,7 +45,7 @@ gravity = Vector3(0, 0, 0)
 radial_accel_curve = SubResource("CurveTexture_3hxl6")
 alpha_curve = SubResource("CurveTexture_dmlpp")
 
-[node name="Triangle" type="StaticBody2D"]
+[node name="Triangle" type="StaticBody2D" groups=["objects"]]
 collision_layer = 12
 script = ExtResource("1_ris15")
 polygon_scene_path = "res://scenes/polygon.tscn"
@@ -64,9 +64,6 @@ polygon = PackedVector2Array(-8.2, -10, 8.8, 0, -8.2, 10)
 
 [node name="Polygons" type="Node" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [node name="Pulse" type="GPUParticles2D" parent="."]
 amount = 5000
 process_material = SubResource("ParticleProcessMaterial_fs5li")
@@ -74,5 +71,3 @@ preprocess = 0.75
 explosiveness = 1.0
 fixed_fps = 0
 trail_sections = 4
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

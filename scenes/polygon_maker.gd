@@ -15,8 +15,7 @@ func make_polygon():
 	polygon_instance.global_position = global_position
 	polygons.call_deferred("add_child", polygon_instance)
 	
-	var player = get_tree().get_first_node_in_group('player')
-	player.add_polygon()
+	Stats.add_polygon()
 	
 	await polygon_instance.ready
 	var tween = get_tree().create_tween()

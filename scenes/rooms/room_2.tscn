@@ -9,6 +9,3 @@ exit_down_scene_path = "res://scenes/rooms/room_4.tscn"
 
 [node name="View" parent="." index="0"]
 zoom = Vector2(1.5, 1.5)
-
-[node name="ColorRect" parent="Control" index="0"]
-color = Color(0.176471, 0.211765, 0.341176, 0.482353)

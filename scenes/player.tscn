@@ -57,7 +57,6 @@ speed_scale = 1.5
 fixed_fps = 60
 
 [node name="Visual" type="Sprite2D" parent="."]
-modulate = Color(0.465704, 1, 0.750662, 1)
 use_parent_material = true
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("2_cfyit")
