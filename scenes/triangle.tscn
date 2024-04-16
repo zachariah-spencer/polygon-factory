@@ -67,7 +67,7 @@ polygon = PackedVector2Array(-8.2, -10, 8.8, 0, -8.2, 10)
 [node name="Pulse" type="GPUParticles2D" parent="."]
 amount = 5000
 process_material = SubResource("ParticleProcessMaterial_fs5li")
-preprocess = 0.75
+speed_scale = 0.7
 explosiveness = 1.0
 fixed_fps = 0
 trail_sections = 4

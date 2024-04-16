@@ -11,16 +11,19 @@ var cost := 50
 func _ready():
 	
 	if Generators.has_generator(_get_unique_id()):
-		spawn_object.call_deferred()
+		spawn_object.call_deferred(true)
 	
 	tooltip.modulate.a = 0
 
-func spawn_object():
+func spawn_object(purchased := false):
 	var triangle_scene = load(triangle_scene_path)
 	var triangle_instance = triangle_scene.instantiate()
 	
 	triangle_instance.generator = Generators.get_generator(_get_unique_id())
 	triangle_instance.global_position = global_position
+	
+	if purchased == true:
+		triangle_instance.purchased = true
 	
 	get_parent().add_child(triangle_instance)
 	

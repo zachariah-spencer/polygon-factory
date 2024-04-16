@@ -4,6 +4,3 @@
 
 [node name="Room3" instance=ExtResource("1_qktqx")]
 exit_down_scene_path = "res://scenes/rooms/room_2.tscn"
-
-[node name="ColorRect" parent="Control" index="0"]
-color = Color(0.14902, 0.247059, 0.172549, 0.458824)

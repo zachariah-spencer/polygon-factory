@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://47g0k1f42lbu"]
+
+[sub_resource type="Curve" id="Curve_s3rf0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8vpq1"]
+curve = SubResource("Curve_s3rf0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kfmac"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1024, 1024, 1)
+gravity = Vector3(1000, 0, 0)
+alpha_curve = SubResource("CurveTexture_8vpq1")
+
+[node name="RoomTransitionScreen" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Background" type="ColorRect" parent="."]
+process_mode = 4
+auto_translate_mode = 1
+z_index = 5
+offset_left = -1024.0
+offset_top = -1024.0
+offset_right = 1024.0
+offset_bottom = 1024.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Stars" type="GPUParticles2D" parent="."]
+z_index = 5
+z_as_relative = false
+amount = 600
+process_material = SubResource("ParticleProcessMaterial_kfmac")
+preprocess = 1.0
+trail_enabled = true
+trail_lifetime = 1.5

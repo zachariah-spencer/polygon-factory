@@ -5,7 +5,7 @@ var polygons_increment := 1
 
 signal polygons_generated(polygons :  int)
 
-var cooldown := 0.0
+var cooldown := max_cooldown
 
 func reduce_cooldown_by(amount : float):
 	cooldown -= amount
