@@ -7,15 +7,19 @@ signal room_exited(old_room : Node2D, new_room : Node2D, exit_direction : int)
 @export var exit_up_scene_path : String
 @export var exit_down_scene_path : String
 
+@export var camera_following_x := false
+@export var camera_following_y := false
+
 @onready var exit_left := $ExitLeft
 @onready var exit_right := $ExitRight
 @onready var exit_up := $ExitUp
 @onready var exit_down := $ExitDown
 
 @onready var exits = [exit_left,exit_right,exit_up,exit_down]
+@onready var view := $View
 
 var player_spawn_position : Vector2
-var entrance_offset := 64
+var entrance_offset := 50
 
 
 func _ready():
@@ -48,6 +52,7 @@ func exit_room(exit_direction : int):
 			room_exited.emit(self, _instantiate_room_scene(exit_down_scene_path), Global.Directions.DOWN)
 
 func load_room():
+	
 	for exit in exits:
 			exit.monitoring = true
 	
@@ -66,6 +71,12 @@ func deload_room():
 	for exit in exits:
 		exit.set_deferred('monitoring', false)
 	queue_free()
+
+func _physics_process(delta: float) -> void:
+	if camera_following_x:
+		view.global_position.x = Global.player.global_position.x
+	if camera_following_y:
+		view.global_position.y = Global.player.global_position.y
 
 func _instantiate_room_scene(room_scene_path : String):
 	var room_scene = load(room_scene_path)

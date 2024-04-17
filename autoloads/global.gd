@@ -4,6 +4,7 @@ enum Directions {LEFT, RIGHT, UP, DOWN, NULL = -1}
 
 var game_world
 var background_objects
+var player
 
 var colors = [
 	Color.DARK_RED,

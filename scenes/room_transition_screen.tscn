@@ -11,7 +11,7 @@ curve = SubResource("Curve_s3rf0")
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1024, 1024, 1)
-gravity = Vector3(1000, 0, 0)
+gravity = Vector3(-500, 0, 0)
 alpha_curve = SubResource("CurveTexture_8vpq1")
 
 [node name="RoomTransitionScreen" type="Node2D"]
@@ -31,8 +31,10 @@ color = Color(0, 0, 0, 1)
 [node name="Stars" type="GPUParticles2D" parent="."]
 z_index = 5
 z_as_relative = false
-amount = 600
+amount = 1000
 process_material = SubResource("ParticleProcessMaterial_kfmac")
 preprocess = 1.0
 trail_enabled = true
-trail_lifetime = 1.5
+trail_lifetime = 1.0
+trail_sections = 64
+trail_section_subdivisions = 64

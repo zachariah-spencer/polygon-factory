@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfxa11qn400at"]
 
 [sub_resource type="Curve" id="Curve_s3rf0"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 0.483516), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_8vpq1"]
@@ -11,7 +11,7 @@ curve = SubResource("Curve_s3rf0")
 particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(1024, 1024, 1)
-gravity = Vector3(1000, 0, 0)
+gravity = Vector3(-50, 0, 0)
 alpha_curve = SubResource("CurveTexture_8vpq1")
 
 [node name="Background" type="Node2D"]
@@ -30,7 +30,11 @@ color = Color(0, 0, 0, 1)
 [node name="Stars" type="GPUParticles2D" parent="."]
 z_index = -2
 z_as_relative = false
-amount = 600
+amount = 1000
 process_material = SubResource("ParticleProcessMaterial_kfmac")
-trail_enabled = true
+speed_scale = 0.5
+fixed_fps = 60
+visibility_rect = Rect2(-1024, -1024, 2048, 2048)
 trail_lifetime = 1.5
+trail_sections = 32
+trail_section_subdivisions = 32
