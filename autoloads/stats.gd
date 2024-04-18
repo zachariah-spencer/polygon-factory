@@ -6,7 +6,7 @@ var current_polygons := 250
 var total_polygons := 250
 
 func get_polygons_per_minute() -> float:
-	return float(Generators.generators.size()) * 60.0
+	return float(Objects.get_generators().size()) * 60.0
 
 func add_polygon(num : int = 1):
 	current_polygons += num

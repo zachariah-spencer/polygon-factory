@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://wimnmowpowof"]
+
+[ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_hv5ir"]
+
+[node name="TheGreatShapeSpawner" instance=ExtResource("1_hv5ir")]
+spawnable_name = "The Great Shape Altar"
+spawnable_description = "Freely Offer Polygons To The Great Shape"
+cost = 5000

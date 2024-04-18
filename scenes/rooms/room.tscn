@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://btxu4ak1xixo4"]
 
-[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="1_ncae3"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_ncae3"]
 [ext_resource type="Texture2D" uid="uid://b7dwv313e3tl4" path="res://assets/tiles/whitesq-bottom.png" id="2_vxkjy"]
 [ext_resource type="Texture2D" uid="uid://qvlkxjqohrvo" path="res://assets/tiles/whitesq-left.png" id="3_3k254"]
 [ext_resource type="Texture2D" uid="uid://bo3jri5dsm8km" path="res://assets/tiles/whitesq-right.png" id="4_3xlxu"]
@@ -91,7 +91,7 @@ size = Vector2(64, 64)
 [node name="Room" type="Node2D"]
 script = ExtResource("1_ncae3")
 
-[node name="View" type="Camera2D" parent="." groups=["view"]]
+[node name="View" type="Camera2D" parent="."]
 zoom = Vector2(1.75, 1.75)
 metadata/_edit_lock_ = true
 

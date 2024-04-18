@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2cqop65d1cow"]
 
 [ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_uowtk"]
-[ext_resource type="PackedScene" uid="uid://dwh0ohqqwkseu" path="res://scenes/PolygonMaker.tscn" id="2_q7ern"]
-[ext_resource type="PackedScene" uid="uid://bfmgalkkbdevq" path="res://scenes/triangle_spawner.tscn" id="4_db2pe"]
+[ext_resource type="PackedScene" uid="uid://dwh0ohqqwkseu" path="res://scenes/polygon_maker.tscn" id="2_q7ern"]
+[ext_resource type="PackedScene" uid="uid://lh1h3fc3qkfd" path="res://scenes/spawners/triangle_spawner.tscn" id="4_qsfpg"]
 
 [node name="Room1" instance=ExtResource("1_uowtk")]
 exit_right_scene_path = "res://scenes/rooms/room_2.tscn"
@@ -17,20 +17,28 @@ layer_0/tile_data = PackedInt32Array(-1, 5, 0, -65536, 5, 0, 0, 5, 0, 65535, 5, 
 [node name="PolygonMaker" parent="." index="6" instance=ExtResource("2_q7ern")]
 position = Vector2(2, -67)
 
-[node name="TriangleSpawner" parent="." index="7" instance=ExtResource("4_db2pe")]
-position = Vector2(-312, 168)
+[node name="TriangleSpawners" type="Node" parent="." index="7"]
 
-[node name="TriangleSpawner2" parent="." index="8" instance=ExtResource("4_db2pe")]
-position = Vector2(-200, 168)
+[node name="TriangleSpawner1" parent="TriangleSpawners" index="0" instance=ExtResource("4_qsfpg")]
+position = Vector2(-256, 128)
 
-[node name="TriangleSpawner3" parent="." index="9" instance=ExtResource("4_db2pe")]
-position = Vector2(-312, 56)
+[node name="TriangleSpawner2" parent="TriangleSpawners" index="1" instance=ExtResource("4_qsfpg")]
+position = Vector2(-128, 0)
 
-[node name="TriangleSpawner4" parent="." index="10" instance=ExtResource("4_db2pe")]
-position = Vector2(-200, 56)
+[node name="TriangleSpawner3" parent="TriangleSpawners" index="2" instance=ExtResource("4_qsfpg")]
+position = Vector2(-256, 0)
 
-[node name="TriangleSpawner5" parent="." index="11" instance=ExtResource("4_db2pe")]
-position = Vector2(-88, 56)
+[node name="TriangleSpawner4" parent="TriangleSpawners" index="3" instance=ExtResource("4_qsfpg")]
+position = Vector2(-128, 128)
 
-[node name="TriangleSpawner6" parent="." index="12" instance=ExtResource("4_db2pe")]
-position = Vector2(-88, 168)
+[node name="TriangleSpawner5" parent="TriangleSpawners" index="4" instance=ExtResource("4_qsfpg")]
+position = Vector2(128, 128)
+
+[node name="TriangleSpawner6" parent="TriangleSpawners" index="5" instance=ExtResource("4_qsfpg")]
+position = Vector2(256, 0)
+
+[node name="TriangleSpawner7" parent="TriangleSpawners" index="6" instance=ExtResource("4_qsfpg")]
+position = Vector2(128, 0)
+
+[node name="TriangleSpawner8" parent="TriangleSpawners" index="7" instance=ExtResource("4_qsfpg")]
+position = Vector2(256, 128)

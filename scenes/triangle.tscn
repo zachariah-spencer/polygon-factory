@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c43h8h6bddcvs"]
 
 [ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
-[ext_resource type="Script" path="res://scenes/triangle.gd" id="1_ris15"]
+[ext_resource type="Script" path="res://scripts/triangle.gd" id="1_ris15"]
 
 [sub_resource type="Curve" id="Curve_duus1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
@@ -45,7 +45,7 @@ gravity = Vector3(0, 0, 0)
 radial_accel_curve = SubResource("CurveTexture_3hxl6")
 alpha_curve = SubResource("CurveTexture_dmlpp")
 
-[node name="Triangle" type="StaticBody2D" groups=["objects"]]
+[node name="Triangle" type="StaticBody2D"]
 collision_layer = 12
 script = ExtResource("1_ris15")
 polygon_scene_path = "res://scenes/polygon.tscn"

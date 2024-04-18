@@ -15,6 +15,7 @@ func make_polygon():
 	polygon_instance.global_position = global_position
 	polygons.call_deferred("add_child", polygon_instance)
 	
+	
 	Stats.add_polygon()
 	
 	await polygon_instance.ready

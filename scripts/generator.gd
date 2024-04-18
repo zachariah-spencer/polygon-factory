@@ -1,4 +1,4 @@
-class_name Generator extends Resource
+class_name Generator extends GameObject
 
 var max_cooldown := 1.0
 var polygons_increment := 1

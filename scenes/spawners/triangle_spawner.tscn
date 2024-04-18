@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://lh1h3fc3qkfd"]
+
+[ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_ce7ek"]
+
+[node name="TriangleSpawner" instance=ExtResource("1_ce7ek")]
+spawnable_scene_path = "res://scenes/triangle.tscn"
+spawnable_name = "Triangle"
+spawnable_description = "Generates 1 Polygon/Sec"
+cost = 50
+is_generator = true
+
+[node name="Description" parent="Tooltip/CenterContainer/VBoxContainer" index="1"]
+text = "Description
+Cost - 0 Polygons"

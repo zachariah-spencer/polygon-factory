@@ -6,12 +6,12 @@ extends StaticBody2D
 @onready var polygons := $Polygons
 @onready var pulse := $Pulse
 
-var generator : Generator
+var game_object : GameObject
 var purchased := false
 var previous_color := Color.WHITE
 
 func _ready():
-	generator.polygons_generated.connect(make_polygon)
+	game_object.polygons_generated.connect(make_polygon)
 	visual.modulate.a = 0
 	rotation = randf_range(0, 360)
 	
@@ -21,7 +21,7 @@ func _ready():
 		_load()
 
 func _reload():
-	pulse.preprocess = (generator.max_cooldown - generator.cooldown)
+	pulse.preprocess = (game_object.max_cooldown - game_object.cooldown)
 	pulse.restart()
 	pulse.emitting = true
 	visual.modulate = Global.get_random_color()
@@ -40,7 +40,7 @@ func make_polygon(_polygon_count : int):
 	polygon_instance.global_position = global_position
 	polygons.add_child(polygon_instance)
 	
-	var previous_color = polygon_instance.initial_color
+	previous_color = polygon_instance.initial_color
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(visual, 'modulate', previous_color, 0.2)

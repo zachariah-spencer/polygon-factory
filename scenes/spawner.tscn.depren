@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfmgalkkbdevq"]
+[gd_scene load_steps=6 format=3 uid="uid://clcjuj3i4f4ec"]
 
-[ext_resource type="Texture2D" uid="uid://db3fxyk3jkid4" path="res://assets/icon.svg" id="1_0ubkq"]
-[ext_resource type="Script" path="res://scenes/triangle_spawner.gd" id="1_3x03k"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_ov5yc"]
+[ext_resource type="Texture2D" uid="uid://db3fxyk3jkid4" path="res://assets/icon.svg" id="2_1isaw"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jbh3"]
 
@@ -11,14 +11,13 @@ size = Vector2(13, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mwt4"]
 size = Vector2(180, 100)
 
-[node name="TriangleSpawner" type="Node2D" groups=["object_spawners"]]
-script = ExtResource("1_3x03k")
-triangle_scene_path = "res://scenes/triangle.tscn"
+[node name="Spawner" type="Node2D" groups=["object_spawners"]]
+script = ExtResource("1_ov5yc")
 
 [node name="Visual" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 0.254902)
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_0ubkq")
+texture = ExtResource("2_1isaw")
 metadata/_edit_lock_ = true
 
 [node name="Tooltip" type="Control" parent="."]
@@ -53,14 +52,14 @@ layout_mode = 2
 [node name="Title" type="Label" parent="Tooltip/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Triangle"
+text = "Name"
 horizontal_alignment = 1
 
 [node name="Description" type="Label" parent="Tooltip/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/line_spacing = -4
-text = "Generates 1 Polygon/Sec
-Cost - 50 Polygons"
+text = "Description
+Cost - -1 Polygons"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Tooltip/CenterContainer/VBoxContainer"]
@@ -71,7 +70,7 @@ theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
 theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5jbh3")
-text = "Purchase Triangle"
+text = "Purchase Name"
 flat = true
 
 [node name="EnterCollision" type="Area2D" parent="."]

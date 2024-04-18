@@ -1,16 +1,19 @@
 extends Node2D
 
 @export var triangle_scene_path : String
+@export var is_generator := true
 
 @onready var tooltip := $Tooltip
 @onready var button := $Tooltip/CenterContainer/VBoxContainer/Button
 @onready var price_notification_timer := $PriceNotificationTimer
 
+var gameobj
+
 var cost := 50
 
 func _ready():
 	
-	if Generators.has_generator(_get_unique_id()):
+	if Objects.has_object(_get_unique_id()):
 		spawn_object.call_deferred(true)
 	
 	tooltip.modulate.a = 0
@@ -19,7 +22,7 @@ func spawn_object(purchased := false):
 	var triangle_scene = load(triangle_scene_path)
 	var triangle_instance = triangle_scene.instantiate()
 	
-	triangle_instance.generator = Generators.get_generator(_get_unique_id())
+	triangle_instance.game_object = Objects.get_object(_get_unique_id(), is_generator)
 	triangle_instance.global_position = global_position
 	
 	if purchased == true:
