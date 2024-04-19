@@ -7,6 +7,7 @@ func _ready():
 	$Room1.load_room()
 
 func change_rooms(old_room : Node2D, new_room : Node2D, exit_direction : int):
+	print(Objects.game_objects.size())
 	var player : CharacterBody2D = get_tree().get_first_node_in_group('player')
 	
 	var transition_screen = room_transition_screen_scene.instantiate()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://wk2ihjj2wdjq"]
 
-[ext_resource type="Script" path="res://scripts/polygon.gd" id="1_61gj5"]
+[ext_resource type="Script" path="res://scripts/polygon_dynamic.gd" id="1_61gj5"]
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="2_d771l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l6am5"]

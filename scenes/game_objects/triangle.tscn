@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c43h8h6bddcvs"]
 
 [ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
-[ext_resource type="Script" path="res://scripts/triangle.gd" id="1_ris15"]
+[ext_resource type="Script" path="res://scripts/game_objects/triangle.gd" id="1_ris15"]
 
 [sub_resource type="Curve" id="Curve_duus1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
@@ -70,4 +70,5 @@ process_material = SubResource("ParticleProcessMaterial_fs5li")
 speed_scale = 0.7
 explosiveness = 1.0
 fixed_fps = 0
+visibility_rect = Rect2(-18.1728, -18.9633, 37.3248, 37.9356)
 trail_sections = 4

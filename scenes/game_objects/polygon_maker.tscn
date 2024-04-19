@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwh0ohqqwkseu"]
 
-[ext_resource type="Script" path="res://scripts/polygon_maker.gd" id="1_my3gv"]
+[ext_resource type="Script" path="res://scripts/game_objects/polygon_maker.gd" id="1_my3gv"]
 [ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="2_xjad1"]
 [ext_resource type="FontFile" uid="uid://bhq4swxalljnh" path="res://assets/m3x6.ttf" id="3_hk7xx"]
 
@@ -12,13 +12,14 @@ collision_layer = 12
 input_pickable = true
 script = ExtResource("1_my3gv")
 polygon_scene_path = "res://scenes/polygon.tscn"
+purchased = true
 
 [node name="Visual" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
 scale = Vector2(0.088, 0.088)
 texture = ExtResource("2_xjad1")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 rotation = 0.785398
 shape = SubResource("RectangleShape2D_kba1o")
 

@@ -2,13 +2,14 @@ extends Node
 
 var game_objects := {}
 
-func get_object(object_id : String, is_generator := false):
+func get_object(object_id : String, is_generator := false, polygons := 1):
 	if not game_objects.has(object_id):
 		
 		var game_object
 		
 		if is_generator:
 			game_object = Generator.new()
+			game_object.polygons_increment = polygons
 		else:
 			game_object = GameObject.new()
 		

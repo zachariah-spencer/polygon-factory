@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://uae0cg50lhup"]
+
+[ext_resource type="Texture2D" uid="uid://kdayil0kjgqm" path="res://assets/greatshape.png" id="1_ackp1"]
+[ext_resource type="Script" path="res://scripts/game_objects/the_great_shape.gd" id="1_xhuk0"]
+[ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="3_rlc0v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqdox"]
+radius = 800.0
+
+[sub_resource type="Curve" id="Curve_g8u42"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.66, 0.450549), 2.94968, 2.94968, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wapbr"]
+curve = SubResource("Curve_g8u42")
+
+[sub_resource type="Curve" id="Curve_lgp8k"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_0lv64"]
+curve = SubResource("Curve_lgp8k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nfkh7"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1024.0
+emission_ring_radius = 1500.0
+emission_ring_inner_radius = 900.0
+angle_min = -180.0
+angle_max = 180.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+radial_velocity_min = -64.0
+radial_velocity_max = -64.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.15
+scale_max = 0.25
+scale_curve = SubResource("CurveTexture_0lv64")
+color = Color(1, 1, 0, 1)
+alpha_curve = SubResource("CurveTexture_wapbr")
+hue_variation_min = -0.15
+hue_variation_max = 0.15
+
+[sub_resource type="Animation" id="Animation_4atdf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PolygonSuck:process_material:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eu2ud"]
+resource_name = "color_fading"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.08, 2, 4, 6, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.32, 0.32, 1), Color(1, 1, 0.32, 1), Color(0.32, 1, 0.716667, 1), Color(0.592, 0.32, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PolygonSuck:process_material:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 2, 4, 6, 8, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.32, 0.32, 1), Color(1, 1, 0.32, 1), Color(0.32, 1, 0.716667, 1), Color(0.592, 0.32, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1hxvf"]
+_data = {
+"RESET": SubResource("Animation_4atdf"),
+"color_fading": SubResource("Animation_eu2ud")
+}
+
+[node name="TheGreatShape" type="StaticBody2D"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 4
+script = ExtResource("1_xhuk0")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("1_ackp1")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_qqdox")
+
+[node name="PolygonSuck" type="GPUParticles2D" parent="."]
+amount = 1024
+process_material = SubResource("ParticleProcessMaterial_nfkh7")
+texture = ExtResource("3_rlc0v")
+randomness = 0.5
+fixed_fps = 60
+visibility_rect = Rect2(-1804, -1788.52, 3608.16, 3584.28)
+
+[node name="ColorFading" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1hxvf")
+}
+speed_scale = 2.0

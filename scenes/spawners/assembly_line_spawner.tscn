@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b56w13lo8btkv"]
+
+[ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_cy0ek"]
+
+[node name="AssemblyLineSpawner" instance=ExtResource("1_cy0ek")]
+spawnable_scene_path = "res://scenes/game_objects/assembly_line.tscn"
+spawnable_name = "Assembly Line"
+spawnable_description = "Generates 5 Polygon/Sec"
+cost = 500
+is_generator = true
+polygons_generated = 5

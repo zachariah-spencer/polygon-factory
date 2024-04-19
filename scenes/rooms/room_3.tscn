@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy5h8jd48yixn"]
+[gd_scene load_steps=3 format=3 uid="uid://cy5h8jd48yixn"]
 
 [ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_qktqx"]
+[ext_resource type="PackedScene" uid="uid://b56w13lo8btkv" path="res://scenes/spawners/assembly_line_spawner.tscn" id="2_rnigf"]
 
 [node name="Room3" instance=ExtResource("1_qktqx")]
 exit_up_scene_path = "res://scenes/rooms/room_5.tscn"
@@ -26,3 +27,26 @@ position = Vector2(0, -624)
 
 [node name="ExitDown" parent="." index="5"]
 position = Vector2(0, 192)
+
+[node name="AssemblyLines" type="Node" parent="." index="6"]
+
+[node name="AssemblyLineSpawner" parent="AssemblyLines" index="0" instance=ExtResource("2_rnigf")]
+position = Vector2(128, 0)
+spawnable_rotation_degrees = 180.0
+
+[node name="AssemblyLineSpawner2" parent="AssemblyLines" index="1" instance=ExtResource("2_rnigf")]
+position = Vector2(-128, 0)
+
+[node name="AssemblyLineSpawner3" parent="AssemblyLines" index="2" instance=ExtResource("2_rnigf")]
+position = Vector2(-128, -224)
+
+[node name="AssemblyLineSpawner4" parent="AssemblyLines" index="3" instance=ExtResource("2_rnigf")]
+position = Vector2(128, -224)
+spawnable_rotation_degrees = 180.0
+
+[node name="AssemblyLineSpawner5" parent="AssemblyLines" index="4" instance=ExtResource("2_rnigf")]
+position = Vector2(128, -448)
+spawnable_rotation_degrees = 180.0
+
+[node name="AssemblyLineSpawner6" parent="AssemblyLines" index="5" instance=ExtResource("2_rnigf")]
+position = Vector2(-128, -448)

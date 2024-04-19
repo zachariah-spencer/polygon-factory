@@ -1,0 +1,105 @@
+[gd_scene load_steps=8 format=3 uid="uid://d24pfjikaxa1p"]
+
+[ext_resource type="Texture2D" uid="uid://dmnea0ltf4eh2" path="res://assets/conveyor_belt/conveyor1.png" id="1_mss5x"]
+[ext_resource type="Script" path="res://scripts/game_objects/assembly_line.gd" id="1_t48jb"]
+[ext_resource type="Texture2D" uid="uid://d4hydgd2fsg82" path="res://assets/conveyor_belt/conveyor2.png" id="2_sxlns"]
+[ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="4_hvylt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2w8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_mss5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sxlns")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6ebwc"]
+resource_name = "move_polygon"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 5, 5.9, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.840897, 1),
+"update": 0,
+"values": [Vector2(-12, -56), Vector2(-8, -56), Vector2(16, -56), Vector2(16, 56), Vector2(-8, 56), Vector2(-12, 56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 5.9, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_randomize_polygon"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0tk"]
+_data = {
+"move_polygon": SubResource("Animation_6ebwc")
+}
+
+[node name="AssemblyLine" type="StaticBody2D"]
+collision_layer = 4
+script = ExtResource("1_t48jb")
+
+[node name="Visual" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x2w8p")
+autoplay = "default"
+frame_progress = 0.751643
+speed_scale = 2.5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-24, -64, 24, -64, 24, 64, -24, 64, -24, 48, 8, 48, 8, -48, -24, -48)
+
+[node name="SpawnPoint" type="Node2D" parent="."]
+position = Vector2(-16, -56)
+
+[node name="DownPoint" type="Node2D" parent="."]
+position = Vector2(16, -56)
+
+[node name="LeftPoint" type="Node2D" parent="."]
+position = Vector2(16, 56)
+
+[node name="DespawnPoint" type="Node2D" parent="."]
+position = Vector2(-16, 56)
+
+[node name="Polygon" type="Sprite2D" parent="."]
+position = Vector2(16, -41.7234)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_hvylt")
+
+[node name="MovePolygon" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kj0tk")
+}
+autoplay = "move_polygon"
+speed_scale = 7.0
