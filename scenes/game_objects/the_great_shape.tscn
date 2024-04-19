@@ -103,7 +103,6 @@ script = ExtResource("1_xhuk0")
 texture = ExtResource("1_ackp1")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_qqdox")
 
 [node name="PolygonSuck" type="GPUParticles2D" parent="."]
