@@ -103,6 +103,11 @@ fixed_fps = 60
 
 [node name="Polygons" type="Node" parent="."]
 
-[node name="NoRotate" type="Node" parent="."]
+[node name="NoRotate3" type="Node" parent="."]
+
+[node name="NoRotate" type="Node2D" parent="."]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../NoRotate")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

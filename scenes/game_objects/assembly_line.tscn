@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d24pfjikaxa1p"]
+[gd_scene load_steps=9 format=3 uid="uid://d24pfjikaxa1p"]
 
 [ext_resource type="Texture2D" uid="uid://dmnea0ltf4eh2" path="res://assets/conveyor_belt/conveyor1.png" id="1_mss5x"]
 [ext_resource type="Script" path="res://scripts/game_objects/assembly_line.gd" id="1_t48jb"]
@@ -19,7 +19,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_6ebwc"]
+[sub_resource type="Animation" id="Animation_llmh5"]
 resource_name = "move_polygon"
 length = 7.0
 loop_mode = 1
@@ -57,19 +57,92 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [1],
 "method": &"_randomize_polygon"
 }]
 }
 
+[sub_resource type="Animation" id="Animation_6ebwc"]
+resource_name = "move_polygon"
+length = 7.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 5, 5.9, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 0.840897, 1),
+"update": 0,
+"values": [Vector2(-12, -56), Vector2(-8, -56), Vector2(16, -56), Vector2(16, 56), Vector2(-8, 56), Vector2(-12, 56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 5.9, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5), Vector2(0.5, 0.5), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [1],
+"method": &"_randomize_polygon"
+}, {
+"args": [2],
+"method": &"_randomize_polygon"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Polygon2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.61031, 2.5, 3, 3.5, 4.51627, 5.49726),
+"transitions": PackedFloat32Array(1, 0.840897, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(16, 56), Vector2(-8, 56), Vector2(-12, 56), Vector2(-12, -56), Vector2(-8, -56), Vector2(16, -56)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Polygon2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.49876, 2.99851, 3.49826, 4.31267),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(0, 0), Vector2(0, 0), Vector2(0.5, 0.5)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0tk"]
 _data = {
-"move_polygon": SubResource("Animation_6ebwc")
+"move_polygon": SubResource("Animation_llmh5"),
+"move_two_polygons": SubResource("Animation_6ebwc")
 }
 
 [node name="AssemblyLine" type="StaticBody2D"]
 collision_layer = 4
+input_pickable = true
 script = ExtResource("1_t48jb")
+upgrade_1_info = [true, "Production Speed", "Produces twice as many Polygon/Sec", 1000]
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x2w8p")
@@ -93,7 +166,13 @@ position = Vector2(16, 56)
 position = Vector2(-16, 56)
 
 [node name="Polygon" type="Sprite2D" parent="."]
-position = Vector2(16, -41.7234)
+position = Vector2(-10.4339, 56)
+scale = Vector2(0.227258, 0.227258)
+texture = ExtResource("4_hvylt")
+
+[node name="Polygon2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(16, -34.7533)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_hvylt")
 
@@ -103,3 +182,7 @@ libraries = {
 }
 autoplay = "move_polygon"
 speed_scale = 7.0
+
+[node name="NoRotate" type="Node" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -3,6 +3,10 @@ class_name Generator extends GameObject
 var max_cooldown := 1.0
 var polygons_increment := 1
 
+var upgrade_1_active := false
+var upgrade_2_active := false
+var upgrade_3_active := false
+
 signal polygons_generated(polygons :  int)
 
 var cooldown := max_cooldown

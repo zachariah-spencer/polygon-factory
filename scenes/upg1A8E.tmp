@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp50chwfd6hfj"]
+
+[ext_resource type="Script" path="res://scenes/upgrades_menu.gd" id="1_mpe8v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eseyo"]
+bg_color = Color(0, 0, 0, 0.298039)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux5nf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns2bq"]
+size = Vector2(192, 128)
+
+[node name="UpgradesMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 128.0
+mouse_filter = 1
+script = ExtResource("1_mpe8v")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eseyo")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Upgrades" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+clip_tabs = false
+
+[node name="Upgrade1" type="HBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="VerticalList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade1"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList"]
+layout_mode = 2
+text = "Upgrade 1"
+
+[node name="Description" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList"]
+layout_mode = 2
+text = "Makes something better"
+
+[node name="Cost" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList"]
+layout_mode = 2
+text = "Cost - 50 Polygons
+"
+
+[node name="Upgrade1Button" type="Button" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="Upgrade2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+
+[node name="VerticalList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade2"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade2/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Upgrade 2"
+
+[node name="Description" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade2/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Makes something else better"
+
+[node name="Cost" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade2/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Cost - 150 Polygons
+"
+
+[node name="Upgrade2Button" type="Button" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade2"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="Upgrade3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+
+[node name="VerticalList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade3"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade3/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Upgrade 3"
+
+[node name="Description" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade3/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Makes more stuff better"
+
+[node name="Cost" type="Label" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade3/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Cost - 500 Polygons
+"
+
+[node name="Upgrade3Button" type="Button" parent="CenterContainer/VBoxContainer/TabContainer/Upgrade3"]
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="ExitArea" type="Area2D" parent="."]
+position = Vector2(96, 64)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitArea"]
+shape = SubResource("RectangleShape2D_ns2bq")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabContainer/Upgrade1/Upgrade1Button" to="." method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabContainer/Upgrade2/Upgrade2Button" to="." method="_on_upgrade_2_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TabContainer/Upgrade3/Upgrade3Button" to="." method="_on_upgrade_3_button_pressed"]
+[connection signal="mouse_exited" from="ExitArea" to="." method="_on_exit_area_mouse_exited"]

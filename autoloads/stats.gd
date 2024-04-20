@@ -2,8 +2,8 @@ extends Node
 
 signal polygons_changed()
 
-var current_polygons := 5000
-var total_polygons := 5000
+var current_polygons := 100
+var total_polygons := 100
 var polygons_per_minute
 
 func calculate_polygons_per_minute() -> float:

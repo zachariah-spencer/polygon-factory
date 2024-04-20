@@ -1,7 +1,4 @@
-Upgrading Objects:
-	-Hovering the mouse over an object should bring up a tooltip with upgrade options.
-	-If player has enough polygons they can purchase an upgrade which will adjust the multiplier and the speed of a generator.
-
+NEXT:
 Player Upgrades:
 	-Player has the option to offer exponentially pricier lump sums of polygons to The Great Shape
 	-When a milestone of these is reached, The Shape will take a new form(more pixels, maybe a shader, 
@@ -17,7 +14,17 @@ Hexagon Object:
 	-Generates 20 polygons / 10 seconds
 	-Costs 250
 
-Custom Placement / Factory Editing:											-> Possibly Out of Scope <-
+
+
+COMPLETED:
+Upgrading Objects:
+	-Hovering the mouse over an object should bring up a tooltip with upgrade options.
+	-If player has enough polygons they can purchase an upgrade which will adjust the multiplier and the speed of a generator.
+
+
+
+OUT OF SCOPE:
+Custom Placement / Factory Editing:
 	-Ability to purchase objects from a menu instead of set spawn locations
 	-Player can select an object from a list of unlocked objects in a sidebar menu
 	-Player can place objects in any available location in any room
