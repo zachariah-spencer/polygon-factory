@@ -99,6 +99,11 @@ scale = Vector2(0.2, 0.2)
 collision_layer = 4
 input_pickable = true
 script = ExtResource("1_xhuk0")
+polygon_scene_path = null
+purchased = null
+upgrade_1_info = null
+upgrade_2_info = null
+upgrade_3_info = null
 
 [node name="Visual" type="Sprite2D" parent="."]
 texture = ExtResource("1_ackp1")

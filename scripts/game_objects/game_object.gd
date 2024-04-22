@@ -5,14 +5,14 @@ class_name GameObject extends StaticBody2D
 @export var purchased := false
 
 @export var upgrade_1_info := [false, 'Title', 'Description', 0]
-
 @export var upgrade_2_info := [false, 'Title', 'Description', 0]
-
 @export var upgrade_3_info := [false, 'Title', 'Description', 0]
 
 
 @onready var visual := $Visual
 @onready var no_rotate := $NoRotate
+
+
 
 var upgrades_menu_scene_path := 'res://scenes/upgrades_menu.tscn'
 var upgrades_menu_active := false

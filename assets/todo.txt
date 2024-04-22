@@ -24,6 +24,10 @@ Upgrading Objects:
 
 
 OUT OF SCOPE:
+
+Currencies:
+	-Different denominations of currency in the form of different shapes
+	
 Custom Placement / Factory Editing:
 	-Ability to purchase objects from a menu instead of set spawn locations
 	-Player can select an object from a list of unlocked objects in a sidebar menu

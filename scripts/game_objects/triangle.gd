@@ -6,6 +6,7 @@ extends GameObject
 @onready var polygons := $Polygons
 
 var prev_spawned_color : Color
+var rot_speed := 0.02
 
 func make_polygon(_polygon_count : int):
 	_emit_pulse_vfx()
@@ -19,12 +20,14 @@ func activate_upgrade_1():
 	generator.max_cooldown *= 0.5
 	
 	pulse.speed_scale *= 2.0
+	rot_speed *= 2.0
 	
 	generator.upgrade_1_active = true
 
 func activate_upgrade_2():
 	generator.polygons_increment *= 2
 	
+	pulse.modulate = Color.AQUA
 	var tween = get_tree().create_tween()
 	tween.tween_property(quality_pulse, 'modulate', Color.WHITE, 0.5)
 	
@@ -47,9 +50,11 @@ func _reload():
 	
 	if generator.upgrade_1_active:
 		pulse.speed_scale *= 2.0
+		rot_speed *= 2.0
 	
 	if generator.upgrade_2_active:
 		quality_pulse.modulate.a = 1.0
+		pulse.modulate = Color.AQUA
 
 func _spawn_polygon() -> Color:
 	var polygon_scene = load(polygon_scene_path)
@@ -81,7 +86,7 @@ func _load_vfx():
 	visual.modulate = Global.get_random_color()
 
 func _physics_process(_delta: float) -> void:
-	rotation += 0.02
+	rotation += rot_speed
 
 func _on_mouse_entered() -> void:
 	if not upgrades_menu_active:
