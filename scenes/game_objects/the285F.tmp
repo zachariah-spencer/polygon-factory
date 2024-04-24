@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://uae0cg50lhup"]
+[gd_scene load_steps=13 format=3 uid="uid://uae0cg50lhup"]
 
 [ext_resource type="Texture2D" uid="uid://kdayil0kjgqm" path="res://assets/greatshape.png" id="1_ackp1"]
 [ext_resource type="Script" path="res://scripts/game_objects/the_great_shape.gd" id="1_xhuk0"]
@@ -94,31 +94,6 @@ _data = {
 "color_fading": SubResource("Animation_eu2ud")
 }
 
-[sub_resource type="Curve" id="Curve_4jut4"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_svw7q"]
-curve = SubResource("Curve_4jut4")
-
-[sub_resource type="Curve" id="Curve_3rhj5"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_el1m1"]
-curve = SubResource("Curve_3rhj5")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cgfml"]
-particle_flag_disable_z = true
-radial_velocity_min = 150.0
-radial_velocity_max = 180.0
-gravity = Vector3(0, 0, 0)
-scale_min = 25.0
-scale_max = 25.0
-scale_curve = SubResource("CurveTexture_el1m1")
-color = Color(0, 0, 0, 1)
-alpha_curve = SubResource("CurveTexture_svw7q")
-
 [node name="TheGreatShape" type="StaticBody2D"]
 scale = Vector2(0.2, 0.2)
 collision_layer = 4
@@ -126,27 +101,6 @@ input_pickable = true
 script = ExtResource("1_xhuk0")
 
 [node name="Visual" type="Sprite2D" parent="."]
-texture = ExtResource("1_ackp1")
-
-[node name="MiniVisual" type="Sprite2D" parent="Visual"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(0, -480)
-rotation = 1.5708
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_ackp1")
-
-[node name="MiniVisual2" type="Sprite2D" parent="Visual"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(-405, 340)
-rotation = -0.523599
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_ackp1")
-
-[node name="MiniVisual3" type="Sprite2D" parent="Visual"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(420, 310)
-rotation = 1.0472
-scale = Vector2(0.15, 0.15)
 texture = ExtResource("1_ackp1")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
@@ -215,20 +169,6 @@ text = "       "
 layout_mode = 2
 theme_override_font_sizes/font_size = 192
 text = "Cost - 0 Polygons"
-
-[node name="ActionLines" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_cgfml")
-speed_scale = 10.0
-fixed_fps = 60
-visibility_rect = Rect2(-100, -891.073, 1613.46, 1724.03)
-trail_enabled = true
-trail_lifetime = 1.0
-trail_sections = 50
-trail_section_subdivisions = 50
-
-[node name="NoRotate" type="Node" parent="."]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

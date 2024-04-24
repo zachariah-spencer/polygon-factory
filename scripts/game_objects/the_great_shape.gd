@@ -6,9 +6,17 @@ extends GameObject
 @onready var upgrade_tier_label := $Tooltip/VBoxContainer/HBoxContainer/UpgradeTier
 @onready var cost_label := $Tooltip/VBoxContainer/HBoxContainer/Cost
 @onready var description := $Tooltip/VBoxContainer/Description
+@onready var action_lines := $ActionLines
+
+@onready var mini_visual_1 := $Visual/MiniVisual
+@onready var mini_visual_2 := $Visual/MiniVisual2
+@onready var mini_visual_3 := $Visual/MiniVisual3
+
+@onready var mini_visuals := [mini_visual_1, mini_visual_2, mini_visual_3]
 
 var spawned_in := false
 var rotation_speed := 0.0
+var max_rotation_speed := 0.01
 
 var current_upgrade_tier := 0
 var next_upgrade_tier := 1
@@ -50,10 +58,16 @@ func _on_spawn_finished():
 	polygon_suck.emitting = true
 	color_fading.play('color_fading')
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if spawned_in:
-		rotation_speed = lerp(rotation_speed, 0.01, 0.001)
+		rotation_speed = lerp(rotation_speed, max_rotation_speed, 0.005)
 		visual.rotation += rotation_speed
+		
+		for mini_visual in mini_visuals:
+			var mini_rot_speed := rotation_speed * 2.0
+			mini_visual.rotation -= mini_rot_speed
+	
+		
 
 func _update_labels():
 	upgrade_tier_label.text = 'Upgrade Tier - ' + str(current_upgrade_tier)
@@ -75,7 +89,7 @@ func _on_mouse_exited() -> void:
 	tween.tween_property(tooltip, 'modulate', Color.TRANSPARENT, 0.25)
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed('click'):
 		if upgrade_costs.has(next_upgrade_tier):
 			if upgrade_costs[next_upgrade_tier] <= Stats.current_polygons:
@@ -84,4 +98,22 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 				next_upgrade_tier += 1
 				Stats.upgrade_tier = current_upgrade_tier
 				
+				
+				_change_upgrade_tier(current_upgrade_tier)
 				_update_labels()
+
+func _change_upgrade_tier(new_upgrade_tier : int) -> void:
+	color_fading.speed_scale *= 2.0
+	
+	match(new_upgrade_tier):
+		1:
+			max_rotation_speed += 0.05
+		2:
+			max_rotation_speed += 0.15
+		3:
+			for mini_visual in mini_visuals:
+				var tween = create_tween()
+				tween.tween_property(mini_visual, 'modulate:a', 1.0, 1.0)
+				
+				action_lines.emitting = true
+				max_rotation_speed += 7.0

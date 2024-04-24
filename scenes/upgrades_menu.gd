@@ -61,14 +61,14 @@ func load_menu_options(upgrade_1_info, upgrade_2_info, upgrade_3_info):
 	else:
 		upgrade_3.queue_free()
 
-func validate_purchased_upgrades(upgrade_1, upgrade_2, upgrade_3):
-	if upgrade_1:
+func validate_purchased_upgrades(first_upgrade, second_upgrade, third_upgrade):
+	if first_upgrade:
 		_set_upgrade_purchased(1)
 	
-	if upgrade_2:
+	if second_upgrade:
 		_set_upgrade_purchased(2)
 	
-	if upgrade_3:
+	if third_upgrade:
 		_set_upgrade_purchased(3)
 
 func _set_upgrade_purchased(upgrade_index : int):
