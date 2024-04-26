@@ -9,7 +9,7 @@ bg_color = Color(0, 0, 0, 0.298039)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux5nf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ns2bq"]
-size = Vector2(256, 128)
+size = Vector2(224, 124)
 
 [node name="UpgradesComponent" type="Node2D"]
 script = ExtResource("1_8b6hi")

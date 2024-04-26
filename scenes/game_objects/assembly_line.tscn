@@ -167,8 +167,8 @@ position = Vector2(16, 56)
 position = Vector2(-16, 56)
 
 [node name="Polygon" type="Sprite2D" parent="."]
-position = Vector2(-10.4339, 56)
-scale = Vector2(0.227258, 0.227258)
+position = Vector2(-12, -56)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_hvylt")
 
 [node name="Polygon2" type="Sprite2D" parent="."]
@@ -185,7 +185,7 @@ autoplay = "move_polygon"
 speed_scale = 7.0
 
 [node name="GeneratorComponent" parent="." instance=ExtResource("5_l03dv")]
-polygons_generated = 5
+polygons_generated = 10
 
 [node name="UpgradesComponent" parent="." instance=ExtResource("6_kiub1")]
 upgrade_1_info = [true, "Speed", "2x Polygons Speed", 250]

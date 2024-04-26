@@ -23,6 +23,7 @@ func _ready():
 	menu.update_purchased_upgrades(upgrades_purchased)
 	menu.load_menu_options(upgrade_1_info, upgrade_2_info, upgrade_3_info)
 	
+	_set_menu_position()
 	_hide_menu()
 	
 	get_parent().mouse_entered.connect(_show_menu)
@@ -37,6 +38,11 @@ func _hide_menu():
 	menu.visible = false
 	active = false
 
+func _set_menu_position():
+	var offset = Vector2(menu.size.x / 2.0, menu.size.y /  2.0)
+	menu.global_position = global_position - offset
+	exit_area.global_position = global_position
+	
 #func _spawn_menu():
 	#if upgrade_1_info[0]:
 		#upgrades_menu_instance.upgrade_1_purchased.connect(activate_upgrade_1)
