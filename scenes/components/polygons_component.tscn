@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqd8306i3ka0y"]
+
+[ext_resource type="Script" path="res://scripts/components/polygons_component.gd" id="1_sc1jq"]
+
+[node name="PolygonsComponent" type="Node2D"]
+script = ExtResource("1_sc1jq")
+
+[node name="Polygons" type="Node" parent="."]

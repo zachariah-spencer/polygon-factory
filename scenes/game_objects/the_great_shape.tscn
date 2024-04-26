@@ -228,8 +228,6 @@ trail_lifetime = 1.0
 trail_sections = 50
 trail_section_subdivisions = 50
 
-[node name="NoRotate" type="Node" parent="."]
-
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

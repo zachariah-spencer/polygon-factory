@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d24pfjikaxa1p"]
+[gd_scene load_steps=11 format=3 uid="uid://d24pfjikaxa1p"]
 
 [ext_resource type="Texture2D" uid="uid://dmnea0ltf4eh2" path="res://assets/conveyor_belt/conveyor1.png" id="1_mss5x"]
 [ext_resource type="Script" path="res://scripts/game_objects/assembly_line.gd" id="1_t48jb"]
 [ext_resource type="Texture2D" uid="uid://d4hydgd2fsg82" path="res://assets/conveyor_belt/conveyor2.png" id="2_sxlns"]
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="4_hvylt"]
+[ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="5_l03dv"]
+[ext_resource type="PackedScene" uid="uid://c8cu7ia5r4ldj" path="res://scenes/components/upgrades_component.tscn" id="6_kiub1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x2w8p"]
 animations = [{
@@ -142,7 +144,6 @@ _data = {
 collision_layer = 4
 input_pickable = true
 script = ExtResource("1_t48jb")
-upgrade_1_info = [true, "Production Speed", "Produces twice as many Polygon/Sec", 1000]
 
 [node name="Visual" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_x2w8p")
@@ -183,6 +184,10 @@ libraries = {
 autoplay = "move_polygon"
 speed_scale = 7.0
 
-[node name="NoRotate" type="Node" parent="."]
+[node name="GeneratorComponent" parent="." instance=ExtResource("5_l03dv")]
+polygons_generated = 5
+
+[node name="UpgradesComponent" parent="." instance=ExtResource("6_kiub1")]
+upgrade_1_info = [true, "Speed", "2x Polygons Speed", 250]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

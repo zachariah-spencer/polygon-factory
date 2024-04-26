@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c43h8h6bddcvs"]
+[gd_scene load_steps=16 format=3 uid="uid://c43h8h6bddcvs"]
 
 [ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
 [ext_resource type="Script" path="res://scripts/game_objects/triangle.gd" id="1_ris15"]
+[ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="3_8csaf"]
+[ext_resource type="PackedScene" uid="uid://c8cu7ia5r4ldj" path="res://scenes/components/upgrades_component.tscn" id="4_mj6ix"]
+[ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="4_qn6k0"]
 
 [sub_resource type="Curve" id="Curve_duus1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
@@ -70,8 +73,6 @@ collision_layer = 12
 input_pickable = true
 script = ExtResource("1_ris15")
 polygon_scene_path = "res://scenes/polygon.tscn"
-upgrade_1_info = [true, "Production Speed", "Produces twice as many Polygon/Sec", 250]
-upgrade_2_info = [true, "Production Quality", "Produces polygons worth twice as much", 250]
 metadata/_edit_horizontal_guides_ = [0.0, 0.0, 0.0]
 metadata/_edit_vertical_guides_ = [-1.0, -2.0]
 
@@ -105,4 +106,10 @@ fixed_fps = 60
 
 [node name="NoRotate" type="Node" parent="."]
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[node name="PolygonsComponent" parent="." instance=ExtResource("3_8csaf")]
+
+[node name="GeneratorComponent" parent="." instance=ExtResource("4_qn6k0")]
+
+[node name="UpgradesComponent" parent="." instance=ExtResource("4_mj6ix")]
+upgrade_1_info = [true, "Speed", "2x Speed", 150]
+upgrade_2_info = [true, "Quality", "2x Quality", 150]

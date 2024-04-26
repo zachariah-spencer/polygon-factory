@@ -7,5 +7,3 @@ spawnable_scene_path = "res://scenes/game_objects/assembly_line.tscn"
 spawnable_name = "Assembly Line"
 spawnable_description = "Generates 5 Polygon/Sec"
 cost = 500
-is_generator = true
-polygons_generated = 5

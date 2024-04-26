@@ -28,29 +28,29 @@ var upgrade_costs := {
 }
 
 func _ready():
-	visual.modulate.a = 0
-	
-	var tween = get_tree().create_tween()
-	tween.tween_property(get_parent().get_node('View'), 'zoom', Vector2(1.25, 1.25), 2.0).set_ease(tween.EASE_OUT_IN)
-	
 	current_upgrade_tier = Stats.upgrade_tier
+	super._ready()
 	next_upgrade_tier = current_upgrade_tier + 1
-	_update_labels()
 	
-	if purchased:
-		_reload()
-	else:
-		_load()
+	_update_labels()
 
 func _reload():
 	super._reload()
-	polygon_suck.emitting = true
-	spawned_in = true
+	
+	get_parent().get_node('View').zoom = Vector2(1.25, 1.25)
+	
+	_on_spawn_finished()
+	_change_upgrade_tier(current_upgrade_tier)
+	
 
 func _load():
-	var tween = get_tree().create_tween()
-	tween.tween_property(visual, 'modulate', Color(1,1,1,1), 2.5)
-	await tween.finished
+	var tween_zoom = create_tween()
+	tween_zoom.tween_property(get_parent().get_node('View'), 'zoom', Vector2(1.25, 1.25), 1.0)
+	
+	var tween_fade = get_tree().create_tween()
+	tween_fade.tween_property(visual, 'modulate', Color(1,1,1,1), 2.5)
+	
+	await tween_fade.finished
 	_on_spawn_finished()
 
 func _on_spawn_finished():

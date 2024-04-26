@@ -6,8 +6,6 @@ signal object_spawning_started
 @export var spawnable_name := 'Spawnable Name'
 @export var spawnable_description := 'Spawnable Description'
 @export var cost := 0
-@export var is_generator := false
-@export var polygons_generated := 1
 @export var spawnable_rotation_degrees := 0.0
 
 @onready var tooltip := $Tooltip
@@ -24,22 +22,20 @@ func spawn_object(purchased := false):
 	var spawnable_scene = load(spawnable_scene_path)
 	var spawnable_instance = spawnable_scene.instantiate()
 	
-	if is_generator:
-		spawnable_instance.generator = Objects.get_object(_get_unique_id(), is_generator, polygons_generated)
-	else:
-		Objects.get_object(_get_unique_id())
-	
+	spawnable_instance.id = _get_unique_id()
+	spawnable_instance.purchased = purchased
 	spawnable_instance.global_position = global_position
 	spawnable_instance.rotation_degrees = spawnable_rotation_degrees
 	
-	if purchased == true:
-		spawnable_instance.purchased = true
-	
 	get_parent().add_child(spawnable_instance)
-	
 	object_spawning_started.emit()
 	
 	queue_free()
+	
+	#if spawnable_instance.has_node('GeneratorComponent'):
+		#spawnable_instance.generator = Objects.get_object(_get_unique_id(), is_generator, polygons_generated)
+	#else:
+		#Objects.get_object(_get_unique_id())
 
 func _verify_purchased_state():
 	if Objects.has_object(_get_unique_id()):

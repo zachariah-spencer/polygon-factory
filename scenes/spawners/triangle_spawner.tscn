@@ -7,7 +7,6 @@ spawnable_scene_path = "res://scenes/game_objects/triangle.tscn"
 spawnable_name = "Triangle"
 spawnable_description = "Generates 1 Polygon/Sec"
 cost = 100
-is_generator = true
 
 [node name="Description" parent="Tooltip/CenterContainer/VBoxContainer" index="1"]
 text = "Description

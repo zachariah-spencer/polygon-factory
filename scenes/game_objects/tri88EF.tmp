@@ -1,0 +1,300 @@
+[gd_scene load_steps=19 format=3 uid="uid://c43h8h6bddcvs"]
+
+[ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
+[ext_resource type="Script" path="res://scripts/game_objects/triangle.gd" id="1_ris15"]
+[ext_resource type="Script" path="res://scripts/components/polygons_component.gd" id="3_kuynf"]
+[ext_resource type="Script" path="res://scripts/components/upgrades_component.gd" id="4_r0kxi"]
+[ext_resource type="Script" path="res://scenes/upgrades_menu.gd" id="5_217db"]
+
+[sub_resource type="Curve" id="Curve_duus1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dmlpp"]
+curve = SubResource("Curve_duus1")
+
+[sub_resource type="Curve" id="Curve_aehso"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3hxl6"]
+curve = SubResource("Curve_aehso")
+
+[sub_resource type="Curve" id="Curve_3eypk"]
+min_value = -25.0
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.58, 2), 0.0, 0.0, 0, 0, Vector2(0.76, -25), 0.0, 0.0, 0, 0, Vector2(1, -25), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_6e8rq"]
+curve = SubResource("Curve_3eypk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs5li"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+radial_velocity_min = 15.0
+radial_velocity_max = 15.0
+radial_velocity_curve = SubResource("CurveTexture_6e8rq")
+gravity = Vector3(0, 0, 0)
+radial_accel_curve = SubResource("CurveTexture_3hxl6")
+alpha_curve = SubResource("CurveTexture_dmlpp")
+
+[sub_resource type="Curve" id="Curve_fhbja"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.466667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_os4we"]
+curve = SubResource("Curve_fhbja")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ek8er"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 8.0
+emission_ring_radius = 12.0
+emission_ring_inner_radius = 18.0
+radial_velocity_min = -20.0
+radial_velocity_max = -20.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.26, 0.950667, 1, 1)
+alpha_curve = SubResource("CurveTexture_os4we")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eseyo"]
+bg_color = Color(0, 0, 0, 0.298039)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux5nf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns2bq"]
+size = Vector2(256, 128)
+
+[node name="Triangle" type="StaticBody2D"]
+collision_layer = 12
+input_pickable = true
+script = ExtResource("1_ris15")
+polygon_scene_path = "res://scenes/polygon.tscn"
+metadata/_edit_horizontal_guides_ = [0.0, 0.0, 0.0]
+metadata/_edit_vertical_guides_ = [-1.0, -2.0]
+
+[node name="Visual" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(2.2, 0)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_14wa6")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+position = Vector2(2.2, 0)
+polygon = PackedVector2Array(-8.2, -10, 8.8, 0, -8.2, 10)
+
+[node name="Pulse" type="GPUParticles2D" parent="."]
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_fs5li")
+speed_scale = 0.7
+explosiveness = 1.0
+fixed_fps = 0
+visibility_rect = Rect2(-18.1728, -18.9633, 37.3248, 37.9356)
+trail_sections = 4
+
+[node name="QualityPulse" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_ek8er")
+lifetime = 0.5
+fixed_fps = 60
+
+[node name="Polygons" type="Node" parent="."]
+
+[node name="NoRotate" type="Node" parent="."]
+
+[node name="PolygonsComponent" type="Node2D" parent="."]
+script = ExtResource("3_kuynf")
+
+[node name="Polygons" type="Node" parent="PolygonsComponent"]
+
+[node name="GeneratorComponent" type="Node2D" parent="."]
+
+[node name="UpgradesComponent" type="Node2D" parent="."]
+script = ExtResource("4_r0kxi")
+
+[node name="NoRotate" type="Node" parent="UpgradesComponent"]
+
+[node name="Menu" type="Control" parent="UpgradesComponent/NoRotate"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+size_flags_horizontal = 4
+mouse_filter = 1
+script = ExtResource("5_217db")
+
+[node name="Panel" type="Panel" parent="UpgradesComponent/NoRotate/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eseyo")
+
+[node name="CenterContainer" type="CenterContainer" parent="UpgradesComponent/NoRotate/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer"]
+layout_mode = 2
+
+[node name="Upgrades" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Upgrades"
+horizontal_alignment = 1
+
+[node name="TabContainer" type="TabContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+clip_tabs = false
+
+[node name="Upgrade1" type="HBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer"]
+custom_minimum_size = Vector2(224, 72)
+layout_mode = 2
+alignment = 1
+
+[node name="VerticalList" type="VBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Description" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Makes something better"
+
+[node name="Cost" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Cost - 50 Polygons
+"
+
+[node name="Upgrade1Button" type="Button" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="Upgrade2" type="HBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer"]
+auto_translate_mode = 1
+visible = false
+custom_minimum_size = Vector2(224, 72)
+layout_mode = 2
+alignment = 1
+
+[node name="VerticalList" type="VBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Description" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Makes something better"
+
+[node name="Cost" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Cost - 50 Polygons
+"
+
+[node name="Upgrade2Button" type="Button" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="Upgrade3" type="HBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer"]
+auto_translate_mode = 1
+visible = false
+custom_minimum_size = Vector2(224, 72)
+layout_mode = 2
+alignment = 1
+
+[node name="VerticalList" type="VBoxContainer" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Description" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Makes something better"
+
+[node name="Cost" type="Label" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3/VerticalList"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Cost - 50 Polygons
+"
+
+[node name="Upgrade3Button" type="Button" parent="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.564706, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ux5nf")
+text = "Purchase"
+flat = true
+
+[node name="PriceNotificationTimer1" type="Timer" parent="UpgradesComponent/NoRotate/Menu"]
+one_shot = true
+
+[node name="PriceNotificationTimer2" type="Timer" parent="UpgradesComponent/NoRotate/Menu"]
+one_shot = true
+
+[node name="PriceNotificationTimer3" type="Timer" parent="UpgradesComponent/NoRotate/Menu"]
+one_shot = true
+
+[node name="ExitArea" type="Area2D" parent="UpgradesComponent/NoRotate"]
+position = Vector2(128, 0)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpgradesComponent/NoRotate/ExitArea"]
+shape = SubResource("RectangleShape2D_ns2bq")
+
+[connection signal="pressed" from="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1/Upgrade1Button" to="UpgradesComponent/NoRotate/Menu" method="_on_upgrade_1_button_pressed"]
+[connection signal="pressed" from="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2/Upgrade2Button" to="UpgradesComponent/NoRotate/Menu" method="_on_upgrade_2_button_pressed"]
+[connection signal="pressed" from="UpgradesComponent/NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3/Upgrade3Button" to="UpgradesComponent/NoRotate/Menu" method="_on_upgrade_3_button_pressed"]
+[connection signal="timeout" from="UpgradesComponent/NoRotate/Menu/PriceNotificationTimer1" to="UpgradesComponent/NoRotate/Menu" method="_on_price_notification_timer_1_timeout"]
+[connection signal="timeout" from="UpgradesComponent/NoRotate/Menu/PriceNotificationTimer2" to="UpgradesComponent/NoRotate/Menu" method="_on_price_notification_timer_2_timeout"]
+[connection signal="timeout" from="UpgradesComponent/NoRotate/Menu/PriceNotificationTimer3" to="UpgradesComponent/NoRotate/Menu" method="_on_price_notification_timer_3_timeout"]
+[connection signal="mouse_exited" from="UpgradesComponent/NoRotate/ExitArea" to="UpgradesComponent" method="_hide_menu"]

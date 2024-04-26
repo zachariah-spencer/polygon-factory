@@ -27,5 +27,5 @@ func get_random_color() -> Color:
 func register_game_world(in_game_world):
 	game_world = in_game_world
 
-func register_background_objects(in_background_objects):
-	background_objects = in_background_objects
+#func register_background_objects(in_background_objects):
+	#background_objects = in_background_objects

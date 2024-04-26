@@ -1,3 +1,8 @@
+REFACTOR:
+	-Extrapolate all objects to a virtual game object that tracks the objects stats outside of memory
+	-Do not differentiate between generators and non generators
+	-Continue to abstract to components
+
 NEXT:
 Player Upgrades:
 	-Player has the option to offer exponentially pricier lump sums of polygons to The Great Shape
@@ -8,6 +13,10 @@ Player Upgrades:
 Player Cosmetics:
 	-Player can offer further offerings to The Shape to receive random cosmetic items
 	-Once an item is unlocked, the items can be swapped around in a cosmetics room at will
+
+Line Object:
+	-Replace assembly line with a straight vector line arrow that has a pulse of light shoot from 
+	one end of it to another and each pulse emits polygons
 
 Hexagon Object:
 	-Similar to triangles but with a slower generating pattern

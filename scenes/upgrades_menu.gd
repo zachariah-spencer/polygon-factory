@@ -1,9 +1,6 @@
 extends Control
 
-signal upgrade_1_purchased
-signal upgrade_2_purchased
-signal upgrade_3_purchased
-signal upgrades_menu_exited
+signal upgrade_purchased(num : int)
 
 @onready var upgrade_1 := $CenterContainer/VBoxContainer/TabContainer/Upgrade1
 @onready var upgrade_1_description := $CenterContainer/VBoxContainer/TabContainer/Upgrade1/VerticalList/Description
@@ -34,8 +31,6 @@ func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, 'modulate', Color.WHITE, 0.2)
 
-
-
 func load_menu_options(upgrade_1_info, upgrade_2_info, upgrade_3_info):
 	if upgrade_1_info[0]:
 		upgrade_1.name = upgrade_1_info[1]
@@ -61,14 +56,15 @@ func load_menu_options(upgrade_1_info, upgrade_2_info, upgrade_3_info):
 	else:
 		upgrade_3.queue_free()
 
-func validate_purchased_upgrades(first_upgrade, second_upgrade, third_upgrade):
-	if first_upgrade:
+func update_purchased_upgrades(upgrades_purchased):
+	await get_parent().get_parent().get_parent().ready
+	if upgrades_purchased[1]:
 		_set_upgrade_purchased(1)
 	
-	if second_upgrade:
+	if upgrades_purchased[2]:
 		_set_upgrade_purchased(2)
 	
-	if third_upgrade:
+	if upgrades_purchased[3]:
 		_set_upgrade_purchased(3)
 
 func _set_upgrade_purchased(upgrade_index : int):
@@ -86,21 +82,13 @@ func _set_upgrade_purchased(upgrade_index : int):
 			upgrade_3_button.text = 'Purchased'
 			upgrade_3_button.disabled = true
 
-func _on_exit_area_mouse_exited() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, 'modulate', Color.TRANSPARENT, 0.2)
-	tween.tween_callback(queue_free)
-	
-	upgrades_menu_exited.emit()
-
-
 func _on_upgrade_1_button_pressed() -> void:
 	if upgrade_1_cost <= Stats.current_polygons:
 		
 		Stats.subtract_polygon(upgrade_1_cost) 
 		_set_upgrade_purchased(1)
 		
-		upgrade_1_purchased.emit()
+		upgrade_purchased.emit(1)
 	else:
 		upgrade_1_button.text = 'Not Enough Polygons'
 		price_notif_timer_1.start()
@@ -111,7 +99,7 @@ func _on_upgrade_2_button_pressed() -> void:
 		Stats.subtract_polygon(upgrade_2_cost) 
 		_set_upgrade_purchased(2)
 		
-		upgrade_2_purchased.emit()
+		upgrade_purchased.emit(2)
 	else:
 		upgrade_2_button.text = 'Not Enough Polygons'
 		price_notif_timer_2.start()
@@ -122,19 +110,16 @@ func _on_upgrade_3_button_pressed() -> void:
 		Stats.subtract_polygon(upgrade_3_cost) 
 		_set_upgrade_purchased(3)
 		
-		upgrade_3_purchased.emit()
+		upgrade_purchased.emit(3)
 	else:
 		upgrade_3_button.text = 'Not Enough Polygons'
 		price_notif_timer_3.start()
 
-
 func _on_price_notification_timer_1_timeout() -> void:
 	upgrade_1_button.text = 'Purchase'
 
-
 func _on_price_notification_timer_2_timeout() -> void:
 	upgrade_2_button.text = 'Purchase'
-
 
 func _on_price_notification_timer_3_timeout() -> void:
 	upgrade_3_button.text = 'Purchase'
