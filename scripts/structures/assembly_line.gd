@@ -7,17 +7,17 @@ extends GameObject
 func activate_upgrade(num : int):
 	match(num):
 		1:
-			generator.max_cooldown *= 0.5
+			virtual_structure.max_cooldown *= 0.5
 			
 			polygon_2.visible = true
 			move_polygon.play('move_two_polygons')
 			
-			generator.upgrade_1_active = true
+			virtual_structure.upgrade_1_active = true
 
 func _reload():
 	super._reload()
 	
-	if generator.upgrade_1_active:
+	if virtual_structure.upgrade_1_active:
 		polygon_2.visible = true
 		move_polygon.play('move_two_polygons')
 

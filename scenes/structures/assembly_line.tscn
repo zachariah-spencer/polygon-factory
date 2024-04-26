@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://d24pfjikaxa1p"]
 
 [ext_resource type="Texture2D" uid="uid://dmnea0ltf4eh2" path="res://assets/conveyor_belt/conveyor1.png" id="1_mss5x"]
-[ext_resource type="Script" path="res://scripts/game_objects/assembly_line.gd" id="1_t48jb"]
+[ext_resource type="Script" path="res://scripts/structures/assembly_line.gd" id="1_t48jb"]
 [ext_resource type="Texture2D" uid="uid://d4hydgd2fsg82" path="res://assets/conveyor_belt/conveyor2.png" id="2_sxlns"]
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="4_hvylt"]
 [ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="5_l03dv"]

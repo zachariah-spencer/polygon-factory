@@ -42,12 +42,3 @@ func _set_menu_position():
 	var offset = Vector2(menu.size.x / 2.0, menu.size.y /  2.0)
 	menu.global_position = global_position - offset
 	exit_area.global_position = global_position
-	
-#func _spawn_menu():
-	#if upgrade_1_info[0]:
-		#upgrades_menu_instance.upgrade_1_purchased.connect(activate_upgrade_1)
-	#
-	#if upgrade_2_info[0]:
-		#upgrades_menu_instance.upgrade_2_purchased.connect(activate_upgrade_2)
-	
-	#upgrades_menu_instance.validate_purchased_upgrades(generator.upgrade_1_active, generator.upgrade_2_active, generator.upgrade_3_active)

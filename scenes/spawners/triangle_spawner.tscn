@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_ce7ek"]
 
 [node name="TriangleSpawner" instance=ExtResource("1_ce7ek")]
-spawnable_scene_path = "res://scenes/game_objects/triangle.tscn"
+spawnable_scene_path = "res://scenes/structures/triangle.tscn"
 spawnable_name = "Triangle"
 spawnable_description = "Generates 1 Polygon/Sec"
 cost = 100

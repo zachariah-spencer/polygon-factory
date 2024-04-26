@@ -21,20 +21,20 @@ func make_polygon(_polygon_count : int):
 func activate_upgrade(num : int) -> void:
 	match(num):
 		1:
-			generator.max_cooldown *= 0.5
+			virtual_structure.max_cooldown *= 0.5
 			
 			pulse.speed_scale *= 2.0
 			rot_speed *= 2.0
 			
-			generator.upgrade_1_active = true
+			virtual_structure.upgrade_1_active = true
 		2:
-			generator.polygons_increment *= 2
+			virtual_structure.polygons_increment *= 2
 			
 			pulse.modulate = Color.AQUA
 			var tween = get_tree().create_tween()
 			tween.tween_property(quality_pulse, 'modulate', Color.WHITE, 0.5)
 			
-			generator.upgrade_2_active = true
+			virtual_structure.upgrade_2_active = true
 
 func _ready():
 	super._ready()
@@ -42,17 +42,17 @@ func _ready():
 	var rand_rot := randf_range(0, 360)
 	rotation = rand_rot
 	
-	generator.polygons_generated.connect(make_polygon)
+	virtual_structure.polygons_generated.connect(make_polygon)
 
 func _reload():
 	super._reload()
 	_load_vfx()
 	
-	if generator.upgrade_1_active:
+	if virtual_structure.upgrade_1_active:
 		pulse.speed_scale *= 2.0
 		rot_speed *= 2.0
 	
-	if generator.upgrade_2_active:
+	if virtual_structure.upgrade_2_active:
 		quality_pulse.modulate.a = 1.0
 		pulse.modulate = Color.AQUA
 
@@ -64,11 +64,11 @@ func _emit_pulse_vfx():
 	quality_pulse.preprocess = 0.0
 
 func _load_vfx():
-	pulse.preprocess = (generator.max_cooldown - generator.cooldown)
+	pulse.preprocess = (virtual_structure.max_cooldown - virtual_structure.cooldown)
 	pulse.restart()
 	pulse.emitting = true
 	
-	quality_pulse.preprocess = (generator.max_cooldown - generator.cooldown)
+	quality_pulse.preprocess = (virtual_structure.max_cooldown - virtual_structure.cooldown)
 	quality_pulse.restart()
 	quality_pulse.emitting = true
 	visual.modulate = Global.get_random_color()

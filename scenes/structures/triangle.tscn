@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://c43h8h6bddcvs"]
 
 [ext_resource type="Texture2D" uid="uid://frt6p607rb3u" path="res://assets/TriangleArrow-White-Right.svg.png" id="1_14wa6"]
-[ext_resource type="Script" path="res://scripts/game_objects/triangle.gd" id="1_ris15"]
+[ext_resource type="Script" path="res://scripts/structures/triangle.gd" id="1_ris15"]
 [ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="3_8csaf"]
 [ext_resource type="PackedScene" uid="uid://c8cu7ia5r4ldj" path="res://scenes/components/upgrades_component.tscn" id="4_mj6ix"]
 [ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="4_qn6k0"]

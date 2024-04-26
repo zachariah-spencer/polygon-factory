@@ -1,4 +1,4 @@
-class_name Generator extends GameObject
+class_name VirtualStructure extends Resource
 
 var max_cooldown := 1.0
 var polygons_increment := 1

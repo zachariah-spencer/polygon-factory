@@ -6,7 +6,7 @@ class_name GameObject extends StaticBody2D
 @onready var visual := $Visual
 
 var id : String
-var generator : Generator = null
+var virtual_structure : VirtualStructure = null
 
 func _ready():
 	visual.modulate.a = 0
@@ -21,16 +21,16 @@ func _ready():
 func _load_components():
 	if has_node('GeneratorComponent'):
 		var generator_component := $GeneratorComponent
-		generator = Objects.get_object(id, true, generator_component.polygons_generated)
+		virtual_structure = Objects.get_object(id, true, generator_component.polygons_generated)
 		
 		#TODO: After virtual objects are refactored, this can be moved out of nested 
 		#if statement to allow for objects to have visual upgrades without a GeneratorComponent.
 		if has_node('UpgradesComponent'):
 			var upgrades_component := $UpgradesComponent
 			upgrades_component.upgrade_purchased.connect(activate_upgrade)
-			upgrades_component.upgrades_purchased[1] = generator.upgrade_1_active
-			upgrades_component.upgrades_purchased[2] = generator.upgrade_2_active
-			upgrades_component.upgrades_purchased[3] = generator.upgrade_3_active
+			upgrades_component.upgrades_purchased[1] = virtual_structure.upgrade_1_active
+			upgrades_component.upgrades_purchased[2] = virtual_structure.upgrade_2_active
+			upgrades_component.upgrades_purchased[3] = virtual_structure.upgrade_3_active
 	else:
 		Objects.get_object(id)
 
