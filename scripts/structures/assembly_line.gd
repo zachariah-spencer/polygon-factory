@@ -1,4 +1,4 @@
-extends GameObject
+extends Structure
 
 @onready var polygon := $Polygon
 @onready var polygon_2 := $Polygon2

@@ -1,5 +1,6 @@
 class_name VirtualStructure extends Resource
 
+var creates_polygons := false
 var max_cooldown := 1.0
 var polygons_increment := 1
 

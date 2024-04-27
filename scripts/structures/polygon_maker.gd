@@ -1,4 +1,4 @@
-extends GameObject
+extends Structure
 
 
 @onready var tooltip := $Control/Tooltip

@@ -1,41 +1,36 @@
 extends Node
 
-var game_objects := {}
+var virtual_structures := {}
 
-func get_object(object_id : String, is_generator := false, polygons := 1):
-	if not game_objects.has(object_id):
+func get_object(id : String, creates_polygons := false, polygons := 1):
+	if not virtual_structures.has(id):
+		var virtual_structure
+		virtual_structure = VirtualStructure.new()
 		
-		var game_object
+		if creates_polygons:
+			virtual_structure.creates_polygons = creates_polygons
+			virtual_structure.polygons_increment = polygons
+			virtual_structure.polygons_generated.connect(Stats.add_polygon)
+		virtual_structures[id] = virtual_structure
 		
-		if is_generator:
-			game_object = VirtualStructure.new()
-			game_object.polygons_increment = polygons
-		else:
-			game_object = GameObject.new()
-		
-		game_objects[object_id] = game_object
-		
-		if game_object is VirtualStructure:
-			game_object.polygons_generated.connect(Stats.add_polygon)
-		
-	return game_objects[object_id]
+	return virtual_structures[id]
 
-func has_object(object_id : String) -> bool:
-	return game_objects.has(object_id)
+func has_object(id : String) -> bool:
+	return virtual_structures.has(id)
 
 func clear_objects():
-	game_objects.clear()
+	virtual_structures.clear()
 
 func get_generators():
 	var generators = {}
 	
-	for object_id in game_objects:
-		if game_objects[object_id] is VirtualStructure:
-			generators[object_id] = game_objects[object_id]
+	for id in virtual_structures:
+		if virtual_structures[id].creates_polygons:
+			generators[id] = virtual_structures[id]
 	
 	return generators
 
 func _process(delta : float):
-	for object_id in game_objects:
-		if game_objects[object_id] is VirtualStructure:
-			game_objects[object_id].reduce_cooldown_by(delta)
+	for id in virtual_structures:
+		if virtual_structures[id].creates_polygons:
+			virtual_structures[id].reduce_cooldown_by(delta)

@@ -1,4 +1,4 @@
-extends GameObject
+extends Structure
 
 @onready var polygon_suck := $PolygonSuck
 @onready var color_fading := $ColorFading

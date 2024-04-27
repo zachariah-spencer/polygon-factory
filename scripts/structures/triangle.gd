@@ -1,4 +1,4 @@
-extends GameObject
+extends Structure
 
 @onready var pulse := $Pulse
 @onready var quality_pulse := $QualityPulse

@@ -1,4 +1,4 @@
-class_name GameObject extends StaticBody2D
+class_name Structure extends StaticBody2D
 # Is inherited by Generator
 
 @export var polygon_scene_path : String
