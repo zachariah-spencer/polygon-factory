@@ -2,14 +2,12 @@ extends Node
 
 var virtual_structures := {}
 
-func register_virtual_structure(id : String, creates_polygons := false, polygons := 1):
+func register_virtual_structure(id : String, creates_polygons := false, polygons := 1, cooldown := 1.0):
 	if not virtual_structures.has(id):
 		var virtual_structure
-		virtual_structure = VirtualStructure.new()
+		virtual_structure = VirtualStructure.new(creates_polygons, polygons, cooldown)
 		
 		if creates_polygons:
-			virtual_structure.creates_polygons = creates_polygons
-			virtual_structure.polygons_increment = polygons
 			virtual_structure.polygons_generated.connect(Stats.add_polygon)
 		virtual_structures[id] = virtual_structure
 		

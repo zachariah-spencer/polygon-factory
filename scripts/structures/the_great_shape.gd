@@ -1,5 +1,7 @@
 extends Structure
 
+signal upgrade_tier_changed(new_tier : int)
+
 @onready var polygon_suck := $PolygonSuck
 @onready var color_fading := $ColorFading
 @onready var tooltip := $Tooltip
@@ -31,6 +33,8 @@ func _ready():
 	current_upgrade_tier = Stats.upgrade_tier
 	super._ready()
 	next_upgrade_tier = current_upgrade_tier + 1
+	
+	upgrade_tier_changed.connect(Global.player.upgrade)
 	
 	_update_labels()
 
@@ -71,6 +75,7 @@ func _physics_process(_delta: float) -> void:
 
 func _update_labels():
 	upgrade_tier_label.text = 'Upgrade Tier - ' + str(current_upgrade_tier)
+	
 	if upgrade_costs.has(next_upgrade_tier):
 		cost_label.text = 'Cost - ' + str(upgrade_costs[next_upgrade_tier]) + ' Polygons'
 	else:
@@ -104,6 +109,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _change_upgrade_tier(new_upgrade_tier : int) -> void:
 	color_fading.speed_scale *= 2.0
+	
+	upgrade_tier_changed.emit(new_upgrade_tier)
 	
 	match(new_upgrade_tier):
 		1:

@@ -2,7 +2,6 @@ extends Structure
 
 
 @onready var tooltip := $Control/Tooltip
-@onready var polygons := $Polygons
 @onready var polygons_component := $PolygonsComponent
 
 var prev_spawned_color : Color

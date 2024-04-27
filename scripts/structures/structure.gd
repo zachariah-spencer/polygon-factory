@@ -23,8 +23,7 @@ func _load_components():
 	if has_node('GeneratorComponent'):
 		var generator_component := $GeneratorComponent
 		creates_polygons = true
-		virtual_structure = Structures.register_virtual_structure(id, creates_polygons)
-		virtual_structure.polygons_increment = generator_component.polygons_increment
+		virtual_structure = Structures.register_virtual_structure(id, creates_polygons, generator_component.polygons_increment, generator_component.cooldown)
 	
 	if has_node('UpgradesComponent'):
 		var upgrades_component := $UpgradesComponent

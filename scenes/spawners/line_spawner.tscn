@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7rbyx5wlichl"]
+
+[ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_kgggp"]
+
+[node name="LineSpawner" instance=ExtResource("1_kgggp")]
+spawnable_scene_path = "res://scenes/structures/line.tscn"
+spawnable_name = "Line"
+spawnable_description = "Parses Polygons"
+cost = 1000

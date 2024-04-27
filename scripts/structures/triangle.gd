@@ -3,7 +3,6 @@ extends Structure
 @onready var pulse := $Pulse
 @onready var quality_pulse := $QualityPulse
 @onready var collision := $Collision
-@onready var polygons := $Polygons
 @onready var polygons_component : PolygonsComponent = $PolygonsComponent
 
 var prev_spawned_color : Color

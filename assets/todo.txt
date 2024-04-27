@@ -1,22 +1,12 @@
-REFACTOR:
-	-Extrapolate all objects to a virtual game object that tracks the objects stats outside of memory
-	-Do not differentiate between generators and non generators
-	-Continue to abstract to components
-
 NEXT:
-Player Upgrades:
-	-Player has the option to offer exponentially pricier lump sums of polygons to The Great Shape
-	-When a milestone of these is reached, The Shape will take a new form(more pixels, maybe a shader, 
-	more objects overlaid atop the primary circle)
-	-Each new form and milestone will also upgrade the players movement speed and look
 
+BUGFIXES:
+	Line pulse particles reset every instances color whenever each's color is reset
+	Line pulse particles first emission appears to end early, seems like a cooldown issue with the virtual_structure
+	
 Player Cosmetics:
 	-Player can offer further offerings to The Shape to receive random cosmetic items
 	-Once an item is unlocked, the items can be swapped around in a cosmetics room at will
-
-Line Object:
-	-Replace assembly line with a straight vector line arrow that has a pulse of light shoot from 
-	one end of it to another and each pulse emits polygons
 
 Hexagon Object:
 	-Similar to triangles but with a slower generating pattern

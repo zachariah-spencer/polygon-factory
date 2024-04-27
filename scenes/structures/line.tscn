@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://bj5enpgepcr52"]
+
+[ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="1_4ph2j"]
+[ext_resource type="Script" path="res://scripts/structures/line.gd" id="1_qhvgx"]
+[ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="2_od7gh"]
+[ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="3_blyro"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjgg0"]
+size = Vector2(2, 128)
+
+[sub_resource type="Curve" id="Curve_jtt8n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.745, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_so4xy"]
+curve = SubResource("Curve_jtt8n")
+
+[sub_resource type="Curve" id="Curve_4thnw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.475, 1), 0.0, 0.0, 0, 0, Vector2(0.72, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ncfm"]
+curve = SubResource("Curve_4thnw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugiw6"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 140, 0)
+emission_shape = 1
+emission_sphere_radius = 8.0
+radial_velocity_min = -100.0
+radial_velocity_max = -100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_7ncfm")
+color = Color(1, 0, 0, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_so4xy")
+
+[node name="Line" type="StaticBody2D"]
+collision_layer = 4
+input_pickable = true
+script = ExtResource("1_qhvgx")
+purchased = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fjgg0")
+
+[node name="Visual" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Line" type="Sprite2D" parent="Visual"]
+scale = Vector2(0.1, 4)
+texture = ExtResource("1_4ph2j")
+
+[node name="ArrowheadLeft" type="Sprite2D" parent="Visual"]
+position = Vector2(-1.60001, -30.02)
+rotation = 0.785398
+scale = Vector2(0.1, 0.25)
+texture = ExtResource("1_4ph2j")
+
+[node name="ArrowheadRight" type="Sprite2D" parent="Visual"]
+position = Vector2(1.60001, -30.02)
+rotation = -0.785398
+scale = Vector2(0.1, 0.25)
+texture = ExtResource("1_4ph2j")
+
+[node name="GeneratorComponent" parent="." instance=ExtResource("2_od7gh")]
+polygons_increment = 30
+cooldown = 2.0
+
+[node name="PolygonsComponent" parent="." instance=ExtResource("3_blyro")]
+position = Vector2(0, -31)
+
+[node name="Pulse" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -61)
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_ugiw6")
+texture = ExtResource("1_4ph2j")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.95
+fixed_fps = 60
+visibility_rect = Rect2(-22.3589, -16.0156, 43.4409, 178.391)
