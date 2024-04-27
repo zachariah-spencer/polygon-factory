@@ -48,7 +48,7 @@ func _load():
 	tween_zoom.tween_property(get_parent().get_node('View'), 'zoom', Vector2(1.25, 1.25), 1.0)
 	
 	var tween_fade = get_tree().create_tween()
-	tween_fade.tween_property(visual, 'modulate', Color(1,1,1,1), 2.5)
+	tween_fade.tween_property(visual, 'modulate', Color(1,1,1,1), 1.5)
 	
 	await tween_fade.finished
 	_on_spawn_finished()

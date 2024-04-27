@@ -185,7 +185,7 @@ autoplay = "move_polygon"
 speed_scale = 7.0
 
 [node name="GeneratorComponent" parent="." instance=ExtResource("5_l03dv")]
-polygons_generated = 10
+polygons_increment = 10
 
 [node name="UpgradesComponent" parent="." instance=ExtResource("6_kiub1")]
 upgrade_1_info = [true, "Speed", "2x Polygons Speed", 250]

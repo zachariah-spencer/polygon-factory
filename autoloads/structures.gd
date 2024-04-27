@@ -2,7 +2,7 @@ extends Node
 
 var virtual_structures := {}
 
-func get_object(id : String, creates_polygons := false, polygons := 1):
+func register_virtual_structure(id : String, creates_polygons := false, polygons := 1):
 	if not virtual_structures.has(id):
 		var virtual_structure
 		virtual_structure = VirtualStructure.new()
@@ -15,13 +15,13 @@ func get_object(id : String, creates_polygons := false, polygons := 1):
 		
 	return virtual_structures[id]
 
-func has_object(id : String) -> bool:
+func has_virtual_structure(id : String) -> bool:
 	return virtual_structures.has(id)
 
-func clear_objects():
+func clear_virtual_structures():
 	virtual_structures.clear()
 
-func get_generators():
+func get_virtual_structures():
 	var generators = {}
 	
 	for id in virtual_structures:

@@ -72,7 +72,6 @@ alpha_curve = SubResource("CurveTexture_os4we")
 collision_layer = 12
 input_pickable = true
 script = ExtResource("1_ris15")
-polygon_scene_path = "res://scenes/polygon.tscn"
 metadata/_edit_horizontal_guides_ = [0.0, 0.0, 0.0]
 metadata/_edit_vertical_guides_ = [-1.0, -2.0]
 
@@ -101,10 +100,6 @@ amount = 50
 process_material = SubResource("ParticleProcessMaterial_ek8er")
 lifetime = 0.5
 fixed_fps = 60
-
-[node name="Polygons" type="Node" parent="."]
-
-[node name="NoRotate" type="Node" parent="."]
 
 [node name="PolygonsComponent" parent="." instance=ExtResource("3_8csaf")]
 

@@ -31,14 +31,9 @@ func spawn_object(purchased := false):
 	object_spawning_started.emit()
 	
 	queue_free()
-	
-	#if spawnable_instance.has_node('GeneratorComponent'):
-		#spawnable_instance.generator = Objects.get_object(_get_unique_id(), is_generator, polygons_generated)
-	#else:
-		#Objects.get_object(_get_unique_id())
 
 func _verify_purchased_state():
-	if Objects.has_object(_get_unique_id()):
+	if Structures.has_virtual_structure(_get_unique_id()):
 		spawn_object.call_deferred(true)
 
 func _initialize_tooltip():

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwh0ohqqwkseu"]
+[gd_scene load_steps=6 format=3 uid="uid://dwh0ohqqwkseu"]
 
 [ext_resource type="Script" path="res://scripts/structures/polygon_maker.gd" id="1_my3gv"]
 [ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="2_xjad1"]
 [ext_resource type="FontFile" uid="uid://bhq4swxalljnh" path="res://assets/m3x6.ttf" id="3_hk7xx"]
+[ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="4_5cr4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kba1o"]
 size = Vector2(32, 32)
@@ -11,7 +12,6 @@ size = Vector2(32, 32)
 collision_layer = 12
 input_pickable = true
 script = ExtResource("1_my3gv")
-polygon_scene_path = "res://scenes/polygon.tscn"
 purchased = true
 
 [node name="Visual" type="Sprite2D" parent="."]
@@ -49,9 +49,7 @@ text = "Click to make
 polygons"
 horizontal_alignment = 1
 
-[node name="Polygons" type="Node" parent="."]
-
-[node name="NoRotate" type="Node" parent="."]
+[node name="PolygonsComponent" parent="." instance=ExtResource("4_5cr4r")]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
