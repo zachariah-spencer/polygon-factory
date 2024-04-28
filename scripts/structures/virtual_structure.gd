@@ -16,6 +16,7 @@ func _init(creates : bool, increment : int, cd : float) -> void:
 	creates_polygons = creates
 	polygons_increment = increment
 	max_cooldown = cd
+	cooldown = cd
 
 func reduce_cooldown_by(amount : float):
 	cooldown -= amount

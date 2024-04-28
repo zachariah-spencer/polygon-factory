@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj5enpgepcr52"]
+[gd_scene load_steps=13 format=3 uid="uid://bj5enpgepcr52"]
 
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="1_4ph2j"]
 [ext_resource type="Script" path="res://scripts/structures/line.gd" id="1_qhvgx"]
@@ -8,21 +8,30 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjgg0"]
 size = Vector2(2, 128)
 
-[sub_resource type="Curve" id="Curve_jtt8n"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.745, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Gradient" id="Gradient_kievt"]
+resource_local_to_scene = true
+offsets = PackedFloat32Array(0, 0.232558, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.715116, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hg5up"]
+resource_local_to_scene = true
+gradient = SubResource("Gradient_kievt")
+
+[sub_resource type="Curve" id="Curve_hikse"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_so4xy"]
-curve = SubResource("Curve_jtt8n")
+[sub_resource type="CurveTexture" id="CurveTexture_fxpr6"]
+curve = SubResource("Curve_hikse")
 
-[sub_resource type="Curve" id="Curve_4thnw"]
+[sub_resource type="Curve" id="Curve_ykffk"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.475, 1), 0.0, 0.0, 0, 0, Vector2(0.72, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_7ncfm"]
-curve = SubResource("Curve_4thnw")
+[sub_resource type="CurveTexture" id="CurveTexture_3qjo6"]
+curve = SubResource("Curve_ykffk")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ugiw6"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_03k58"]
 particle_flag_disable_z = true
 emission_shape_offset = Vector3(0, 140, 0)
 emission_shape = 1
@@ -32,11 +41,11 @@ radial_velocity_max = -100.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_7ncfm")
-color = Color(1, 0, 0, 1)
+scale_curve = SubResource("CurveTexture_3qjo6")
+color_ramp = SubResource("GradientTexture1D_hg5up")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
-hue_variation_curve = SubResource("CurveTexture_so4xy")
+hue_variation_curve = SubResource("CurveTexture_fxpr6")
 
 [node name="Line" type="StaticBody2D"]
 collision_layer = 4
@@ -78,7 +87,7 @@ unique_name_in_owner = true
 position = Vector2(0, -61)
 emitting = false
 amount = 50
-process_material = SubResource("ParticleProcessMaterial_ugiw6")
+process_material = SubResource("ParticleProcessMaterial_03k58")
 texture = ExtResource("1_4ph2j")
 lifetime = 2.0
 one_shot = true

@@ -1,8 +1,11 @@
 NEXT:
 
-BUGFIXES:
-	Line pulse particles reset every instances color whenever each's color is reset
-	Line pulse particles first emission appears to end early, seems like a cooldown issue with the virtual_structure
+Booster:
+	- A ring with an orb that floats in orbit around it that can be piloted by the player
+	- When piloted, the player can try to press the space bar when the orb is over a highlighted portion of the circle
+	- Each successfully timed press will speed up the rotation of the orb, increasing the difficulty
+	- Holding certain scorestreaks without messing this up will boost the production of all polygons throughout the factory
+	- The moment the player exits the cockpit or fails to time a boost, the polygon production will return to normal
 	
 Player Cosmetics:
 	-Player can offer further offerings to The Shape to receive random cosmetic items

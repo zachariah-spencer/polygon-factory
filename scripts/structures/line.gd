@@ -8,6 +8,10 @@ var prev_spawned_color : Color
 
 func _ready() -> void:
 	super._ready()
+	
+	var unique_material = pulse.process_material.duplicate()
+	pulse.process_material = unique_material
+	
 	virtual_structure.polygons_generated.connect(make_polygon)
 
 func make_polygon(_polygon_count : int):
@@ -18,6 +22,7 @@ func make_polygon(_polygon_count : int):
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(visual, 'modulate', prev_spawned_color, 0.2)
+	
 
 func _load():
 	super._load()
@@ -28,18 +33,23 @@ func _reload():
 	_load_vfx()
 
 func _emit_pulse_vfx():
+	pulse.modulate = Color.WHITE
+	new_color = Global.get_random_color()
+	
 	pulse.preprocess = 0.0
 	pulse.restart()
 	pulse.emitting = true
 	
-	new_color = Global.get_random_color()
-	
-	pulse.process_material.set('color', new_color)
+	var pulse_color_tween = create_tween()
+	pulse_color_tween.tween_interval(0.5)
+	pulse_color_tween.tween_property(pulse, 'modulate', new_color, 0.75)
 
 func _load_vfx():
 	print(virtual_structure.max_cooldown - virtual_structure.cooldown)
-	pulse.preprocess = (virtual_structure.max_cooldown - virtual_structure.cooldown)
+	
 	pulse.restart()
+	pulse.preprocess = (virtual_structure.max_cooldown - virtual_structure.cooldown)
+	
 	pulse.emitting = true
 	
 	visual.modulate = Global.get_random_color()

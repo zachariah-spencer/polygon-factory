@@ -1,0 +1,116 @@
+[gd_scene load_steps=12 format=3 uid="uid://bd31q5fjjeptn"]
+
+[ext_resource type="Texture2D" uid="uid://bmv3b5yg1npgf" path="res://assets/circlering.png" id="1_k7nbs"]
+[ext_resource type="Script" path="res://scripts/structures/booster.gd" id="1_ydg80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7j1u"]
+radius = 128.0
+
+[sub_resource type="Curve" id="Curve_bhimi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.495, 1), 0.0, 0.0, 0, 0, Vector2(0.55, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_rgmti"]
+curve = SubResource("Curve_bhimi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_giy1s"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 4.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+radial_velocity_min = 20.0
+radial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_rgmti")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm0uo"]
+radius = 4.0
+
+[sub_resource type="Curve" id="Curve_qd0co"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.53, 0.0659341), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fd7wt"]
+curve = SubResource("Curve_qd0co")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8sq3u"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 20.0
+emission_ring_inner_radius = 20.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+radial_velocity_min = -8.00002
+radial_velocity_max = -8.00002
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_fd7wt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3huw1"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 4.0
+radial_velocity_min = -8.00002
+radial_velocity_max = -8.00002
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="Booster" type="StaticBody2D"]
+z_index = 1
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ydg80")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p7j1u")
+
+[node name="Visual" type="Sprite2D" parent="."]
+modulate = Color(0.0024, 0.23208, 0.24, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_k7nbs")
+
+[node name="CockpitEmptyPulse" type="GPUParticles2D" parent="."]
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_giy1s")
+lifetime = 1.5
+speed_scale = 0.7
+explosiveness = 1.0
+fixed_fps = 0
+visibility_rect = Rect2(-18.1728, -18.9633, 37.3248, 37.9356)
+trail_sections = 4
+
+[node name="CockpitArea" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="Collision" type="CollisionShape2D" parent="CockpitArea"]
+shape = SubResource("CircleShape2D_rm0uo")
+
+[node name="CockpitPilotedPulse" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5000
+process_material = SubResource("ParticleProcessMaterial_8sq3u")
+lifetime = 0.5
+speed_scale = 0.7
+explosiveness = 1.0
+fixed_fps = 60
+visibility_rect = Rect2(-18.1728, -18.9633, 37.3248, 37.9356)
+trail_sections = 4
+
+[node name="BoostOrb" type="GPUParticles2D" parent="."]
+position = Vector2(108, 0)
+scale = Vector2(2, 2)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_3huw1")
+lifetime = 0.5
+local_coords = true
+trail_enabled = true
+
+[connection signal="body_entered" from="CockpitArea" to="." method="_on_cockpit_area_body_entered"]

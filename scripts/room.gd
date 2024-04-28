@@ -19,7 +19,7 @@ signal room_exited(old_room : Node2D, new_room : Node2D, exit_direction : int)
 @onready var view := $View
 
 var player_spawn_position : Vector2
-var entrance_offset := 50
+var entrance_offset := 55
 
 
 func _ready():

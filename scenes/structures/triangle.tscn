@@ -10,7 +10,7 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_dmlpp"]
+[sub_resource type="CurveTexture" id="CurveTexture_y0gfy"]
 curve = SubResource("Curve_duus1")
 
 [sub_resource type="Curve" id="Curve_aehso"]
@@ -19,7 +19,7 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_3hxl6"]
+[sub_resource type="CurveTexture" id="CurveTexture_esuyg"]
 curve = SubResource("Curve_aehso")
 
 [sub_resource type="Curve" id="Curve_3eypk"]
@@ -28,7 +28,7 @@ max_value = 2.0
 _data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(0.58, 2), 0.0, 0.0, 0, 0, Vector2(0.76, -25), 0.0, 0.0, 0, 0, Vector2(1, -25), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_6e8rq"]
+[sub_resource type="CurveTexture" id="CurveTexture_ahdl3"]
 curve = SubResource("Curve_3eypk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fs5li"]
@@ -43,10 +43,10 @@ initial_velocity_min = 1.0
 initial_velocity_max = 1.0
 radial_velocity_min = 15.0
 radial_velocity_max = 15.0
-radial_velocity_curve = SubResource("CurveTexture_6e8rq")
+radial_velocity_curve = SubResource("CurveTexture_ahdl3")
 gravity = Vector3(0, 0, 0)
-radial_accel_curve = SubResource("CurveTexture_3hxl6")
-alpha_curve = SubResource("CurveTexture_dmlpp")
+radial_accel_curve = SubResource("CurveTexture_esuyg")
+alpha_curve = SubResource("CurveTexture_y0gfy")
 
 [sub_resource type="Curve" id="Curve_fhbja"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.466667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]

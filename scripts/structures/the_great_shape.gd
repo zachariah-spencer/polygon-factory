@@ -3,7 +3,7 @@ extends Structure
 signal upgrade_tier_changed(new_tier : int)
 
 @onready var polygon_suck := $PolygonSuck
-@onready var color_fading := $ColorFading
+@onready var rainbow_component := $RainbowComponent
 @onready var tooltip := $Tooltip
 @onready var upgrade_tier_label := $Tooltip/VBoxContainer/HBoxContainer/UpgradeTier
 @onready var cost_label := $Tooltip/VBoxContainer/HBoxContainer/Cost
@@ -60,7 +60,7 @@ func _load():
 func _on_spawn_finished():
 	spawned_in = true
 	polygon_suck.emitting = true
-	color_fading.play('color_fading')
+	rainbow_component.play('color_fading')
 
 func _physics_process(_delta: float) -> void:
 	if spawned_in:
@@ -108,7 +108,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				_update_labels()
 
 func _change_upgrade_tier(new_upgrade_tier : int) -> void:
-	color_fading.speed_scale *= 2.0
+	rainbow_component.speed_scale *= 2.0
 	
 	upgrade_tier_changed.emit(new_upgrade_tier)
 	
