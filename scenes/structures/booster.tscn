@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bd31q5fjjeptn"]
+[gd_scene load_steps=25 format=3 uid="uid://bd31q5fjjeptn"]
 
 [ext_resource type="Texture2D" uid="uid://bmv3b5yg1npgf" path="res://assets/circlering.png" id="1_k7nbs"]
 [ext_resource type="Script" path="res://scripts/structures/booster.gd" id="1_ydg80"]
+[ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="3_3lgcj"]
+[ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="3_aw1af"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p7j1u"]
 radius = 128.0
@@ -51,6 +53,13 @@ radial_velocity_max = -8.00002
 gravity = Vector3(0, 0, 0)
 alpha_curve = SubResource("CurveTexture_fd7wt")
 
+[sub_resource type="Curve" id="Curve_gkyot"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.77, 1), 0.0, 0.0, 0, 0, Vector2(0.79, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_640aq"]
+curve = SubResource("Curve_gkyot")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3huw1"]
 particle_flag_disable_z = true
 emission_shape = 6
@@ -58,10 +67,65 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 4.0
 emission_ring_inner_radius = 4.0
-radial_velocity_min = -8.00002
-radial_velocity_max = -8.00002
-hue_variation_min = -1.0
-hue_variation_max = 1.0
+radial_velocity_min = -16.0
+radial_velocity_max = -16.0
+color = Color(0.13, 0.8985, 1, 1)
+alpha_curve = SubResource("CurveTexture_640aq")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+
+[sub_resource type="Curve" id="Curve_rc5ov"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.08, 0.340659), 0.0, 0.0, 0, 0, Vector2(0.505, 0.340659), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bv531"]
+curve = SubResource("Curve_rc5ov")
+
+[sub_resource type="Curve" id="Curve_vdtuq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.205, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_5nu2l"]
+curve = SubResource("Curve_vdtuq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a2smj"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+scale_curve = SubResource("CurveTexture_5nu2l")
+color = Color(0.6, 0, 1, 1)
+alpha_curve = SubResource("CurveTexture_bv531")
+hue_variation_min = -0.1
+hue_variation_max = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63ppw"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ng5ui"]
+size = Vector2(60, 50)
+
+[sub_resource type="Animation" id="Animation_6c8ue"]
+resource_name = "successful_boost"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/SuccessVisual:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.486275), Color(0, 0.274833, 0.97, 0.486275), Color(1, 1, 1, 0.486275)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ot5m"]
+_data = {
+"successful_boost": SubResource("Animation_6c8ue")
+}
 
 [node name="Booster" type="StaticBody2D"]
 z_index = 1
@@ -70,12 +134,21 @@ collision_mask = 0
 script = ExtResource("1_ydg80")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_p7j1u")
 
 [node name="Visual" type="Sprite2D" parent="."]
-modulate = Color(0.0024, 0.23208, 0.24, 1)
+self_modulate = Color(0.00392157, 0.231373, 0.239216, 1)
+z_index = -1
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_k7nbs")
+
+[node name="SuccessVisual" type="Sprite2D" parent="Visual"]
+modulate = Color(1, 1, 1, 0.486274)
+position = Vector2(0, 420)
+rotation = 0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_aw1af")
 
 [node name="CockpitEmptyPulse" type="GPUParticles2D" parent="."]
 amount = 5000
@@ -104,13 +177,115 @@ fixed_fps = 60
 visibility_rect = Rect2(-18.1728, -18.9633, 37.3248, 37.9356)
 trail_sections = 4
 
-[node name="BoostOrb" type="GPUParticles2D" parent="."]
-position = Vector2(108, 0)
-scale = Vector2(2, 2)
-amount = 200
+[node name="BoostOrb" type="RigidBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="VFX" type="GPUParticles2D" parent="BoostOrb"]
+position = Vector2(106, 0)
+scale = Vector2(4, 4)
+amount = 250
 process_material = SubResource("ParticleProcessMaterial_3huw1")
-lifetime = 0.5
+lifetime = 0.3
+fixed_fps = 60
 local_coords = true
-trail_enabled = true
+trail_lifetime = 1.0
+trail_sections = 12
+trail_section_subdivisions = 12
+
+[node name="Trail" type="GPUParticles2D" parent="BoostOrb/VFX"]
+z_index = -1
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_a2smj")
+texture = ExtResource("3_3lgcj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoostOrb"]
+position = Vector2(106, 0)
+shape = SubResource("CircleShape2D_63ppw")
+
+[node name="BoostArea" type="Area2D" parent="."]
+position = Vector2(0, 105)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoostArea"]
+shape = SubResource("RectangleShape2D_ng5ui")
+
+[node name="BoostCooldown" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="StreakInfo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -80.0
+offset_right = 64.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StreakLabel" type="Label" parent="StreakInfo"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -24.0
+offset_right = 24.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Streak
+0"
+horizontal_alignment = 1
+
+[node name="PolygonComboLabel" type="Label" parent="StreakInfo"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -16.0
+offset_right = 44.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "2x Polygons"
+horizontal_alignment = 1
+
+[node name="StreakHighScoreLabel" type="Label" parent="StreakInfo"]
+auto_translate_mode = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.0
+offset_top = -55.0
+offset_right = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Best
+0"
+horizontal_alignment = 1
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3ot5m")
+}
 
 [connection signal="body_entered" from="CockpitArea" to="." method="_on_cockpit_area_body_entered"]
+[connection signal="body_exited" from="BoostArea" to="." method="_on_boost_area_body_exited"]
+[connection signal="timeout" from="BoostCooldown" to="." method="_on_boost_cooldown_timeout"]

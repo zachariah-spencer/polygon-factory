@@ -1,20 +1,24 @@
 NEXT:
 
-Booster:
-	- A ring with an orb that floats in orbit around it that can be piloted by the player
-	- When piloted, the player can try to press the space bar when the orb is over a highlighted portion of the circle
-	- Each successfully timed press will speed up the rotation of the orb, increasing the difficulty
-	- Holding certain scorestreaks without messing this up will boost the production of all polygons throughout the factory
-	- The moment the player exits the cockpit or fails to time a boost, the polygon production will return to normal
-	
-Player Cosmetics:
-	-Player can offer further offerings to The Shape to receive random cosmetic items
-	-Once an item is unlocked, the items can be swapped around in a cosmetics room at will
+Tutorial UI:
+	-UI Elements that introduce the player to the games concepts as they encounter them
+	-Tracks if the player has been introduced to something and only shows them the tutorial UI the first go around
 
-Hexagon Object:
-	-Similar to triangles but with a slower generating pattern
-	-Generates 20 polygons / 10 seconds
-	-Costs 250
+Main Menu:
+	-UI for Main Menu
+	-New Game button
+	-Load Game button
+	-Settings button
+	-Quit Game button
+
+Save/Load System:
+	-Self explanatory
+
+SFX & Polish:
+	-Artwork for more things
+	-VFX/Shader work
+	-SFX and music(ambient feel)
+
 
 
 
@@ -23,7 +27,12 @@ Upgrading Objects:
 	-Hovering the mouse over an object should bring up a tooltip with upgrade options.
 	-If player has enough polygons they can purchase an upgrade which will adjust the multiplier and the speed of a generator.
 
-
+Booster:
+	- A ring with an orb that floats in orbit around it that can be piloted by the player
+	- When piloted, the player can try to press the space bar when the orb is over a highlighted portion of the circle
+	- Each successfully timed press will speed up the rotation of the orb, increasing the difficulty
+	- Holding certain scorestreaks without messing this up will boost the production of all polygons throughout the factory
+	- The moment the player exits the cockpit or fails to time a boost, the polygon production will return to normal
 
 OUT OF SCOPE:
 
@@ -37,3 +46,12 @@ Custom Placement / Factory Editing:
 	-Once placed, the object's clickable tooltip menu will have a "sell" button,
 	allowing the player to sell the object back at 100% value so they can re-place it
 	in a new location if they please.
+
+Player Cosmetics:
+	-Player can offer further offerings to The Shape to receive random cosmetic items
+	-Once an item is unlocked, the items can be swapped around in a cosmetics room at will
+
+Hexagon Object:
+	-Similar to triangles but with a slower generating pattern
+	-Generates 20 polygons / 10 seconds
+	-Costs 250
