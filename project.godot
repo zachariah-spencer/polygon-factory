@@ -77,6 +77,7 @@ boost={
 2d_physics/layer_2="exits"
 2d_physics/layer_3="structures"
 2d_physics/layer_4="orb"
+2d_physics/layer_5="walls"
 
 [rendering]
 

@@ -31,7 +31,6 @@ func _load_components():
 		upgrades_component.upgrades_purchased[1] = virtual_structure.upgrade_1_active
 		upgrades_component.upgrades_purchased[2] = virtual_structure.upgrade_2_active
 		upgrades_component.upgrades_purchased[3] = virtual_structure.upgrade_3_active
-	
 
 ### VIRTUAL METHODS ###
 func activate_upgrade(_num : int) -> void:

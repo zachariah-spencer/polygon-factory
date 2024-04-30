@@ -1,9 +1,5 @@
 NEXT:
 
-Tutorial UI:
-	-UI Elements that introduce the player to the games concepts as they encounter them
-	-Tracks if the player has been introduced to something and only shows them the tutorial UI the first go around
-
 Main Menu:
 	-UI for Main Menu
 	-New Game button

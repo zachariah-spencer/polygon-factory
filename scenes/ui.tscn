@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy6ba652fveup"]
+[gd_scene load_steps=3 format=3 uid="uid://dy6ba652fveup"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_aoknm"]
+[ext_resource type="PackedScene" uid="uid://de3t3iwllebbn" path="res://scenes/tutorials_ui.tscn" id="2_1t5bk"]
 
 [node name="UI" type="Control"]
 process_mode = 4
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_aoknm")
 
 [node name="PolygonCounter" type="Label" parent="."]
@@ -25,3 +27,5 @@ offset_bottom = -0.192001
 theme_override_font_sizes/font_size = 64
 text = "Polygons - "
 horizontal_alignment = 1
+
+[node name="TutorialsUI" parent="." instance=ExtResource("2_1t5bk")]

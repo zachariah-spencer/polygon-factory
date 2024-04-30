@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bd31q5fjjeptn"]
+[gd_scene load_steps=26 format=3 uid="uid://bd31q5fjjeptn"]
 
 [ext_resource type="Texture2D" uid="uid://bmv3b5yg1npgf" path="res://assets/circlering.png" id="1_k7nbs"]
 [ext_resource type="Script" path="res://scripts/structures/booster.gd" id="1_ydg80"]
@@ -122,8 +122,25 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.486275), Color(0, 0.274833, 0.97, 0.486275), Color(1, 1, 1, 0.486275)]
 }
 
+[sub_resource type="Animation" id="Animation_coko1"]
+resource_name = "failed_boost"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/SuccessVisual:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.486275), Color(0.97, 0, 0, 0.486275), Color(1, 1, 1, 0.486275)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3ot5m"]
 _data = {
+"failed_boost": SubResource("Animation_coko1"),
 "successful_boost": SubResource("Animation_6c8ue")
 }
 
@@ -144,7 +161,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_k7nbs")
 
 [node name="SuccessVisual" type="Sprite2D" parent="Visual"]
-modulate = Color(1, 1, 1, 0.486274)
+modulate = Color(1, 1, 1, 0.486275)
 position = Vector2(0, 420)
 rotation = 0.785398
 scale = Vector2(0.5, 0.5)
@@ -214,7 +231,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_ng5ui")
 
 [node name="BoostCooldown" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.75
 one_shot = true
 
 [node name="StreakInfo" type="Control" parent="."]
@@ -240,7 +257,7 @@ offset_left = -24.0
 offset_right = 24.0
 offset_bottom = 26.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Streak
 0"
 horizontal_alignment = 1
@@ -276,16 +293,18 @@ offset_top = -55.0
 offset_right = 39.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 16
 text = "Best
 0"
 horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="Anims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_3ot5m")
 }
 
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="CockpitArea" to="." method="_on_cockpit_area_body_entered"]
 [connection signal="body_exited" from="BoostArea" to="." method="_on_boost_area_body_exited"]
 [connection signal="timeout" from="BoostCooldown" to="." method="_on_boost_cooldown_timeout"]

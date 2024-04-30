@@ -7,6 +7,7 @@ signal object_spawning_started
 @export var spawnable_description := 'Spawnable Description'
 @export var cost := 0
 @export var spawnable_rotation_degrees := 0.0
+@export var triggers_tutorial := true
 
 @onready var tooltip := $Tooltip
 @onready var tooltip_title := $Tooltip/CenterContainer/VBoxContainer/Title
@@ -46,10 +47,17 @@ func _get_unique_id() -> String:
 	return get_parent().name + '/' + name
 
 func _on_enter_collision_mouse_entered() -> void:
+	if triggers_tutorial:
+		Global.play_structures_tutorial()
+	
+	button.disabled = false
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(tooltip, 'modulate', Color(1,1,1,1), 0.15)
 
 func _on_exit_collision_mouse_exited() -> void:
+	button.disabled = true
+	
 	var tween = get_tree().create_tween()
 	tween.tween_property(tooltip, 'modulate', Color(1,1,1,0), 0.15)
 

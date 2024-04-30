@@ -35,6 +35,9 @@ func _physics_process(_delta):
 	if state != States.DISABLED:
 		get_input()
 		move_and_slide()
+	elif state == States.DISABLED:
+		velocity = Vector2.ZERO
+		move_and_slide()
 
 func upgrade(new_upgrade_tier : int):
 	

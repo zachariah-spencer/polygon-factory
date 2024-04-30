@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://de3t3iwllebbn"]
+
+[ext_resource type="Script" path="res://scripts/tutorials_ui.gd" id="1_8tmoo"]
+
+[node name="TutorialsUI" type="Node"]
+process_mode = 3
+script = ExtResource("1_8tmoo")
+tutorials_enabled = false
+
+[node name="MessageTimer" type="Timer" parent="."]
+process_mode = 3
+process_callback = 0
+one_shot = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 4
+auto_translate_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tip" type="Label" parent="CenterContainer"]
+process_mode = 4
+auto_translate_mode = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "TEST"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

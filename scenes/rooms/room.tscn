@@ -74,7 +74,7 @@ texture = ExtResource("10_jwim0")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 6, 8, 6, -5.875, -8, -6)
 
 [sub_resource type="TileSet" id="TileSet_obip1"]
-physics_layer_0/collision_layer = 8
+physics_layer_0/collision_layer = 16
 sources/1 = SubResource("TileSetAtlasSource_52lc8")
 sources/2 = SubResource("TileSetAtlasSource_aoih7")
 sources/3 = SubResource("TileSetAtlasSource_8ccdk")

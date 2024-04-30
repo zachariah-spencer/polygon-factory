@@ -47,8 +47,8 @@ func eject_player(player : Node2D) -> void:
 	piloted = false
 	_toggle_cockpit_vfx()
 	target_speed = unpiloted_base_speed
-	for id in Structures.virtual_structures:
-				Structures.virtual_structures[id].polygons_boost = 1
+	for structure_id in Structures.virtual_structures:
+		Structures.virtual_structures[structure_id].polygons_boost = 1
 
 func _toggle_cockpit_vfx():
 	cockpit_empty_pulse.restart()
@@ -98,33 +98,35 @@ func _increment_streak():
 	
 	match(streak):
 		5:
-			for id in Structures.virtual_structures:
-				Structures.virtual_structures[id].polygons_boost = 2
+			for structure_id in Structures.virtual_structures:
+				Structures.virtual_structures[structure_id].polygons_boost = 2
 				
 			var tween = create_tween()
 			tween.tween_property(polygon_combo_label, 'modulate', Color.WHITE, 0.2)
 			polygon_combo_label.text = '2x Polygons!'
 		10:
-			for id in Structures.virtual_structures:
-				Structures.virtual_structures[id].polygons_boost = 3
+			for structure_id in Structures.virtual_structures:
+				Structures.virtual_structures[structure_id].polygons_boost = 3
 			polygon_combo_label.text = '3x Polygons!'
 		15:
-			for id in Structures.virtual_structures:
-				Structures.virtual_structures[id].polygons_boost = 4
+			for structure_id in Structures.virtual_structures:
+				Structures.virtual_structures[structure_id].polygons_boost = 4
 			polygon_combo_label.text = '4x Polygons!'
 
 func _end_streak():
+	if streak != 0:
+		speed = clamp(speed * 0.5, piloted_base_speed, 100000.0)
+	
 	streak = 0
 	streak_label.text = 'Streak\n' + str(streak)
 	
 	var tween = create_tween()
 	tween.tween_property(polygon_combo_label, 'modulate', Color.TRANSPARENT, 0.2)
 	
-	for id in Structures.virtual_structures:
-		Structures.virtual_structures[id].polygons_boost = 1
+	for structure_id in Structures.virtual_structures:
+		Structures.virtual_structures[structure_id].polygons_boost = 1
 	
-	
-	speed = clamp(speed * 0.25, piloted_base_speed, 100000.0)
+	anims.play('failed_boost')
 
 
 func _on_boost_area_body_exited(_body: Node2D) -> void:
@@ -134,3 +136,7 @@ func _on_boost_area_body_exited(_body: Node2D) -> void:
 
 func _on_boost_cooldown_timeout() -> void:
 	boost_on_cooldown = false
+
+
+func _on_tree_exiting() -> void:
+	_end_streak()

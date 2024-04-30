@@ -55,5 +55,6 @@ script = ExtResource("2_3yswf")
 
 [node name="TheGreatShapeSpawner" parent="." index="7" instance=ExtResource("2_77pm7")]
 position = Vector2(0, -256)
+triggers_tutorial = false
 
 [connection signal="object_spawning_started" from="TheGreatShapeSpawner" to="FloorAnim" method="_on_the_great_shape_spawner_object_spawning_started"]

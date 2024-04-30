@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://v1lueurtn5cm"]
+[gd_scene load_steps=5 format=3 uid="uid://v1lueurtn5cm"]
 
 [ext_resource type="PackedScene" uid="uid://btxu4ak1xixo4" path="res://scenes/rooms/room.tscn" id="1_tjx51"]
 [ext_resource type="PackedScene" uid="uid://bd31q5fjjeptn" path="res://scenes/structures/booster.tscn" id="2_dsmlv"]
+[ext_resource type="Script" path="res://scripts/booster_tutorial_area.gd" id="3_wtqji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5bx5"]
+size = Vector2(384, 32)
 
 [node name="Room7" instance=ExtResource("1_tjx51")]
 exit_down_scene_path = "res://scenes/rooms/room_1.tscn"
@@ -14,3 +18,13 @@ layer_0/tile_data = PackedInt32Array(-1, 5, 0, -65536, 5, 0, 0, 5, 0, 65535, 5, 
 position = Vector2(8, -408)
 
 [node name="Booster" parent="." index="6" instance=ExtResource("2_dsmlv")]
+
+[node name="BoosterTutorialArea" type="Area2D" parent="." index="7"]
+collision_layer = 0
+script = ExtResource("3_wtqji")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoosterTutorialArea" index="0"]
+position = Vector2(0, 112)
+shape = SubResource("RectangleShape2D_v5bx5")
+
+[connection signal="body_entered" from="BoosterTutorialArea" to="BoosterTutorialArea" method="_on_body_entered"]

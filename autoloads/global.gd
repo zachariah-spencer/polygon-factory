@@ -1,5 +1,8 @@
 extends Node
 
+signal structure_hovered
+signal booster_room_entered
+
 enum Directions {LEFT, RIGHT, UP, DOWN, NULL = -1}
 
 var game_world
@@ -20,6 +23,11 @@ var colors = [
 	Color.TOMATO,
 	Color.KHAKI
 ]
+func play_structures_tutorial():
+	structure_hovered.emit()
+
+func play_booster_tutorial():
+	booster_room_entered.emit()
 
 func get_random_color() -> Color:
 	return colors[randi_range(0,(Global.colors.size() - 1))]
