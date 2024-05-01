@@ -4,14 +4,14 @@ extends Node
 @onready var tip := $CenterContainer/Tip
 @export var tutorials_enabled := true
 
-var intro_1 := ['Welcome to the Polygon Factory...', false, 1.0]
+var intro_1 := ['Welcome to the Polygon Factory...', false, 2.0]
 var intro_2 := ['Accumulate as many polygons as possible...', false, 1.0]
 var intro_3 := ['Begin your journey by clicking the white diamond...', false, 1.0]
 
 var structure_1 := ['Structures generate polygons passively...', false, 1.0]
 var structure_2 := ['You can purchase them by mousing over the gray icons on the map...', false, 1.0]
 
-var booster_1 := ['Enter the center to pilot the polygon booster...', false, 0.5]
+var booster_1 := ['Enter the center to pilot the polygon booster...', false, 1.0]
 var booster_2 := ['To complete a boost, you must press the\n
 					press the space bar when the boost orb is\n
 					passing over the white square...', false, 3.0]

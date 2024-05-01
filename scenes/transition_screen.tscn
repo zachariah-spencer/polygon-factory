@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bj4lh4ckm0iwb"]
+
+[node name="TransitionScreen" type="Node2D"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Background" type="ColorRect" parent="."]
+process_mode = 4
+auto_translate_mode = 1
+z_index = 5
+offset_left = -2048.0
+offset_top = -2048.0
+offset_right = 2048.0
+offset_bottom = 2048.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

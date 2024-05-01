@@ -80,7 +80,7 @@ func _boost():
 	var new_speed := target_speed + base_boost_amount + float(streak / 4.0)
 	speed += new_speed
 	
-	speed = clamp(speed, 0.0, 11.0)
+	speed = clamp(speed, 0.0, 12.0)
 	
 	_increment_streak()
 	anims.play('successful_boost')

@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://di1f56lekmhv3"]
+[gd_scene load_steps=5 format=3 uid="uid://di1f56lekmhv3"]
 
 [ext_resource type="Script" path="res://scripts/game_world.gd" id="1_y3tcx"]
+[ext_resource type="PackedScene" uid="uid://dyg1hrw3idj0w" path="res://scenes/player.tscn" id="2_bs4iq"]
+[ext_resource type="PackedScene" uid="uid://b2cqop65d1cow" path="res://scenes/rooms/room_1.tscn" id="3_wu2ef"]
+[ext_resource type="PackedScene" uid="uid://dfxa11qn400at" path="res://scenes/background.tscn" id="4_6hrpr"]
 
 [node name="GameWorld" type="Node2D"]
 script = ExtResource("1_y3tcx")
+
+[node name="Player" parent="." instance=ExtResource("2_bs4iq")]
+
+[node name="Room1" parent="." instance=ExtResource("3_wu2ef")]
+
+[node name="Background" parent="." instance=ExtResource("4_6hrpr")]
+
+[connection signal="room_exited" from="Room1" to="." method="change_rooms"]

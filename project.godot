@@ -13,8 +13,9 @@ config_version=5
 config/name="polygon-factory"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-boot_splash/bg_color=Color(0, 0.26, 0.255667, 1)
-boot_splash/image="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://assets/TriangleArrow-White-Right.svg.png"
+boot_splash/fullsize=false
 config/icon="res://assets/icon.svg"
 
 [autoload]
