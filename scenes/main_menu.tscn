@@ -52,7 +52,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Quit"
 
-[node name="SavesList" type="Control" parent="."]
+[node name="SettingsList" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -61,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Center" type="CenterContainer" parent="SavesList"]
+[node name="Center" type="CenterContainer" parent="SettingsList"]
 auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 15
@@ -70,29 +70,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SavesList/Center"]
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsList/Center"]
 auto_translate_mode = 1
 layout_mode = 2
 
-[node name="Slot1" type="Button" parent="SavesList/Center/VBoxContainer"]
+[node name="Slot1" type="Button" parent="SettingsList/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
-text = "Slot 1"
+text = "Setting 1"
 
-[node name="Slot2" type="Button" parent="SavesList/Center/VBoxContainer"]
+[node name="Slot2" type="Button" parent="SettingsList/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Slot 2"
 
-[node name="Slot3" type="Button" parent="SavesList/Center/VBoxContainer"]
+[node name="Slot3" type="Button" parent="SettingsList/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Slot 3"
 
-[node name="Back" type="Button" parent="SavesList"]
+[node name="Back" type="Button" parent="SettingsList"]
 auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = -1
@@ -124,7 +124,7 @@ visible = false
 modulate = Color(1, 1, 1, 1)
 position = Vector2(800, 450)
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
 auto_translate_mode = 1
 layout_mode = 1
 anchors_preset = 5
@@ -137,7 +137,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 256
 text = "Polygon Factory"
 
-[connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="SavesList/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SettingsList/Back" to="." method="_on_back_pressed"]

@@ -5,7 +5,7 @@ signal polygons_changed()
 var current_polygons := 100000
 var total_polygons := 100000
 var upgrade_tier := 0
-var polygons_per_minute : float
+var polygons_per_minute := 0.0
 
 func calculate_polygons_per_minute() -> float:
 	var ppm : float
@@ -14,6 +14,8 @@ func calculate_polygons_per_minute() -> float:
 	await get_tree().create_timer(5.0).timeout
 	
 	ppm = float(total_polygons) - prev_total_polygons
+	
+	polygons_per_minute = ppm
 	
 	return ppm * 12.0
 
