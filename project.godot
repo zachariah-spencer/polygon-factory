@@ -33,6 +33,7 @@ window/size/borderless=true
 [global_group]
 
 Persistent=""
+Spawner=""
 
 [gui]
 

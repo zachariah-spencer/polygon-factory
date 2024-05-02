@@ -4,7 +4,6 @@ extends Node2D
 
 func _ready():
 	Global.register_game_world(self)
-	$Room1.load_room()
 
 func change_rooms(old_room : Node2D, new_room : Node2D, exit_direction : int):
 	var player : CharacterBody2D = get_tree().get_first_node_in_group('player')

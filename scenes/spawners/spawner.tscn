@@ -11,7 +11,7 @@ size = Vector2(13, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mwt4"]
 size = Vector2(224, 112)
 
-[node name="Spawner" type="Node2D"]
+[node name="Spawner" type="Node2D" groups=["Spawner"]]
 script = ExtResource("1_3qvj3")
 
 [node name="Visual" type="Sprite2D" parent="."]

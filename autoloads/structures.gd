@@ -19,7 +19,7 @@ func has_virtual_structure(id : String) -> bool:
 func clear_virtual_structures():
 	virtual_structures.clear()
 
-func get_virtual_structures():
+func get_generators():
 	var generators = {}
 	
 	for id in virtual_structures:
