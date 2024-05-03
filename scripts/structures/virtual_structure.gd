@@ -20,6 +20,12 @@ func _init(creates : bool, increment : int, cd : float) -> void:
 	max_cooldown = cd
 	cooldown = cd
 
+func randomize_timing():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var random_time = rng.randf_range(0.0, max_cooldown)
+	cooldown = random_time
+
 func reduce_cooldown_by(amount : float):
 	cooldown -= amount
 	while cooldown <= 0.0:

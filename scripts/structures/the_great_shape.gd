@@ -48,6 +48,7 @@ func _reload():
 	
 
 func _load():
+	Stats.great_shape_purchased = true
 	var tween_zoom = create_tween()
 	tween_zoom.tween_property(get_parent().get_node('View'), 'zoom', Vector2(1.25, 1.25), 1.0)
 	

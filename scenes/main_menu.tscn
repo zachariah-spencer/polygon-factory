@@ -137,7 +137,7 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 256
 text = "Polygon Factory"
 
-[connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="SettingsList/Back" to="." method="_on_back_pressed"]

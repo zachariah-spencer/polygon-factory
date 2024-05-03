@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://clcjuj3i4f4ec" path="res://scenes/spawners/spawner.tscn" id="1_hv5ir"]
 
-[node name="TheGreatShapeSpawner" instance=ExtResource("1_hv5ir")]
+[node name="TheGreatShapeSpawner" groups=["TheGreatShape"] instance=ExtResource("1_hv5ir")]
 spawnable_scene_path = "res://scenes/structures/the_great_shape.tscn"
 spawnable_name = "The Great Shape"
 spawnable_description = "Offer up your polygons and receive His blessings..."

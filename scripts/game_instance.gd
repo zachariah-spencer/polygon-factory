@@ -12,11 +12,7 @@ func save():
 		'polygons_per_minute' : Stats.polygons_per_minute,
 	}
 	
-	# 'unique_spawner_id_with_generator1' : ObjectReference1,
-	# 'unique_spawner_id_with_generator2' : ObjectReference3,
-	# 'unique_spawner_id_with_generator2' : ObjectReference3,
-	
-	for id in Structures.get_generators():
+	for id in Structures.virtual_structures:
 		var generator = Structures.virtual_structures[id]
 		
 		var generator_dict = {
@@ -34,9 +30,7 @@ func save():
 
 func load(node_data : Dictionary):
 	#TODO: SAVE/LOAD which tutorials have been played out already
-	#TODO: SAVE/LOAD randomizing the visuals of structures upon reload
 	#TODO: SAVE/LOAD room the player is in and current player position
-	#TODO: SAVE/LOAD whether or not the great shape is purchased
 	
 	Stats.current_polygons = node_data['polygons']
 	Stats.total_polygons = node_data['total_polygons']
@@ -59,6 +53,11 @@ func load(node_data : Dictionary):
 			virtual_structure.upgrade_2_active = generator_dictionary['upgrade_2_active']
 			virtual_structure.upgrade_3_active = generator_dictionary['upgrade_3_active']
 			virtual_structure.polygons_boost = generator_dictionary['polygons_boost']
+			virtual_structure.randomize_timing()
 	
 	for spawner in get_tree().get_nodes_in_group('Spawner'):
 		spawner._verify_purchased_state()
+	
+	
+	Global.player.upgrade_level = Stats.upgrade_tier
+	Global.player.upgrade(Global.player.upgrade_level)

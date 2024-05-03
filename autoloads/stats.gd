@@ -6,6 +6,7 @@ var current_polygons := 100000
 var total_polygons := 100000
 var upgrade_tier := 0
 var polygons_per_minute := 0.0
+var great_shape_purchased := false
 
 func calculate_polygons_per_minute() -> float:
 	var ppm : float
