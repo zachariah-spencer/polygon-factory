@@ -30,3 +30,7 @@ func change_rooms(old_room : Node2D, new_room : Node2D, exit_direction : int):
 	await tween_out.finished
 	
 	Global.player.state = Global.player.States.ACTIVE
+
+func set_initial_room(room : Node2D):
+	room.room_exited.connect(change_rooms)
+	call_deferred('add_child', room)

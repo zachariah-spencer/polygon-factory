@@ -35,6 +35,7 @@ window/size/borderless=true
 Persistent=""
 Spawner=""
 TheGreatShape=""
+Room=""
 
 [gui]
 

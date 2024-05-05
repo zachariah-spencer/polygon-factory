@@ -85,7 +85,6 @@ func _update_labels():
 		description.text = 'The Great Shape is very\npleased with you.'
 
 func _on_mouse_entered() -> void:
-	print('LOL')
 	var tween = get_tree().create_tween()
 	tween.tween_property(tooltip, 'modulate', Color.WHITE, 0.25)
 

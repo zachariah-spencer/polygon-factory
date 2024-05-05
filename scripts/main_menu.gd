@@ -5,13 +5,22 @@ extends Control
 @onready var settings_list := $SettingsList
 @onready var root := $Root
 @onready var title := $Title
+@onready var start_over_button := $Root/StartOver
 var game_world : String = 'res://scenes/game_instance.tscn'
 var current_window : Control
+var save_exists := false
+var start_over_pressed_count := 0
 
 func _ready():
 	transition_screen.visible = true
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
+	
+	if FileAccess.file_exists("user://savegame.save"):
+		save_exists = true
+	
+	start_over_button.visible = save_exists
+	start_over_button.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _process(delta: float) -> void:
 	background.color.h += sin(delta) * 0.1
@@ -23,6 +32,8 @@ func _start_new_game():
 	await tween_in.finished
 	var game_world_instance = load(game_world).instantiate()
 	get_parent().add_child(game_world_instance)
+	game_world_instance.new_game()
+	Global.announce_game_loaded()
 	
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
@@ -90,3 +101,18 @@ func _on_back_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	load_game()
+
+
+func _on_start_over_pressed():
+	start_over_pressed_count += 1
+	if start_over_pressed_count > 1:
+		var dir = DirAccess.open('user://')
+		dir.remove('savegame.save')
+	else:
+		start_over_button.text = 'Are You Sure?'
+		var start_over_timer := get_tree().create_timer(2.0)
+		start_over_timer.timeout.connect(_on_start_over_timer_timeout)
+
+func _on_start_over_timer_timeout():
+	start_over_pressed_count = 0
+	start_over_button.text = 'Start Over'

@@ -35,6 +35,7 @@ func _ready():
 	Global.booster_room_entered.connect(_queue_booster_tutorial)
 	
 	tip.modulate = Color.TRANSPARENT
+	await Global.game_loaded
 	queue_message(intros)
 
 func _queue_structure_tutorial():
@@ -53,6 +54,18 @@ func _process(_delta: float) -> void:
 			message_queue.pop_front()
 			var duration = latest_message[2]
 			show_message(latest_message, duration)
+
+func set_message_block_played(message_block : Array, played : bool):
+	for message in message_block:
+		message[1] = played
+
+func get_message_block_played(message_block : Array) -> bool:
+	var played := true
+	for message in message_block:
+		if not message[1]:
+			played = false
+	
+	return played
 
 func queue_message(message_block : Array):
 	if not displaying_message:

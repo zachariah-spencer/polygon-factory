@@ -37,7 +37,6 @@ func insert_player(player : CharacterBody2D, entered_from : int):
 			player_spawn_position = exit_down.global_position + Vector2(0, -entrance_offset)
 		Global.Directions.DOWN:
 			player_spawn_position = exit_up.global_position + Vector2(0, entrance_offset)
-	
 	Global.player.global_position = player_spawn_position
 
 func exit_room(exit_direction : int):

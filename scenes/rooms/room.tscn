@@ -88,7 +88,7 @@ sources/9 = SubResource("TileSetAtlasSource_ddr78")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64ylp"]
 size = Vector2(64, 64)
 
-[node name="Room" type="Node2D"]
+[node name="Room" type="Node2D" groups=["Room"]]
 script = ExtResource("1_ncae3")
 
 [node name="View" type="Camera2D" parent="."]

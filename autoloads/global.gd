@@ -1,5 +1,6 @@
 extends Node
 
+signal game_loaded
 signal structure_hovered
 signal booster_room_entered
 
@@ -23,6 +24,10 @@ var colors = [
 	Color.TOMATO,
 	Color.KHAKI
 ]
+
+func announce_game_loaded():
+	game_loaded.emit()
+
 func play_structures_tutorial():
 	structure_hovered.emit()
 

@@ -40,9 +40,7 @@ func _physics_process(_delta):
 		move_and_slide()
 
 func upgrade(new_upgrade_tier : int):
-	
 	upgrade_level = new_upgrade_tier
-	print(upgrade_level)
 	
 	match new_upgrade_tier:
 		1:

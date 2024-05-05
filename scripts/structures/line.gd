@@ -45,8 +45,6 @@ func _emit_pulse_vfx():
 	pulse_color_tween.tween_property(pulse, 'modulate', new_color, 0.75)
 
 func _load_vfx():
-	print(virtual_structure.max_cooldown - virtual_structure.cooldown)
-	
 	pulse.restart()
 	pulse.preprocess = (virtual_structure.max_cooldown - virtual_structure.cooldown)
 	
