@@ -30,6 +30,10 @@ func _start_new_game():
 	tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
 	
 	await tween_in.finished
+	root.visible = false
+	background.visible = false
+	title.visible = false
+	
 	var game_world_instance = load(game_world).instantiate()
 	get_parent().add_child(game_world_instance)
 	game_world_instance.new_game()
@@ -108,9 +112,11 @@ func _on_start_over_pressed():
 	if start_over_pressed_count > 1:
 		var dir = DirAccess.open('user://')
 		dir.remove('savegame.save')
+		start_over_button.visible = false
+		start_over_button.process_mode = Node.PROCESS_MODE_DISABLED
 	else:
 		start_over_button.text = 'Are You Sure?'
-		var start_over_timer := get_tree().create_timer(2.0)
+		var start_over_timer := get_tree().create_timer(1.0)
 		start_over_timer.timeout.connect(_on_start_over_timer_timeout)
 
 func _on_start_over_timer_timeout():

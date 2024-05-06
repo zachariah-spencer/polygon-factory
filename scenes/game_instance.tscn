@@ -10,7 +10,11 @@ script = ExtResource("1_hbuo7")
 [node name="StaticLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="StaticLayer" instance=ExtResource("1_3csel")]
-offset_right = -496.0
-offset_bottom = -276.0
 
 [node name="GameWorld" parent="." instance=ExtResource("2_6hnu5")]
+
+[node name="AutosaveTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]

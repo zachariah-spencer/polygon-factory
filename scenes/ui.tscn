@@ -4,8 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://de3t3iwllebbn" path="res://scenes/tutorials_ui.tscn" id="2_1t5bk"]
 
 [node name="UI" type="Control"]
-process_mode = 4
-auto_translate_mode = 1
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,3 +28,59 @@ text = "Polygons - "
 horizontal_alignment = 1
 
 [node name="TutorialsUI" parent="." instance=ExtResource("2_1t5bk")]
+
+[node name="PauseMenu" type="Control" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.470588, 0.309804, 0.239216, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Buttons" type="VBoxContainer" parent="PauseMenu/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Resume" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Resume"
+
+[node name="MainMenu" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 128
+text = "Main Menu"
+
+[node name="QuitGame" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
+auto_translate_mode = 1
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 128
+text = "Exit To Desktop"
+
+[connection signal="pressed" from="PauseMenu/CenterContainer/Buttons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/Buttons/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/CenterContainer/Buttons/QuitGame" to="." method="_on_quit_game_pressed"]

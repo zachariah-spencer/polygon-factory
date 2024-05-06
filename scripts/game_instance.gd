@@ -81,3 +81,7 @@ func load(node_data : Dictionary):
 	Global.player.upgrade(Global.player.upgrade_level)
 	Global.player.global_position = Vector2(node_data['player_pos_x'], node_data['player_pos_y'])
 	Global.announce_game_loaded()
+
+
+func _on_autosave_timer_timeout():
+	Global.save_game()

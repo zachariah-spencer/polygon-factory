@@ -22,6 +22,8 @@ func get_input():
 			
 			if upgrade_level >= 1:
 				power_vacuum_fx.emitting = false
+		
+		
 		else:
 			velocity = lerp(velocity, target_velocity, 0.9)
 			
@@ -38,6 +40,14 @@ func _physics_process(_delta):
 	elif state == States.DISABLED:
 		velocity = Vector2.ZERO
 		move_and_slide()
+
+func change_state(new_state : States):
+	state = new_state
+	
+	if new_state == States.DISABLED:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func upgrade(new_upgrade_tier : int):
 	upgrade_level = new_upgrade_tier

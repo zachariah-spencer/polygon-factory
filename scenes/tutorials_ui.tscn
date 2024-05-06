@@ -25,8 +25,10 @@ mouse_filter = 2
 process_mode = 4
 auto_translate_mode = 1
 layout_mode = 2
+theme_override_colors/font_color = Color(0.49, 1, 0.6515, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
-text = "TEST"
+text = "TUTORIAL TIPS"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

@@ -5,20 +5,20 @@ extends Node
 @export var tutorials_enabled := true
 
 var intro_1 := ['Welcome to the Polygon Factory...', false, 2.0]
-var intro_2 := ['Accumulate as many polygons as possible...', false, 1.0]
-var intro_3 := ['Begin your journey by clicking the white diamond...', false, 1.0]
+var intro_2 := ['Accumulate as many polygons as possible...', false, 1.5]
+var intro_3 := ['Begin your journey by clicking the white diamond...', false, 1.5]
 
-var structure_1 := ['Structures generate polygons passively...', false, 1.0]
-var structure_2 := ['You can purchase them by mousing over the gray icons on the map...', false, 1.0]
+var structure_1 := ['Structures generate polygons passively...', false, 1.5]
+var structure_2 := ['You can purchase them by mousing over the gray icons on the map...', false, 1.5]
 
-var booster_1 := ['Enter the center to pilot the polygon booster...', false, 1.0]
+var booster_1 := ['Enter the center to pilot the polygon booster...', false, 1.5]
 var booster_2 := ['To complete a boost, you must press the\n
 					press the space bar when the boost orb is\n
-					passing over the white square...', false, 3.0]
+					passing over the white square...', false, 3.5]
 var booster_3 := ['Completing multiple consecutive boosts will\n
 					add multipliers to all polygons produced throughout\n
-					the facility until your streak ends...', false, 3.0]
-var booster_4 := ['To exit the cockpit, press the Q key', false, 1.0]
+					the facility until your streak ends...', false, 3.5]
+var booster_4 := ['To exit the cockpit, press the Q key', false, 1.5]
 
 var intros := [intro_1, intro_2, intro_3]
 var structures := [structure_1, structure_2]
@@ -49,7 +49,7 @@ func _process(_delta: float) -> void:
 		if not displaying_message and not message_queue.is_empty():
 			displaying_messages = true
 			displaying_message = true
-			Global.player.state = Global.player.States.DISABLED
+			Global.player.change_state(Global.player.States.DISABLED)
 			var latest_message = message_queue.front()
 			message_queue.pop_front()
 			var duration = latest_message[2]
@@ -97,4 +97,4 @@ func _on_message_timer_timeout() -> void:
 	displaying_message = false
 	
 	if not displaying_messages:
-		Global.player.state = Global.player.States.ACTIVE
+		Global.player.change_state(Global.player.States.ACTIVE)
