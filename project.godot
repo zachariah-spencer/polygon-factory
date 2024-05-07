@@ -36,6 +36,8 @@ Persistent=""
 Spawner=""
 TheGreatShape=""
 Room=""
+Main=""
+MainMenu=""
 
 [gui]
 

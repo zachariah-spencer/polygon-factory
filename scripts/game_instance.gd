@@ -1,4 +1,4 @@
-extends Node2D
+class_name GameInstance extends Node2D
 
 @onready var tutorials_ui := $StaticLayer/UI/TutorialsUI
 @onready var game_world := $GameWorld

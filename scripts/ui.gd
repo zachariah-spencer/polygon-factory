@@ -38,9 +38,11 @@ func _on_resume_pressed():
 
 
 func _on_main_menu_pressed():
+	var main_menu = get_tree().get_first_node_in_group('MainMenu')
 	Global.save_game()
-	#TODO: Transition to Main Menu, free game instance from tree
 	
+	main_menu.open()
+	get_parent().get_parent().queue_free()
 
 
 func _on_quit_game_pressed():

@@ -11,6 +11,20 @@ var current_window : Control
 var save_exists := false
 var start_over_pressed_count := 0
 
+func open():
+	visible = true
+	process_mode = PROCESS_MODE_INHERIT
+	mouse_filter = MOUSE_FILTER_STOP
+	var tween_out = get_tree().create_tween()
+	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
+
+func close():
+	var tween_in = get_tree().create_tween()
+	tween_in.tween_property(transition_screen, 'modulate', Color.BLACK, 0.5)
+	visible = false
+	process_mode = PROCESS_MODE_DISABLED
+	mouse_filter = MOUSE_FILTER_IGNORE
+
 func _ready():
 	transition_screen.visible = true
 	var tween_out = get_tree().create_tween()
@@ -41,7 +55,7 @@ func _start_new_game():
 	
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
-	tween_out.tween_callback(queue_free)
+	tween_out.tween_callback(close)
 
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
@@ -92,7 +106,7 @@ func load_game():
 	
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
-	tween_out.tween_callback(queue_free)
+	tween_out.tween_callback(close)
 	
 
 func _on_quit_pressed() -> void:

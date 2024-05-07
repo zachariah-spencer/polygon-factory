@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_gokr3"]
 [ext_resource type="PackedScene" uid="uid://bj4lh4ckm0iwb" path="res://scenes/transition_screen.tscn" id="2_1cjia"]
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" groups=["MainMenu"]]
 auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -153,7 +153,6 @@ theme_override_font_sizes/font_size = 256
 text = "Polygon Factory"
 
 [connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Root/StartOver" to="." method="_on_start_over_pressed"]
 [connection signal="pressed" from="SettingsList/Back" to="." method="_on_back_pressed"]
