@@ -14,8 +14,6 @@ var upgrades_purchased := {1: false, 2: false, 3: false}
 var menu_scene_path := 'res://scenes/upgrades_menu.tscn'
 var active := false
 
-#TODO: Refactor validating purchased upgrades on _reload() of object
-
 func purchase_upgrade(num : int):
 	upgrade_purchased.emit(num)
 

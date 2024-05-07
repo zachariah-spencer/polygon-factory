@@ -40,6 +40,7 @@ func _on_resume_pressed():
 func _on_main_menu_pressed():
 	Global.save_game()
 	#TODO: Transition to Main Menu, free game instance from tree
+	
 
 
 func _on_quit_game_pressed():
