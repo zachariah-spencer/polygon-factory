@@ -13,19 +13,18 @@ var start_over_pressed_count := 0
 
 func open():
 	visible = true
-	process_mode = PROCESS_MODE_INHERIT
+	root.visible = true
+	background.visible = true
+	title.visible = true
+	
 	mouse_filter = MOUSE_FILTER_STOP
-	var tween_out = get_tree().create_tween()
-	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
-
-func close():
-	var tween_in = get_tree().create_tween()
-	tween_in.tween_property(transition_screen, 'modulate', Color.BLACK, 0.5)
-	visible = false
-	process_mode = PROCESS_MODE_DISABLED
-	mouse_filter = MOUSE_FILTER_IGNORE
+	
+	
+	
+	_ready()
 
 func _ready():
+	current_window = root
 	transition_screen.visible = true
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
@@ -44,9 +43,9 @@ func _start_new_game():
 	tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
 	
 	await tween_in.finished
-	root.visible = false
-	background.visible = false
-	title.visible = false
+	#root.visible = false
+	#background.visible = false
+	#title.visible = false
 	
 	var game_world_instance = load(game_world).instantiate()
 	get_parent().add_child(game_world_instance)
@@ -55,7 +54,10 @@ func _start_new_game():
 	
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
-	tween_out.tween_callback(close)
+	await tween_out.finished
+	#visible = false
+	#process_mode = PROCESS_MODE_DISABLED
+	queue_free()
 
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
@@ -93,9 +95,9 @@ func load_game():
 	tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
 	
 	await tween_in.finished
-	root.visible = false
-	background.visible = false
-	title.visible = false
+	#root.visible = false
+	#background.visible = false
+	#title.visible = false
 	
 	
 	# Firstly, we need to create the object and add it to the tree and set its position.
@@ -106,8 +108,11 @@ func load_game():
 	
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
-	tween_out.tween_callback(close)
-	
+	await tween_out.finished
+	#visible = false
+	#process_mode = PROCESS_MODE_DISABLED
+	#mouse_filter = MOUSE_FILTER_IGNORE
+	queue_free()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -118,6 +123,8 @@ func _on_back_pressed() -> void:
 	root.visible = true
 
 func _on_play_pressed() -> void:
+	print('play pressed')
+	mouse_filter = MOUSE_FILTER_IGNORE
 	load_game()
 
 
@@ -136,3 +143,9 @@ func _on_start_over_pressed():
 func _on_start_over_timer_timeout():
 	start_over_pressed_count = 0
 	start_over_button.text = 'Start Over'
+
+
+func _on_settings_pressed() -> void:
+	current_window.visible = false
+	current_window = settings_list
+	current_window.visible = true

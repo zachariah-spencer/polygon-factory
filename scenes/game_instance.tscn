@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/game_instance.gd" id="1_hbuo7"]
 [ext_resource type="PackedScene" uid="uid://di1f56lekmhv3" path="res://scenes/game_world.tscn" id="2_6hnu5"]
 
-[node name="GameInstance" type="Node2D" groups=["Persistent"]]
+[node name="GameInstance" type="Node2D" groups=["Instance", "Persistent"]]
 script = ExtResource("1_hbuo7")
 
 [node name="StaticLayer" type="CanvasLayer" parent="."]

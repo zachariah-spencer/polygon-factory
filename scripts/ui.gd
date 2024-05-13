@@ -3,6 +3,8 @@ extends Control
 @onready var polygon_counter := $PolygonCounter
 @onready var pause_menu_background := $PauseMenu/Background
 @onready var pause_menu := $PauseMenu
+
+@onready var menu = preload('res://scenes/main_menu.tscn')
 var pause_menu_active := false
 
 
@@ -38,11 +40,17 @@ func _on_resume_pressed():
 
 
 func _on_main_menu_pressed():
-	var main_menu = get_tree().get_first_node_in_group('MainMenu')
+	#var main_menu = get_tree().get_first_node_in_group('MainMenu')
 	Global.save_game()
 	
-	main_menu.open()
-	get_parent().get_parent().queue_free()
+	
+	var menu_inst = menu.instantiate()
+	
+	pause_menu_active = false
+	_set_pause(pause_menu_active)
+	
+	get_tree().get_first_node_in_group('Main').add_child(menu_inst)
+	get_tree().get_first_node_in_group('Instance').queue_free()
 
 
 func _on_quit_game_pressed():

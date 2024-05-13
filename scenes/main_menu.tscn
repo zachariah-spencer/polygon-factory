@@ -39,18 +39,21 @@ auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Play"
+flat = true
 
 [node name="Settings" type="Button" parent="Root/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Settings"
+flat = true
 
 [node name="Quit" type="Button" parent="Root/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Quit"
+flat = true
 
 [node name="StartOver" type="Button" parent="Root"]
 process_mode = 4
@@ -66,6 +69,7 @@ offset_bottom = -32.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Start Over"
+flat = true
 
 [node name="SettingsList" type="Control" parent="."]
 visible = false
@@ -89,23 +93,43 @@ grow_vertical = 2
 auto_translate_mode = 1
 layout_mode = 2
 
-[node name="Slot1" type="Button" parent="SettingsList/Center/VBoxContainer"]
-auto_translate_mode = 1
+[node name="ResolutionLabel" type="Label" parent="SettingsList/Center/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
-text = "Setting 1"
+text = "Resolution
+"
+horizontal_alignment = 1
 
-[node name="Slot2" type="Button" parent="SettingsList/Center/VBoxContainer"]
-auto_translate_mode = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsList/Center/VBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 128
-text = "Slot 2"
 
-[node name="Slot3" type="Button" parent="SettingsList/Center/VBoxContainer"]
+[node name="ResolutionButton" type="Button" parent="SettingsList/Center/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "1920x1080"
+
+[node name="ApplyButton" type="Button" parent="SettingsList/Center/VBoxContainer/HBoxContainer"]
+auto_translate_mode = 1
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 64
+text = "Apply"
+
+[node name="SoundVolumeLabel" type="Label" parent="SettingsList/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
-text = "Slot 3"
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsList/Center/VBoxContainer"]
+layout_mode = 2
 
 [node name="Back" type="Button" parent="SettingsList"]
 auto_translate_mode = 1
@@ -114,13 +138,13 @@ anchors_preset = -1
 anchor_top = 0.878
 anchor_right = 0.2
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 64.0
-offset_bottom = -64.0
+offset_left = 32.0
+offset_right = 16.0
+offset_bottom = -32.0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 128
+theme_override_font_sizes/font_size = 64
 text = "Back"
+flat = true
 
 [node name="Background" type="ColorRect" parent="."]
 auto_translate_mode = 1
@@ -153,6 +177,7 @@ theme_override_font_sizes/font_size = 256
 text = "Polygon Factory"
 
 [connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Root/Center/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="Root/StartOver" to="." method="_on_start_over_pressed"]
 [connection signal="pressed" from="SettingsList/Back" to="." method="_on_back_pressed"]
