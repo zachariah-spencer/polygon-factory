@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d14wak0stagae"]
+[gd_scene load_steps=5 format=3 uid="uid://d14wak0stagae"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_gokr3"]
 [ext_resource type="PackedScene" uid="uid://bj4lh4ckm0iwb" path="res://scenes/transition_screen.tscn" id="2_1cjia"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdr6r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsgar"]
+
 [node name="MainMenu" type="Control" groups=["MainMenu"]]
 auto_translate_mode = 1
+z_index = 10
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,21 +42,27 @@ layout_mode = 2
 [node name="Play" type="Button" parent="Root/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sdr6r")
 text = "Play"
 flat = true
 
 [node name="Settings" type="Button" parent="Root/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sdr6r")
 text = "Settings"
 flat = true
 
 [node name="Quit" type="Button" parent="Root/Center/VBoxContainer"]
 auto_translate_mode = 1
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sdr6r")
 text = "Quit"
 flat = true
 
@@ -67,7 +78,9 @@ anchor_bottom = 1.0
 offset_left = 32.0
 offset_bottom = -32.0
 grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lsgar")
 text = "Start Over"
 flat = true
 
@@ -142,7 +155,9 @@ offset_left = 32.0
 offset_right = 16.0
 offset_bottom = -32.0
 grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lsgar")
 text = "Back"
 flat = true
 

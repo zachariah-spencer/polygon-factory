@@ -6,6 +6,7 @@ var starting_room_path := 'res://scenes/rooms/room_1.tscn'
 
 func new_game():
 	var starting_room : Node2D = load(starting_room_path).instantiate()
+	Structures.clear_virtual_structures()
 	game_world.set_initial_room(starting_room)
 
 func save():
@@ -18,6 +19,7 @@ func save():
 		'total_polygons' : Stats.total_polygons,
 		'upgrade_tier' : Stats.upgrade_tier,
 		'polygons_per_minute' : Stats.polygons_per_minute,
+		'boost_streak' : Stats.boost_streak,
 		'intros_played' : tutorials_ui.get_message_block_played(tutorials_ui.intros),
 		'structures_played' : tutorials_ui.get_message_block_played(tutorials_ui.structures),
 		'boosters_played' : tutorials_ui.get_message_block_played(tutorials_ui.boosters),
@@ -47,6 +49,7 @@ func load(node_data : Dictionary):
 	Stats.total_polygons = node_data['total_polygons']
 	Stats.upgrade_tier = node_data['upgrade_tier']
 	Stats.polygons_per_minute = node_data['polygons_per_minute']
+	Stats.boost_streak = node_data['boost_streak']
 	Stats.polygons_changed.emit()
 	
 	tutorials_ui.set_message_block_played(tutorials_ui.intros, node_data['intros_played'])

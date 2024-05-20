@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://bj4lh4ckm0iwb"]
+[gd_scene load_steps=2 format=3 uid="uid://bj4lh4ckm0iwb"]
+
+[ext_resource type="Script" path="res://scripts/transition_screen.gd" id="1_xrhnh"]
 
 [node name="TransitionScreen" type="Node2D"]
 modulate = Color(1, 1, 1, 0)
+script = ExtResource("1_xrhnh")
 
 [node name="Background" type="ColorRect" parent="."]
 process_mode = 4

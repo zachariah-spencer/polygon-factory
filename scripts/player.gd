@@ -13,6 +13,7 @@ var upgrade_level := 0
 func _ready():
 	Global.player = self
 
+
 func get_input():
 	if state == States.ACTIVE:
 		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

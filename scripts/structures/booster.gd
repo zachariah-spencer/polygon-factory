@@ -28,6 +28,8 @@ var target_speed := unpiloted_base_speed
 func _ready() -> void:
 	success_visual.modulate = Color('ffffff7c')
 	orb_vfx_trail.emitting = true
+	streak_high_score = Stats.boost_streak
+	streak_high_score_label.text = 'Best\n' + str(streak_high_score)
 
 func _on_cockpit_area_body_entered(player : Node2D) -> void:
 	if not player.exiting_cockpit.is_connected(eject_player):
@@ -63,7 +65,7 @@ func _physics_process(delta: float) -> void:
 	if piloted:
 		_handle_pilot_input()
 	
-	speed = lerp(speed, target_speed, 0.008)
+	speed = lerp(speed, target_speed, 0.01)
 	boost_orb.rotation += delta * speed
 
 func _is_boost_successful():
@@ -80,7 +82,7 @@ func _boost():
 	var new_speed := target_speed + base_boost_amount + float(streak / 4.0)
 	speed += new_speed
 	
-	speed = clamp(speed, 0.0, 12.0)
+	speed = clamp(speed, 0.0, 13.0)
 	
 	_increment_streak()
 	anims.play('successful_boost')
@@ -93,6 +95,7 @@ func _increment_streak():
 	streak_label.text = 'Streak\n' + str(streak)
 	
 	if streak > streak_high_score:
+		Stats.boost_streak = streak
 		streak_high_score = streak
 		streak_high_score_label.text = 'Best\n' + str(streak_high_score)
 	

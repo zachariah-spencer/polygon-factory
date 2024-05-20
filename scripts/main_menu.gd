@@ -10,24 +10,35 @@ var game_world : String = 'res://scenes/game_instance.tscn'
 var current_window : Control
 var save_exists := false
 var start_over_pressed_count := 0
+var is_first_launch := true
 
 func open():
-	visible = true
-	root.visible = true
-	background.visible = true
-	title.visible = true
+	transition_screen.visible = true
 	
-	mouse_filter = MOUSE_FILTER_STOP
-	
-	
-	
-	_ready()
+	if is_first_launch:
+		current_window = root
+		var tween_out = get_tree().create_tween()
+		tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
+	else:
+		root.visible = false
+		background.visible = false
+		title.visible = false
+		transition_screen.modulate = Color.TRANSPARENT
+		var tween_in = get_tree().create_tween()
+		tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
+		await tween_in.finished
+		
+		get_tree().get_first_node_in_group('Instance').queue_free()
+		root.visible = true
+		background.visible = true
+		title.visible = true
+		
+		var tween_out = get_tree().create_tween()
+		tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
 
 func _ready():
 	current_window = root
-	transition_screen.visible = true
-	var tween_out = get_tree().create_tween()
-	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
+	open()
 	
 	if FileAccess.file_exists("user://savegame.save"):
 		save_exists = true
@@ -43,9 +54,9 @@ func _start_new_game():
 	tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
 	
 	await tween_in.finished
-	#root.visible = false
-	#background.visible = false
-	#title.visible = false
+	root.visible = false
+	background.visible = false
+	title.visible = false
 	
 	var game_world_instance = load(game_world).instantiate()
 	get_parent().add_child(game_world_instance)
@@ -55,8 +66,6 @@ func _start_new_game():
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
 	await tween_out.finished
-	#visible = false
-	#process_mode = PROCESS_MODE_DISABLED
 	queue_free()
 
 func load_game():
@@ -95,9 +104,9 @@ func load_game():
 	tween_in.tween_property(transition_screen, 'modulate', Color.WHITE, 0.5)
 	
 	await tween_in.finished
-	#root.visible = false
-	#background.visible = false
-	#title.visible = false
+	root.visible = false
+	background.visible = false
+	title.visible = false
 	
 	
 	# Firstly, we need to create the object and add it to the tree and set its position.
@@ -109,9 +118,6 @@ func load_game():
 	var tween_out = get_tree().create_tween()
 	tween_out.tween_property(transition_screen, 'modulate', Color.TRANSPARENT, 0.5)
 	await tween_out.finished
-	#visible = false
-	#process_mode = PROCESS_MODE_DISABLED
-	#mouse_filter = MOUSE_FILTER_IGNORE
 	queue_free()
 
 func _on_quit_pressed() -> void:

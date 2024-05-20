@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy6ba652fveup"]
+[gd_scene load_steps=4 format=3 uid="uid://dy6ba652fveup"]
 
 [ext_resource type="Script" path="res://scripts/ui.gd" id="1_aoknm"]
 [ext_resource type="PackedScene" uid="uid://de3t3iwllebbn" path="res://scenes/tutorials_ui.tscn" id="2_1t5bk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eddtc"]
 
 [node name="UI" type="Control"]
 process_mode = 3
@@ -64,22 +66,31 @@ mouse_filter = 2
 
 [node name="Resume" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eddtc")
 text = "Resume"
+flat = true
 
 [node name="MainMenu" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
 auto_translate_mode = 1
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eddtc")
 text = "Main Menu"
+flat = true
 
 [node name="QuitGame" type="Button" parent="PauseMenu/CenterContainer/Buttons"]
 auto_translate_mode = 1
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 128
+theme_override_styles/focus = SubResource("StyleBoxEmpty_eddtc")
 text = "Exit To Desktop"
+flat = true
 
 [connection signal="pressed" from="PauseMenu/CenterContainer/Buttons/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/CenterContainer/Buttons/MainMenu" to="." method="_on_main_menu_pressed"]
