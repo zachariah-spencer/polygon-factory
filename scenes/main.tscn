@@ -11,5 +11,7 @@
 [node name="Ambient" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7t880")
 autoplay = true
+bus = &"Ambience"
 
 [node name="AudioFadeIn" parent="Ambient" instance=ExtResource("3_x3ldf")]
+duration = 0.25
