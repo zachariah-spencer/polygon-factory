@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://did1hedd1b0x3"]
+
+[ext_resource type="Script" path="res://scripts/audio_fade_in.gd" id="1_d01bh"]
+
+[node name="AudioFadeIn" type="Node"]
+script = ExtResource("1_d01bh")

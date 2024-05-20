@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://by5tjgbtoyaln"]
+[gd_scene load_steps=4 format=3 uid="uid://by5tjgbtoyaln"]
 
 [ext_resource type="PackedScene" uid="uid://d14wak0stagae" path="res://scenes/main_menu.tscn" id="1_sdl5g"]
+[ext_resource type="AudioStream" uid="uid://crvaoklmby1qb" path="res://assets/sounds/ambientfactorybuzz.wav" id="2_7t880"]
+[ext_resource type="PackedScene" uid="uid://did1hedd1b0x3" path="res://scenes/audio_fade_in.tscn" id="3_x3ldf"]
 
 [node name="Main" type="Node" groups=["Main"]]
 
 [node name="MainMenu" parent="." instance=ExtResource("1_sdl5g")]
+
+[node name="Ambient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7t880")
+autoplay = true
+
+[node name="AudioFadeIn" parent="Ambient" instance=ExtResource("3_x3ldf")]

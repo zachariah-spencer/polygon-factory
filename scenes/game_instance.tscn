@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bleihof8vrjgg"]
+[gd_scene load_steps=6 format=3 uid="uid://bleihof8vrjgg"]
 
 [ext_resource type="PackedScene" uid="uid://dy6ba652fveup" path="res://scenes/ui.tscn" id="1_3csel"]
 [ext_resource type="Script" path="res://scripts/game_instance.gd" id="1_hbuo7"]
 [ext_resource type="PackedScene" uid="uid://di1f56lekmhv3" path="res://scenes/game_world.tscn" id="2_6hnu5"]
+[ext_resource type="AudioStream" uid="uid://d4d58tt4fs8kr" path="res://assets/sounds/bassnote.wav" id="4_2sif1"]
+[ext_resource type="PackedScene" uid="uid://did1hedd1b0x3" path="res://scenes/audio_fade_in.tscn" id="5_x6xlb"]
 
 [node name="GameInstance" type="Node2D" groups=["Instance", "Persistent"]]
 script = ExtResource("1_hbuo7")
@@ -16,5 +18,13 @@ script = ExtResource("1_hbuo7")
 [node name="AutosaveTimer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
+
+[node name="BassNote" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2sif1")
+volume_db = -80.0
+autoplay = true
+
+[node name="AudioFadeIn" parent="BassNote" instance=ExtResource("5_x6xlb")]
+duration = 2.5
 
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
