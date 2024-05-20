@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d14wak0stagae"]
+[gd_scene load_steps=6 format=3 uid="uid://d14wak0stagae"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_gokr3"]
 [ext_resource type="PackedScene" uid="uid://bj4lh4ckm0iwb" path="res://scenes/transition_screen.tscn" id="2_1cjia"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="3_xv1ru"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sdr6r"]
 
@@ -143,6 +144,9 @@ horizontal_alignment = 1
 
 [node name="VolumeSlider" type="HSlider" parent="SettingsList/Center/VBoxContainer"]
 layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
 
 [node name="Back" type="Button" parent="SettingsList"]
 auto_translate_mode = 1
@@ -191,8 +195,16 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 256
 text = "Polygon Factory"
 
+[node name="UIAudioManager" parent="." instance=ExtResource("3_xv1ru")]
+
+[connection signal="mouse_entered" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Root/Center/VBoxContainer/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="Root/Center/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="Root/StartOver" to="." method="_on_start_over_mouse_entered"]
 [connection signal="pressed" from="Root/StartOver" to="." method="_on_start_over_pressed"]
+[connection signal="drag_started" from="SettingsList/Center/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_drag_started"]
+[connection signal="value_changed" from="SettingsList/Center/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="SettingsList/Back" to="." method="_on_back_pressed"]

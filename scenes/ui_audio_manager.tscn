@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq7donxqukhfe"]
+
+[ext_resource type="Script" path="res://scripts/ui_audio_manager.gd" id="1_2yl3x"]
+[ext_resource type="AudioStream" uid="uid://b8qs6nlsuvtmi" path="res://assets/sounds/tap.wav" id="2_5njto"]
+[ext_resource type="AudioStream" uid="uid://c8up57gu5pm76" path="res://assets/sounds/c4.wav" id="3_luo8s"]
+[ext_resource type="AudioStream" uid="uid://ckniligopk707" path="res://assets/sounds/a3.wav" id="4_dfjgr"]
+
+[node name="UIAudioManager" type="Node"]
+script = ExtResource("1_2yl3x")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5njto")
+
+[node name="Tone1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_luo8s")
+bus = &"UI_Tones"
+
+[node name="Tone2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_dfjgr")
+bus = &"UI_Tones"
+
+[node name="LowClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_5njto")
+pitch_scale = 0.5

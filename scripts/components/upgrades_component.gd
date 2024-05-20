@@ -25,6 +25,7 @@ func _ready():
 	_hide_menu()
 	
 	get_parent().mouse_entered.connect(_show_menu)
+	
 
 func _show_menu():
 	menu.process_mode = Node.PROCESS_MODE_INHERIT

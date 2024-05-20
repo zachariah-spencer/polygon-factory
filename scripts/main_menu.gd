@@ -6,6 +6,8 @@ extends Control
 @onready var root := $Root
 @onready var title := $Title
 @onready var start_over_button := $Root/StartOver
+@onready var ui_audio_manager := $UIAudioManager
+
 var game_world : String = 'res://scenes/game_instance.tscn'
 var current_window : Control
 var save_exists := false
@@ -121,20 +123,23 @@ func load_game():
 	queue_free()
 
 func _on_quit_pressed() -> void:
+	ui_audio_manager.play_tone_1()
 	get_tree().quit()
 
 func _on_back_pressed() -> void:
+	ui_audio_manager.play_tone_2()
 	current_window.visible = false
 	current_window = root
 	root.visible = true
 
 func _on_play_pressed() -> void:
-	print('play pressed')
+	ui_audio_manager.play_tone_1()
 	mouse_filter = MOUSE_FILTER_IGNORE
 	load_game()
 
 
 func _on_start_over_pressed():
+	ui_audio_manager.play_tone_1()
 	start_over_pressed_count += 1
 	if start_over_pressed_count > 1:
 		var dir = DirAccess.open('user://')
@@ -152,6 +157,31 @@ func _on_start_over_timer_timeout():
 
 
 func _on_settings_pressed() -> void:
+	ui_audio_manager.play_tone_1()
 	current_window.visible = false
 	current_window = settings_list
 	current_window.visible = true
+
+
+func _on_play_mouse_entered() -> void:
+	ui_audio_manager.play_click()
+
+
+func _on_settings_mouse_entered() -> void:
+	ui_audio_manager.play_click()
+
+
+func _on_quit_mouse_entered() -> void:
+	ui_audio_manager.play_click()
+
+
+func _on_volume_slider_drag_started() -> void:
+	ui_audio_manager.play_click()
+
+
+func _on_volume_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+
+
+func _on_start_over_mouse_entered() -> void:
+	ui_audio_manager.play_click()

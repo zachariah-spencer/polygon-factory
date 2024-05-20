@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8cu7ia5r4ldj"]
+[gd_scene load_steps=7 format=3 uid="uid://c8cu7ia5r4ldj"]
 
 [ext_resource type="Script" path="res://scripts/components/upgrades_component.gd" id="1_8b6hi"]
 [ext_resource type="Script" path="res://scripts/upgrades_menu.gd" id="2_o5o0b"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="3_ud1sk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eseyo"]
 bg_color = Color(0, 0, 0, 0.298039)
@@ -184,6 +185,8 @@ one_shot = true
 [node name="PriceNotificationTimer3" type="Timer" parent="NoRotate/Menu"]
 one_shot = true
 
+[node name="UIAudioManager" parent="NoRotate/Menu" instance=ExtResource("3_ud1sk")]
+
 [node name="ExitArea" type="Area2D" parent="NoRotate"]
 position = Vector2(128, 0)
 collision_layer = 4
@@ -193,8 +196,13 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_ns2bq")
 
 [connection signal="upgrade_purchased" from="NoRotate/Menu" to="." method="purchase_upgrade"]
+[connection signal="tab_changed" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer" to="NoRotate/Menu" method="_on_tab_container_tab_changed"]
+[connection signal="tab_hovered" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer" to="NoRotate/Menu" method="_on_tab_container_tab_hovered"]
+[connection signal="mouse_entered" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1/Upgrade1Button" to="NoRotate/Menu" method="_on_upgrade_1_button_mouse_entered"]
 [connection signal="pressed" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade1/Upgrade1Button" to="NoRotate/Menu" method="_on_upgrade_1_button_pressed"]
+[connection signal="mouse_entered" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2/Upgrade2Button" to="NoRotate/Menu" method="_on_upgrade_2_button_mouse_entered"]
 [connection signal="pressed" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade2/Upgrade2Button" to="NoRotate/Menu" method="_on_upgrade_2_button_pressed"]
+[connection signal="mouse_entered" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3/Upgrade3Button" to="NoRotate/Menu" method="_on_upgrade_3_button_mouse_entered"]
 [connection signal="pressed" from="NoRotate/Menu/CenterContainer/VBoxContainer/TabContainer/Upgrade3/Upgrade3Button" to="NoRotate/Menu" method="_on_upgrade_3_button_pressed"]
 [connection signal="timeout" from="NoRotate/Menu/PriceNotificationTimer1" to="NoRotate/Menu" method="_on_price_notification_timer_1_timeout"]
 [connection signal="timeout" from="NoRotate/Menu/PriceNotificationTimer2" to="NoRotate/Menu" method="_on_price_notification_timer_2_timeout"]

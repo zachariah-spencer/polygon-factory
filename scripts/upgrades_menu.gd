@@ -21,6 +21,8 @@ signal upgrade_purchased(num : int)
 @onready var price_notif_timer_2 := $PriceNotificationTimer2
 @onready var price_notif_timer_3 := $PriceNotificationTimer3
 
+@onready var ui_audio_manager := $UIAudioManager
+
 var upgrade_1_cost : int
 var upgrade_2_cost : int
 var upgrade_3_cost : int
@@ -84,34 +86,37 @@ func _set_upgrade_purchased(upgrade_index : int):
 
 func _on_upgrade_1_button_pressed() -> void:
 	if upgrade_1_cost <= Stats.current_polygons:
-		
+		ui_audio_manager.play_tone_1()
 		Stats.subtract_polygon(upgrade_1_cost) 
 		_set_upgrade_purchased(1)
 		
 		upgrade_purchased.emit(1)
 	else:
+		ui_audio_manager.play_tone_2()
 		upgrade_1_button.text = 'Not Enough Polygons'
 		price_notif_timer_1.start()
 
 func _on_upgrade_2_button_pressed() -> void:
 	if upgrade_2_cost <= Stats.current_polygons:
-		
+		ui_audio_manager.play_tone_1()
 		Stats.subtract_polygon(upgrade_2_cost) 
 		_set_upgrade_purchased(2)
 		
 		upgrade_purchased.emit(2)
 	else:
+		ui_audio_manager.play_tone_2()
 		upgrade_2_button.text = 'Not Enough Polygons'
 		price_notif_timer_2.start()
 
 func _on_upgrade_3_button_pressed() -> void:
 	if upgrade_3_cost <= Stats.current_polygons:
-		
+		ui_audio_manager.play_tone_1()
 		Stats.subtract_polygon(upgrade_3_cost) 
 		_set_upgrade_purchased(3)
 		
 		upgrade_purchased.emit(3)
 	else:
+		ui_audio_manager.play_tone_2()
 		upgrade_3_button.text = 'Not Enough Polygons'
 		price_notif_timer_3.start()
 
@@ -123,3 +128,20 @@ func _on_price_notification_timer_2_timeout() -> void:
 
 func _on_price_notification_timer_3_timeout() -> void:
 	upgrade_3_button.text = 'Purchase'
+
+func _on_tab_container_tab_hovered(tab: int) -> void:
+	if ui_audio_manager:
+		ui_audio_manager.play_click()
+
+func _on_tab_container_tab_changed(tab: int) -> void:
+	if ui_audio_manager:
+		ui_audio_manager.play_low_click()
+
+func _on_upgrade_1_button_mouse_entered() -> void:
+	ui_audio_manager.play_click()
+
+func _on_upgrade_2_button_mouse_entered() -> void:
+	ui_audio_manager.play_click()
+
+func _on_upgrade_3_button_mouse_entered() -> void:
+	ui_audio_manager.play_click()

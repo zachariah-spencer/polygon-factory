@@ -28,10 +28,9 @@ autoplay = true
 bus = &"Bass"
 
 [node name="AudioFadeIn" parent="BassNote" instance=ExtResource("5_x6xlb")]
-duration = 2.5
 
 [node name="AudioPitchFadeIn" type="Node" parent="BassNote"]
 script = ExtResource("6_t3kmp")
-duration = 5.0
+duration = 2.5
 
 [connection signal="timeout" from="AutosaveTimer" to="." method="_on_autosave_timer_timeout"]
