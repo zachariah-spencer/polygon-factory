@@ -78,6 +78,7 @@ func queue_message(message_block : Array):
 				message_queue.append(message)
 
 func show_message(message : Array, duration := 2.0):
+	$UIAudioManager.play_tone_2()
 	var tween = get_tree().create_tween()
 	message[1] = true
 	

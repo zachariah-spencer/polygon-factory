@@ -5,6 +5,7 @@ signal exiting_cockpit(player : Node2D)
 @export var speed = 250
 
 @onready var power_vacuum_fx := $PowerVacuum
+@onready var move_sound := $MoveSound
 
 enum States {ACTIVE, DISABLED, PILOTING}
 var state := States.ACTIVE
@@ -18,7 +19,11 @@ func get_input():
 	if state == States.ACTIVE:
 		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		var target_velocity = input_direction * speed
+		
 		if input_direction == Vector2.ZERO:
+			var tween = create_tween()
+			tween.tween_property(move_sound, 'volume_db', -80, 2.0)
+				
 			velocity = lerp(velocity, target_velocity, 0.35)
 			
 			if upgrade_level >= 1:
@@ -26,6 +31,9 @@ func get_input():
 		
 		
 		else:
+			var tween = create_tween()
+			tween.tween_property(move_sound, 'volume_db', 0.0, 0.15)
+			
 			velocity = lerp(velocity, target_velocity, 0.9)
 			
 			if upgrade_level >= 1:

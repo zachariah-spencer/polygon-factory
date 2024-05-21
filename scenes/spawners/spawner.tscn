@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://clcjuj3i4f4ec"]
+[gd_scene load_steps=7 format=3 uid="uid://clcjuj3i4f4ec"]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_3qvj3"]
 [ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="2_vxtx2"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="3_0qmrs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jbh3"]
 
@@ -92,6 +93,8 @@ shape = SubResource("RectangleShape2D_4mwt4")
 
 [node name="PriceNotificationTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="UIAudioManager" parent="." instance=ExtResource("3_0qmrs")]
 
 [connection signal="pressed" from="Tooltip/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="EnterCollision" to="." method="_on_enter_collision_mouse_entered"]

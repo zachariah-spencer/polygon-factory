@@ -5,6 +5,7 @@ extends Structure
 @onready var collision := $Collision
 @onready var polygons_component : PolygonsComponent = $PolygonsComponent
 @onready var generator_sound_manager := $GeneratorSoundManager
+@onready var ui_audio_manager := $UIAudioManager
 
 var prev_spawned_color : Color
 var rot_speed := 0.02
@@ -44,6 +45,10 @@ func _ready():
 	rotation = rand_rot
 	
 	virtual_structure.polygons_generated.connect(make_polygon)
+
+func _load():
+	super._load()
+	ui_audio_manager.play_tone_1()
 
 func _reload():
 	super._reload()

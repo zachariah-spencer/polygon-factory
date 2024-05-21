@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://67wthaqnj4cf"]
+
+[ext_resource type="AudioStream" uid="uid://bni3m7ut2u3p2" path="res://assets/sounds/c3.wav" id="1_jg188"]
+[ext_resource type="Script" path="res://scripts/generator_sound_manager.gd" id="2_gi5oh"]
+
+[node name="GeneratorSoundManager" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_jg188")
+bus = &"Plucks"
+script = ExtResource("2_gi5oh")

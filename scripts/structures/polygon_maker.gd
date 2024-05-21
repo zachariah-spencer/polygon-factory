@@ -3,10 +3,12 @@ extends Structure
 
 @onready var tooltip := $Control/Tooltip
 @onready var polygons_component := $PolygonsComponent
+@onready var generator_sound_manager := $GeneratorSoundManager
 
 var prev_spawned_color : Color
 
 func make_polygon():
+	generator_sound_manager.play_random_note()
 	Stats.add_polygon()
 	prev_spawned_color = await polygons_component.spawn_polygon()
 	

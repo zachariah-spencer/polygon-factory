@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="3_8csaf"]
 [ext_resource type="PackedScene" uid="uid://c8cu7ia5r4ldj" path="res://scenes/components/upgrades_component.tscn" id="4_mj6ix"]
 [ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="4_qn6k0"]
-[ext_resource type="AudioStream" uid="uid://bni3m7ut2u3p2" path="res://assets/sounds/c3.wav" id="6_r2qer"]
-[ext_resource type="Script" path="res://scripts/generator_sound_manager.gd" id="7_qls2s"]
+[ext_resource type="PackedScene" uid="uid://67wthaqnj4cf" path="res://scenes/generator_sound_manager.tscn" id="6_brx0f"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="8_xf7yx"]
 
 [sub_resource type="Curve" id="Curve_duus1"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.733333, 0), 0.0, 0.0, 0, 0]
@@ -111,7 +111,6 @@ fixed_fps = 60
 upgrade_1_info = [true, "Speed", "2x Speed", 150]
 upgrade_2_info = [true, "Quality", "2x Quality", 150]
 
-[node name="GeneratorSoundManager" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_r2qer")
-bus = &"Plucks"
-script = ExtResource("7_qls2s")
+[node name="GeneratorSoundManager" parent="." instance=ExtResource("6_brx0f")]
+
+[node name="UIAudioManager" parent="." instance=ExtResource("8_xf7yx")]

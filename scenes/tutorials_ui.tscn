@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://de3t3iwllebbn"]
+[gd_scene load_steps=3 format=3 uid="uid://de3t3iwllebbn"]
 
 [ext_resource type="Script" path="res://scripts/tutorials_ui.gd" id="1_8tmoo"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="2_fs4dt"]
 
 [node name="TutorialsUI" type="Node"]
 process_mode = 3
@@ -30,5 +31,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "TUTORIAL TIPS"
 horizontal_alignment = 1
+
+[node name="UIAudioManager" parent="." instance=ExtResource("2_fs4dt")]
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

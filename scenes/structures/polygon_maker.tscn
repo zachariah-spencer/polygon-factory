@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwh0ohqqwkseu"]
+[gd_scene load_steps=7 format=3 uid="uid://dwh0ohqqwkseu"]
 
 [ext_resource type="Script" path="res://scripts/structures/polygon_maker.gd" id="1_my3gv"]
 [ext_resource type="Texture2D" uid="uid://c6rm0tmkfxlc3" path="res://assets/NotoSans_-_White_Diamond_Containing_Black_Very_Small_Diamond_-_1F79A.svg.png" id="2_xjad1"]
 [ext_resource type="FontFile" uid="uid://bhq4swxalljnh" path="res://assets/m3x6.ttf" id="3_hk7xx"]
 [ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="4_5cr4r"]
+[ext_resource type="PackedScene" uid="uid://67wthaqnj4cf" path="res://scenes/generator_sound_manager.tscn" id="5_y2tbm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kba1o"]
 size = Vector2(32, 32)
@@ -50,6 +51,9 @@ polygons"
 horizontal_alignment = 1
 
 [node name="PolygonsComponent" parent="." instance=ExtResource("4_5cr4r")]
+
+[node name="GeneratorSoundManager" parent="." instance=ExtResource("5_y2tbm")]
+volume_db = -0.5
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

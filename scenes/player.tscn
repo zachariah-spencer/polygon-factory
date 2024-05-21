@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dyg1hrw3idj0w"]
+[gd_scene load_steps=15 format=3 uid="uid://dyg1hrw3idj0w"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_g0fx8"]
 [ext_resource type="Texture2D" uid="uid://bmv3b5yg1npgf" path="res://assets/circlering.png" id="2_cfyit"]
+[ext_resource type="AudioStream" uid="uid://dikxncbjfemxh" path="res://assets/sounds/hover.wav" id="3_tjjey"]
 
 [sub_resource type="Curve" id="Curve_jc1yx"]
 _data = [Vector2(0.00666666, 0.428571), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -107,3 +108,10 @@ libraries = {
 "": SubResource("AnimationLibrary_8wscl")
 }
 autoplay = "colorpulse"
+
+[node name="MoveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tjjey")
+volume_db = -80.0
+pitch_scale = 1.5
+autoplay = true
+bus = &"Player_Hover"

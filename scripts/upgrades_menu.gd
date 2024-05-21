@@ -129,11 +129,11 @@ func _on_price_notification_timer_2_timeout() -> void:
 func _on_price_notification_timer_3_timeout() -> void:
 	upgrade_3_button.text = 'Purchase'
 
-func _on_tab_container_tab_hovered(tab: int) -> void:
+func _on_tab_container_tab_hovered(_tab: int) -> void:
 	if ui_audio_manager:
 		ui_audio_manager.play_click()
 
-func _on_tab_container_tab_changed(tab: int) -> void:
+func _on_tab_container_tab_changed(_tab: int) -> void:
 	if ui_audio_manager:
 		ui_audio_manager.play_low_click()
 

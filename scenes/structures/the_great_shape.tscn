@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://uae0cg50lhup"]
+[gd_scene load_steps=18 format=3 uid="uid://uae0cg50lhup"]
 
 [ext_resource type="Texture2D" uid="uid://kdayil0kjgqm" path="res://assets/greatshape.png" id="1_ackp1"]
 [ext_resource type="Script" path="res://scripts/structures/the_great_shape.gd" id="1_xhuk0"]
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="3_rlc0v"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="4_l378e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qqdox"]
 radius = 800.0
@@ -210,6 +211,8 @@ trail_enabled = true
 trail_lifetime = 1.0
 trail_sections = 50
 trail_section_subdivisions = 50
+
+[node name="UIAudioManager" parent="." instance=ExtResource("4_l378e")]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

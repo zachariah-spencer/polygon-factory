@@ -14,6 +14,7 @@ signal object_spawning_started
 @onready var tooltip_description := $Tooltip/CenterContainer/VBoxContainer/Description
 @onready var button := $Tooltip/CenterContainer/VBoxContainer/Button
 @onready var price_notification_timer := $PriceNotificationTimer
+@onready var ui_audio_manager := $UIAudioManager
 
 func _ready():
 	_verify_purchased_state()
@@ -47,6 +48,7 @@ func _get_unique_id() -> String:
 	return get_parent().name + '/' + name
 
 func _on_enter_collision_mouse_entered() -> void:
+	ui_audio_manager.play_click()
 	if triggers_tutorial:
 		Global.play_structures_tutorial()
 	
@@ -67,6 +69,7 @@ func _on_button_pressed() -> void:
 		Stats.subtract_polygon(cost)
 		spawn_object()
 	else:
+		ui_audio_manager.play_tone_2()
 		button.text = 'Not Enough Polygons'
 		price_notification_timer.start()
 

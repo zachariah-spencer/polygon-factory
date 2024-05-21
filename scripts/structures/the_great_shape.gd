@@ -16,6 +16,8 @@ signal upgrade_tier_changed(new_tier : int)
 
 @onready var mini_visuals := [mini_visual_1, mini_visual_2, mini_visual_3]
 
+@onready var ui_audio_manager := $UIAudioManager
+
 var spawned_in := false
 var rotation_speed := 0.0
 var max_rotation_speed := 0.01
@@ -48,6 +50,7 @@ func _reload():
 	
 
 func _load():
+	ui_audio_manager.play_tone_1()
 	Stats.great_shape_purchased = true
 	var tween_zoom = create_tween()
 	tween_zoom.tween_property(get_parent().get_node('View'), 'zoom', Vector2(1.25, 1.25), 1.0)

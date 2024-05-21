@@ -3,6 +3,8 @@ extends Structure
 @onready var polygon := $Polygon
 @onready var polygon_2 := $Polygon2
 @onready var move_polygon := $MovePolygon
+@onready var sound := $GeneratorSoundManager
+@onready var ui_sound := $UIAudioManager
 
 func activate_upgrade(num : int):
 	match(num):
@@ -13,6 +15,10 @@ func activate_upgrade(num : int):
 			move_polygon.play('move_two_polygons')
 			
 			virtual_structure.upgrade_1_active = true
+
+func _load():
+	super._load()
+	ui_sound.play_tone_1()
 
 func _reload():
 	super._reload()

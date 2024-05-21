@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d24pfjikaxa1p"]
+[gd_scene load_steps=14 format=3 uid="uid://d24pfjikaxa1p"]
 
 [ext_resource type="Texture2D" uid="uid://dmnea0ltf4eh2" path="res://assets/conveyor_belt/conveyor1.png" id="1_mss5x"]
 [ext_resource type="Script" path="res://scripts/structures/assembly_line.gd" id="1_t48jb"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="4_hvylt"]
 [ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="5_l03dv"]
 [ext_resource type="PackedScene" uid="uid://c8cu7ia5r4ldj" path="res://scenes/components/upgrades_component.tscn" id="6_kiub1"]
+[ext_resource type="PackedScene" uid="uid://67wthaqnj4cf" path="res://scenes/generator_sound_manager.tscn" id="7_tc0rt"]
+[ext_resource type="PackedScene" uid="uid://bq7donxqukhfe" path="res://scenes/ui_audio_manager.tscn" id="8_qq217"]
+[ext_resource type="AudioStream" uid="uid://crvaoklmby1qb" path="res://assets/sounds/ambientfactorybuzz.wav" id="9_21ibe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x2w8p"]
 animations = [{
@@ -61,6 +64,20 @@ tracks/2/keys = {
 "values": [{
 "args": [1],
 "method": &"_randomize_polygon"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GeneratorSoundManager")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random_note"
 }]
 }
 
@@ -128,10 +145,30 @@ tracks/4/path = NodePath("Polygon2:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2.49876, 2.99851, 3.49826, 4.31267),
+"times": PackedFloat32Array(2.5, 3, 3.5, 4.31267),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.5, 0.5), Vector2(0, 0), Vector2(0, 0), Vector2(0.5, 0.5)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GeneratorSoundManager")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_random_note"
+}, {
+"args": [],
+"method": &"play_random_note"
+}, {
+"args": [],
+"method": &"play_random_note"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kj0tk"]
@@ -173,7 +210,7 @@ texture = ExtResource("4_hvylt")
 
 [node name="Polygon2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(16, -34.7533)
+position = Vector2(16, -1.93506)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_hvylt")
 
@@ -189,5 +226,16 @@ polygons_increment = 10
 
 [node name="UpgradesComponent" parent="." instance=ExtResource("6_kiub1")]
 upgrade_1_info = [true, "Speed", "2x Polygons Speed", 250]
+
+[node name="GeneratorSoundManager" parent="." instance=ExtResource("7_tc0rt")]
+
+[node name="UIAudioManager" parent="." instance=ExtResource("8_qq217")]
+
+[node name="FactorySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_21ibe")
+pitch_scale = 4.0
+autoplay = true
+attenuation = 25.0
+bus = &"ConveyorBuzz"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

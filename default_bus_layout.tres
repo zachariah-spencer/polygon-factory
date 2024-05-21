@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=10 format=3 uid="uid://mjs18tfgfv"]
+[gd_resource type="AudioBusLayout" load_steps=12 format=3 uid="uid://mjs18tfgfv"]
 
 [sub_resource type="AudioEffectChorus" id="AudioEffectChorus_k8knd"]
 resource_name = "Chorus"
@@ -47,19 +47,30 @@ tap1_level_db = -4.0
 tap2_level_db = -8.0
 feedback_active = true
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_r00fe"]
+resource_name = "Reverb"
+room_size = 0.25
+wet = 0.25
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_ymc0j"]
+resource_name = "Distortion"
+mode = 3
+drive = 0.5
+post_gain = 2.0
+
 [resource]
 bus/0/volume_db = -0.130497
 bus/1/name = &"Bass"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = -6.24739
+bus/1/volume_db = -10.9863
 bus/1/send = &"Master"
 bus/2/name = &"Ambience"
 bus/2/solo = false
 bus/2/mute = false
 bus/2/bypass_fx = false
-bus/2/volume_db = -8.00903
+bus/2/volume_db = -15.1981
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectChorus_k8knd")
 bus/2/effect/0/enabled = true
@@ -71,7 +82,7 @@ bus/3/name = &"Plucks"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = 1.85375
+bus/3/volume_db = 1.06049
 bus/3/send = &"Master"
 bus/3/effect/0/effect = SubResource("AudioEffectReverb_g3sx1")
 bus/3/effect/0/enabled = true
@@ -97,3 +108,19 @@ bus/5/effect/0/effect = SubResource("AudioEffectReverb_npxsd")
 bus/5/effect/0/enabled = true
 bus/5/effect/1/effect = SubResource("AudioEffectDelay_ow1sr")
 bus/5/effect/1/enabled = true
+bus/6/name = &"Player_Hover"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -15.2046
+bus/6/send = &"Master"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_r00fe")
+bus/6/effect/0/enabled = true
+bus/7/name = &"ConveyorBuzz"
+bus/7/solo = false
+bus/7/mute = false
+bus/7/bypass_fx = false
+bus/7/volume_db = -0.130497
+bus/7/send = &"Master"
+bus/7/effect/0/effect = SubResource("AudioEffectDistortion_ymc0j")
+bus/7/effect/0/enabled = true

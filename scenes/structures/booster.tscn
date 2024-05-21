@@ -104,7 +104,7 @@ hue_variation_max = 0.1
 radius = 16.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ng5ui"]
-size = Vector2(60, 50)
+size = Vector2(55, 50)
 
 [sub_resource type="Animation" id="Animation_coko1"]
 resource_name = "failed_boost"
