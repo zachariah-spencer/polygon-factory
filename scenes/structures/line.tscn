@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj5enpgepcr52"]
+[gd_scene load_steps=14 format=3 uid="uid://bj5enpgepcr52"]
 
 [ext_resource type="Texture2D" uid="uid://cdcdgnb7w6huk" path="res://assets/tiles/whitesq.png" id="1_4ph2j"]
 [ext_resource type="Script" path="res://scripts/structures/line.gd" id="1_qhvgx"]
 [ext_resource type="PackedScene" uid="uid://s6lxpweacnkf" path="res://scenes/components/generator_component.tscn" id="2_od7gh"]
 [ext_resource type="PackedScene" uid="uid://cqd8306i3ka0y" path="res://scenes/components/polygons_component.tscn" id="3_blyro"]
+[ext_resource type="PackedScene" uid="uid://67wthaqnj4cf" path="res://scenes/generator_sound_manager.tscn" id="5_6hjsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjgg0"]
 size = Vector2(2, 128)
@@ -94,3 +95,5 @@ one_shot = true
 explosiveness = 0.95
 fixed_fps = 60
 visibility_rect = Rect2(-22.3589, -16.0156, 43.4409, 178.391)
+
+[node name="GeneratorSoundManager" parent="." instance=ExtResource("5_6hjsy")]

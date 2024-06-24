@@ -2,6 +2,7 @@ extends Structure
 
 @onready var polygons_component : PolygonsComponent = $PolygonsComponent
 @onready var pulse := $Pulse
+@onready var generator_sound_manager := $GeneratorSoundManager
 
 var new_color : Color
 var prev_spawned_color : Color
@@ -15,6 +16,7 @@ func _ready() -> void:
 	virtual_structure.polygons_generated.connect(make_polygon)
 
 func make_polygon(_polygon_count : int):
+	generator_sound_manager.play_random_note()
 	_emit_pulse_vfx()
 	
 	if polygons_component:

@@ -2,8 +2,8 @@ extends Node
 
 signal polygons_changed()
 
-var current_polygons := 20000
-var total_polygons := 20000
+var current_polygons := 0
+var total_polygons := 0
 var upgrade_tier := 0
 var polygons_per_minute := 0.0
 var boost_streak := 0
